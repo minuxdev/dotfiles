@@ -84,7 +84,8 @@ function install_hyprland() {
     sudo pacman -S xorg-xwayland --noconfirm
     
   # install and config DE
-    yay -S hyprland-git waybar-git hyprpaper-git wofi --noconfirm
+    sudo pacman -S playerctl --noconfirm 
+    yay -S hyprland-git waybar-hyprland-git hyprpaper-git wofi --noconfirm
     [ ! -d "$HYPR_DIR" ] && mkdir "$HYPR_DIR"
     cp -rv "$HOME/dotfiles/DE/hyprland/hypr/" "$HYPR_DIR"
     cp -rv "$HOME/dotfiles/DE/hyprland/waybar" "$HOME/.config/"
