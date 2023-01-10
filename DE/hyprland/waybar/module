@@ -1,0 +1,13 @@
+{	// waybar-custom
+    "custom/menu": {
+         "format": "  ",
+         "tooltip": false,
+//         "on-click": "$HOME/.config/hypr/scripts/menu",
+    },
+
+    "custom/power": {
+         "format": "襤",
+         "tooltip": false,
+         "on-click": "$HOME/.config/hypr/scripts/session_manager.sh",
+    },
+}
