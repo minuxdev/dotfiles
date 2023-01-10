@@ -6,10 +6,11 @@ function create_user() {
         cat /etc/passwd | grep -w "$USERNAME"
         [ $? != 0 ] || continue
         useradd -m -g wheel "$USERNAME"
+        usermod -a -G input "$USERNAME"
         awk -i inplace ' /^# %wheel/ && /NOPASSWD/ { $1 = substr($1, 2) }; 1 ' \
         /etc/sudoers 
         passwd "$USERNAME"
-        exit;
+        break;
     done
 
     printf "User %s was created successfully!" "$USERNAME"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 function wellcome_note() {
 
     printf """
@@ -34,46 +36,51 @@ function arch_install() {
     lsblk -f
 
 printf """
+
 Make sure you inform the partitions correctly, any typo will cause failure.
 e.g. sda1 
 e.g. nvme0n1p1
 """
     # format and mount root partition
+    printf "\n\n"
     read -p "ROOT PARTITION: " PARTITION
-    while "$PARTITION"
+    while true 
     do
         [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. ROOT PARTITION: " PARTITION; continue )
         mkfs.ext4 "/dev/$PARTITION"
         mount "/dev/$PARTITION" "/mnt"
-        printf "\nPartition mounted!\n"
+        printf "\nPartition mounted!\n\n"
         break;
     done
 
     # format and mount efi partition
+    printf "\n\n"
     lsblk -f
     read -p "EFI PARTITION: " PARTITION
-    while "$PARTITION"
+    while true
     do
         [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. EFI PARTITION: " PARTITION; continue )
         mkfs.fat -F 32 "/dev/$PARTITION"
-        mount --mkdir "/dev/$PARTITION" "/mnt/boot"
+        mount --mkdir "/dev/$PARTITION" "/mnt/efi"
         printf "\nPartition mounted!\n"
         break;
     done
 
     # format and mount swap partition
+    printf "\n\n"
     lsblk -f
-    read -p "EFI PARTITION: " PARTITION
-    while "$PARTITION"
+    read -p "SWAP PARTITION: " PARTITION
+    while true
     do
         [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
         mkswap "/dev/$PARTITION"
         swapon "/dev/$PARTITION"
-        printf "\nPartition swapped successfully!!!\n"
+        printf "\n\nPartition swapped successfully!!!\n"
         break;
     done
 
 
+    printf "\n\nInstalling keys\n"
     # initializing keys
     pacman-key --init
     
@@ -81,57 +88,38 @@ e.g. nvme0n1p1
     pacman-key --populate archlinux
 
     # install archlinux-keyring
-    pacman -S archlinux-keyring
+    pacman -Sy archlinux-keyring --noconfirm
 
     # install system
-    pacstrap /mnt base-devel linux networkmanager systemd-sysvcompat git grub efibootmgr --noconfirm
+    printf "\n\nBeginning the system installation\n"
+    pacstrap /mnt base-devel linux networkmanager systemd-sysvcompat git grub efibootmgr ntfs-3g --noconfirm
 
     [ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
 
     printf "
-\nCONGRATULATIONS!!!
+\n
+CONGRATULATIONS!!!
 THE INSTALLATION PROCESS FINISHED SUCCESSFULLY!
 NOW LET'S CONFIGURE IT...
+
+1. COPY new_root_config.sh SCRIPT TO ANYWHERE YOU CAN RUN IT
+2. RUN BY TYPING ./new_root_config.sh
+
+NOTE: MAKE SURE YOU RUN THIS INTO NEW ROOT.
+
+\n
 "
+cp ~/scripts/new_root_config.sh /mnt/
 
 genfstab -L /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
-# configure time zone
-read -p "Inform your region: " REGION
-read -p "Inform your city: " CITY
-ln -sf /usr/share/zoneinfo/"$REGION"/"$CITY" /etc/localtime
-hwclock --systohc
 
-# localization
-awk -i inplace ' /en_US.UTF-8/ { $1 = substr($1, 2) }; 1 ' /etc/locale.gen
-locale-gen
-printf "LANG=en_US.UTF-8" > /etc/locale.conf
+[ $? = 0 ] || ( printf "Failed to chroot to new root. Exiting... \n"; exit )
 
-# network configuration
-printf "archminux" > /etc/hostname
-
-# install grub
-grub-install --efi-directory=/boot/efi 
-[ $? = 0 ] || echo "GRUB-INSTALL FAILED TO INSTALL TRY GAIN!";
-grub-mkconfig -o /boot/grub/grub.cfg
-efibootmgr
-
-# setting roots password
-printf "\nSET A PASSWORD FOR USER ROOT\n"
-passwd
-
-printf """
-CONGRATULATIONS!!!
-
-THE INSTALLATION FINISHED SUCCESSFULLY. 
-EXECUTE THE pos_installation.sh SCRIPT SO FURTHER CONFIGURATIONS CAN BE MADE.
-
-RESTARTING YOUR COMPUTER...
-"""
 
 }
 
 
-wellcome_note
+wellcome_none
 arch_install
