@@ -67,6 +67,7 @@ function install_hyprland() {
     yay -S hyprland-git waybar-git hyprpaper-git wofi --noconfirm
     [ ! -d "$HYPR_DIR" ] && mkdir "$HYPR_DIR"
     cp -r "$HOME/dotfiles/hyprland/hypr/" "$HYPR_DIR"
+    cp -r "$HOME/dotfiles/waybar/" "$HOME/.config/"
     echo -e "\nHyprland installed successfully!!"
 }
 
