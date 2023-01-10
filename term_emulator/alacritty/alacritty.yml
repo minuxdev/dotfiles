@@ -1,0 +1,68 @@
+
+
+window:
+  padding:
+    x: 10
+    y: 10
+
+  opacity: 0.8
+
+
+font:
+  normal:
+    family: Space Mono Nerd Font 
+    style: Regular
+
+  bold:
+    family: Space Mono Bold Nerd Font
+    style: Bold
+
+  italic:
+    family: Space Mono Italic Nerd Font 
+    style: Italic
+
+  size: 11.0
+
+  offset:
+    x: 0
+    y: 0
+
+  builtin_box_drawing: true
+
+
+colors:
+  primary:
+    background: '#1d1f21'
+    foreground: '#c5c8c6'
+
+
+  search:
+    matches:
+     foreground: '#000000'
+     background: '#ffffff'
+    focused_match:
+     foreground: '#ffffff'
+     background: '#000000'
+
+  # Keyboard hints
+  hints:
+    start:
+      foreground: '#1d1f21'
+      background: '#e9ff5e'
+
+    end:
+     foreground: '#e9ff5e'
+     background: '#1d1f21'
+
+live_config_reload: true
+working_directory: None
+
+
+key_bindigs:
+  - { key: Return,         mods: Control|Shift,                   action: SpawnNewInstance }
+  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: C,              mods: Control|Shift,                   action: Copy             }
+  - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
+  - { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
+  - { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
+  - { key: Insert,         mods: Shift,                           action: PasteSelection   }
