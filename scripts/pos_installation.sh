@@ -1,5 +1,6 @@
 #!/bin/bash
-
+#
+sudo systemctl enable NetworkManger --now
 
 #   INSTALLING YAY-GIT
 function yay_installation() {
@@ -103,13 +104,16 @@ function install_sddm() {
 
     yay -S sddm-git --noconfirm
     
-    awk -i inplace -v cu="$(whoami)" ' /User=/ { sub(/User=/, "&"cu) }; 1 ' "$SDDM"
-    awk -i inplace -v cu="sddm-flower-theme" ' /Current=/ { sub(/Current=/, "&"cu) }; 1 ' "$SDDM"
     
     sudo cp -rv "$SDDM" "/etc/"
     sudo cp -rv "$SDDM_THEMES_SRC" "$SDDM_THEMES_DST"
 
-    sudo systemctl enable sddm now
+#    awk -i inplace -v cu="$(whoami)" ' /User=/ { sub(/User=/, "&"cu) }; 1 ' "$SDDM"
+    [ -f "/etc/sddm.conf" ] && \
+      (sudo awk -i inplace -v cu="sddm-flower-theme" ' /Current=/ { sub($1, "&"cu) }; 1 ' /etc/sddm.conf ) || \
+      ( printf "\n/etc/sddm.conf FILE COULD NOT BE FOUND!!\n\n" )
+    
+    sudo systemctl enable sddm --now
 
     printf "
     
