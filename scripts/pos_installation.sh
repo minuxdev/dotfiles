@@ -37,8 +37,6 @@ function terminal_emulator() {
     FONTS_DIR="$HOME/.fonts/"
     sudo pacman -Sy zsh alacritty ranger dialog --noconfirm
 
-    cp -rv "$HOME/dotfiles/term_emulator/alacritty/" "$HOME/.config/"
-    
     # installing oh-my-zsh
     [ ! -d "$HOME/.oh-my-zsh" ] && rm -rv "$HOME/.oh-my-zsh";
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -65,17 +63,17 @@ function terminal_emulator() {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
     source ~/.zshrc
     nvm install node
+   source ~/.zshrc
+	
+	npm install -g yarn
+
+   source ~/.zshrc
    
-   # installing lunarvim
-    LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-    if [ -f "$HOME/.local/bin/lvim" ]
-    then
-        awk -i inplace 'NR==1 { print "\n\nexport PATH=$HOME/.local/bin:$PATH\n\nalias vim=lvim" }; 1' ~/.zshrc
-	      source ~/.zshrc
-        echo -e "\n\nLunarVim installed successfully. Open it to complete the process...\n"
-    else
-        echo "Lvim not found!!!" 
-    fi
+# installing vim-plug
+	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	cp -rv "$HOME/dotfiles/term_emulator/*" "$HOME/.config/"
+	
 }
 
 
@@ -149,7 +147,7 @@ function utilities() {
 
   "
 
-    PKGS="dolphin kate firefox unzip jmtpfs"
+    PKGS="thunar kate firefox unzip jmtpfs"
 
     for pkg in $PKGS
     do
