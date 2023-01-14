@@ -1,5 +1,6 @@
+require("default")
+require("keybind")
+require("plugin")
+require("plugs")
 
 
-require("core.keymaps")
-require("core.plugin")
-require("core.plug_config")

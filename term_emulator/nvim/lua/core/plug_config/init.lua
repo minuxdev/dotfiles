@@ -1,6 +1,0 @@
-require("core.plug_config.nvim-tree")
-require("core.plug_config.lualine")
-require("core.plug_config.gruvbox")
-require("core.plug_config.treesitter")
-require("core.plug_config.telescope")
-require("core.plug_config.lspzero")

@@ -20,6 +20,7 @@ use 'nvim-lualine/lualine.nvim'
 use 'ellisonleao/gruvbox.nvim'
 use 'nvim-treesitter/nvim-treesitter'
 use 'davidhalter/jedi-vim'
+use 'RRethy/nvim-base16'
 use {
   'nvim-telescope/telescope.nvim', tag = '0.1.0',
   requires = { {'nvim-lua/plenary.nvim'} }
