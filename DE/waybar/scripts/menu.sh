@@ -1,4 +1,5 @@
 #!/bin/bash
 #
-#
-wofi --show run
+
+pkill wofi
+wofi --show drun

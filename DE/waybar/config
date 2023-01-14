@@ -1,11 +1,9 @@
 
 {
-
-  "include": ["module"],
-
 	"layer": "top",
-    "modules-left": ["custom/menu", "wlr/workspaces", ],
-    "modules-center": ["sway/window"],
+	"height": "30",
+    "modules-left": ["custom/menu", "wlr/workspaces", "user" ],
+    "modules-center": [ "hyprland/window"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory","keyboard-state","clock", "tray", "custom/power"],
 
     "wlr/workspaces": {
@@ -32,11 +30,6 @@
             "locked": "",
             "unlocked": ""
         }
-    },
-
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
     },
 
     "clock": {
@@ -71,7 +64,30 @@
         "on-click": "pavucontrol"
     },
 
-	"sway/window": {
-		"max-length": 50
-	}
+	"hyprland/window": {
+		"format" : " {}",
+		"separate-outputs" : true,
+		"max-length": 40
+	},
+
+	"custom/menu" : {
+		"format": "  ",
+		"tooltip" : false,
+		"on-click": "$HOME/.config/waybar/scripts/session_manager.sh",
+	},
+
+	"custom/power": {
+		"format": "  ",
+		"tooltip": false,
+		"on-click": "$HOME/.config/waybar/scripts/session_manager.sh",
+	},
+
+	"user": {
+        "format": " {user} (up {work_H}:{work_M}:{work_S} ↑)",
+        "interval": 1,
+        "height": 30,
+        "width": 30,
+        "icon": true,
+},
+
 }

@@ -1,4 +1,4 @@
-{	// waybar-custom
+{
     "custom/menu": {
          "format": "  ",
          "tooltip": false,

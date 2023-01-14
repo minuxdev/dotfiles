@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-
+printf "Executed"
 OPT=$( dialog --stdout --radiolist "Session Manger" 0 0 0 Shutdown "" on Reboot "" off Logout "" off )
 echo $OPT
 
