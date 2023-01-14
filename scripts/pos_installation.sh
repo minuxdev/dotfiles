@@ -2,14 +2,29 @@
 #
 sudo systemctl enable NetworkManager --now
 
+function print_section() {
+    printf "
+
++++++++++++++++++++++++++++++++++++++++++++++
++++++ $1
++++++++++++++++++++++++++++++++++++++++++++++
+
+"
+}
+
+
+function print_end_section() {
+    printf "
+
+    $1
+
+"
+}
+
+
 #   INSTALLING YAY-GIT
 function yay_installation() {
-
-  printf "
-
-    INSTALLING YAY-GIT 
-
-    "
+    print_section 'YAY-GIT'
 
   YAY_DIR="$HOME/.pkgs"
     cd $HOME
@@ -21,21 +36,23 @@ function yay_installation() {
     git clone https://aur.archlinux.org/yay-git.git
     cd "yay-git"
     makepkg -si
-    printf "\nYAY INSTALLED SUCCESSFULLY!\n";
+
+    print_end_section "YAY INSTALLED SUCCESSFULLY!";
     
 }
 
 
 function terminal_emulator() {
-
-  printf "
-
-    INSTALLING TERMINAL_EMULATOR + LVIM
-
-    "
+    print_section 'TERMINAL EMULATOR'
 
     FONTS_DIR="$HOME/.fonts/"
-    sudo pacman -Sy zsh alacritty ranger dialog --noconfirm
+
+    PKGS="zsh alacritty ranger dialog"
+
+    for PKG in "$PKGS"
+    do
+        sudo pacman -S "$PKG" --noconfirm
+    done
 
     # installing oh-my-zsh
     [ ! -d "$HOME/.oh-my-zsh" ] && rm -rv "$HOME/.oh-my-zsh";
@@ -52,37 +69,36 @@ function terminal_emulator() {
     yay -S --noconfirm zsh-theme-powerlevel10k-git
     echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
-    # lvim dependencies
-    PKGS="neovim cargo make npm"
-    
+
+    # NEOVIM
+
+    print_section 'NEOVIM 0.8'
+    PKGS="neovim cargo make npm python-pip"
     for PKG in $PKGS
-    do
-	    [ "$PKG" = "npm" ] && ( sudo pacman -S "$PKG" --overwrite="*" --noconfirm ) || ( sudo pacman -S "$PKG" --noconfirm )
-    done
+        do
+            [ "$PKG" = "npm" ] && ( sudo pacman -S "$PKG" --overwrite="*" --noconfirm ) || ( sudo pacman -S "$PKG" --noconfirm )
+        done
 	
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
     source ~/.zshrc
     nvm install node
-   source ~/.zshrc
+    source ~/.zshrc
 	
 	npm install -g yarn
-
-   source ~/.zshrc
+    source ~/.zshrc
    
 # installing vim-plug
 	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	cp -rv "$HOME/dotfiles/term_emulator/*" "$HOME/.config/"
 	
-}
+    [ -f "~/.config/alacritty" ] && ( rm ~/.config/alacritty )  
+    cp -rv "$HOME/dotfiles/term_emulator/*" "$HOME/.config/" )
+	
+    print_end_section 'HYPRLAND + NEOVIM INSTALLED SUCCESSFULLY' }
 
 
 function install_hyprland() {
-    printf "
-          
-        HYPRLAND INSTALLATION 
-
-    "
+    print_section 'HYPRLAND + WAYBAR'
 
     # installing xorg-xwaylnad
     HYPR_DIR="$HOME/.config/hypr/"
@@ -90,18 +106,24 @@ function install_hyprland() {
     
   # install and config DE
     sudo pacman -S playerctl --noconfirm 
-    yay -S hyprland-git waybar-hyprland-git hyprpaper-git wofi --noconfirm
+    
+    for pkg in " hyprland-git waybar-hyprland-git hyprpaper-git wofi"
+    do
+        yay -S $pkg --noconfirm 
+    done
+
     [ ! -d "$HYPR_DIR" ] && mkdir "$HYPR_DIR"
     cp -rv "$HOME/dotfiles/DE/hyprland/hypr/" "$HYPR_DIR"
-    cp -rv "$HOME/dotfiles/DE/hyprland/waybar" "$HOME/.config/"
-    echo -e "\nHyprland installed successfully!!"
+    cp -rv "$HOME/dotfiles/DE//waybar" "$HOME/.config/"
+    
+    print_end_section 'HYPRLAND INSTALLED SUCCESSFULLY' 
+
 }
 
-function install_sddm() {
-  printf "
-      INSTALLING SDDM + FLOWER-THEME
 
-  "
+function install_sddm() {
+    print_section 'SDDM'
+
     SDDM="$HOME/dotfiles/DM/sddm/sddm.conf"
     SDDM_THEMES_SRC="$HOME/dotfiles/DM/sddm/sddm-themes/*"
     SDDM_THEMES_DST="/usr/share/sddm/themes/"
@@ -119,47 +141,44 @@ function install_sddm() {
     
     sudo systemctl enable sddm 
 
-    printf "
-    
-    All set to run sddm.
-
-    "
+    print_end_section 'SDDM INSTALLED SUCCESSFULLY' 
 }
 
+
 function players() {
-  printf "
+    
+    print_section 'INSTALLING MEDIA PLAYERS'
 
-      INSTALLING MEDIA CONTROLLERS
-
-  "
-  PKGS="pulseaudio pulseaudio-alsa pavucontrol cmus mpv"
+    PKGS="pulseaudio pulseaudio-alsa pavucontrol cmus mpv"
 
   for PKG in $PKGS
   do
     sudo pacman -S "$PKG" --noconfirm 
   done
+
+  print_end_section 'CMUS + MPV INSTALLED SUCCESSFULLY'
+
 }
 
+
 function utilities() {
-  printf "
+    print_section 'UTILITIES'
 
-      INSTALLING UTILITIES
-
-  "
-
-    PKGS="thunar kate firefox unzip jmtpfs"
+    PKGS="thunar kate firefox unzip jmtpfs gedit"
 
     for pkg in $PKGS
     do
       sudo pacman -S "$pkg"  --noconfirm
     done
     yay -Sy gvfs-mtp --noconfirm
+
+    print_end_section 'UTILITIES INSTALLED SUCCESSFULLY'
 }
 
 
-#yay_installation
+yay_installation
 terminal_emulator
-#install_hyprland
+install_hyprland
 install_sddm
-#players
-#utilities
+players
+utilities
