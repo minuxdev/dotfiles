@@ -68,7 +68,12 @@ function terminal_emulator() {
 
     yay -S --noconfirm zsh-theme-powerlevel10k-git
     echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-
+    
+    # adding zshell plugings
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git
+    source zsh-snap/install.zsh
+    znap source marlonrichert/zsh-autocomplete
+    znap source zsh-users/zsh-syntax-highlighting
 
     # NEOVIM
 
