@@ -97,16 +97,16 @@ function terminal_emulator() {
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	
     [ -f "~/.config/alacritty" ] && ( rm ~/.config/alacritty )  
-    cp -rv "$HOME/dotfiles/term_emulator/*" "$HOME/.config/" )
+    cp -rv $HOME/dotfiles/term_emulator/* "$HOME/.config/" 
 	
-    print_end_section 'HYPRLAND + NEOVIM INSTALLED SUCCESSFULLY' }
+    print_end_section 'HYPRLAND + NEOVIM INSTALLED SUCCESSFULLY'
+}
 
 
 function install_hyprland() {
     print_section 'HYPRLAND + WAYBAR'
 
     # installing xorg-xwaylnad
-    HYPR_DIR="$HOME/.config/hypr/"
     sudo pacman -S xorg-xwayland --noconfirm
     
   # install and config DE
@@ -117,8 +117,7 @@ function install_hyprland() {
         yay -S $pkg --noconfirm 
     done
 
-    [ ! -d "$HYPR_DIR" ] && mkdir "$HYPR_DIR"
-    cp -rv "$HOME/dotfiles/DE/hyprland/hypr/" "$HYPR_DIR"
+    cp -rv "$HOME/dotfiles/DE/hyprland/hypr/" "$HOME/.config/"
     cp -rv "$HOME/dotfiles/DE//waybar" "$HOME/.config/"
     
     print_end_section 'HYPRLAND INSTALLED SUCCESSFULLY' 
@@ -130,7 +129,7 @@ function install_sddm() {
     print_section 'SDDM'
 
     SDDM="$HOME/dotfiles/DM/sddm/sddm.conf"
-    SDDM_THEMES_SRC="$HOME/dotfiles/DM/sddm/sddm-themes/*"
+    SDDM_THEMES_SRC=$HOME/dotfiles/DM/sddm/sddm-themes/*
     SDDM_THEMES_DST="/usr/share/sddm/themes/"
 
     yay -S sddm-git --noconfirm
@@ -169,7 +168,7 @@ function players() {
 function utilities() {
     print_section 'UTILITIES'
 
-    PKGS="thunar kate firefox unzip jmtpfs gedit"
+    PKGS="thunar  firefox unzip jmtpfs gedit"
 
     for pkg in $PKGS
     do

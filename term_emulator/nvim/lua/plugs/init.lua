@@ -1,8 +1,8 @@
-require("colorscheme")
-require("nvim-tree")
-require("lsp_config")
-require("treesitter")
-require("lualine")
-require("telescope")
+require("plugs.colorscheme")
+require("plugs.nvim-tree")
+require("plugs.lsp_config")
+require("plugs.treesitter")
+require("plugs.lualine")
+require("plugs.telescope")
 
 

@@ -1,5 +1,5 @@
 require("default")
-require("keybind")
+require("keymaps")
 require("plugin")
 require("plugs")
 
