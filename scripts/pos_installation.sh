@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 sudo systemctl enable NetworkManager --now
 
 function print_section() {
