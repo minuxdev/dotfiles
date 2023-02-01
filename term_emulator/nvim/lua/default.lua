@@ -16,15 +16,19 @@ set.clipboard = 'unnamedplus'
 set.ignorecase = true
 set.smartcase = true
 set.autoindent = true
+set.swapfile = false
 
+vim.cmd[[
+  let python_highlight_all = 1
 
-
-vim.cmd [[
-    au BufNewFile, BufRead *.py 
-        \ setlocal tabstop=4 | 
-        \ setlocal softtabstop=4 |
-        \ setlocal shiftwidth=4 |
-        \ setlocal fileformat=unix |
-        \ setlocal textwidth=79 | 
+  au Filetype python
+    \ setlocal tabstop=4 |
+    \ setlocal softtabstop=4 |
+    \ setlocal shiftwidth=4 |
+    \ setlocal textwidth=79 |
+    \ setlocal expandtab |
+    \ setlocal autoindent |
+    \ setlocal fileformat=unix | 
+    \ setlocal colorcolumn=80 |
+    \ setlocal columns=80 |
 ]]
-

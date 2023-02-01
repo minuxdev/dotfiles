@@ -32,3 +32,6 @@ map("n", "<a-Right>", ":vertical resize -2<CR>")
 -- terminal
 map("n", "<a-t>", ":term<CR>")
 
+
+-- Insert Mod 
+map("i", "<C-/>", ":<ESC>I#<ESC>")

@@ -17,17 +17,15 @@ return require('packer').startup(function(use)
         -- install without yarn or npm
     use({
         "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
-
-    use({
-        "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
         setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
         ft = { "markdown" }
     })
+    use {'prettier/vim-prettier',
+      run = 'yarn install'
+    }
     use 'FooSoft/vim-argwrap'
-    use 'tmhedberg/simpylfold'
+--    use 'tmhedberg/simpylfold'
     use 'cakebaker/scss-syntax.vim'
     use 'nvim-tree/nvim-tree.lua'
     use 'nvim-tree/nvim-web-devicons'
@@ -63,11 +61,6 @@ return require('packer').startup(function(use)
       }
 }
 
--- use 'foo1/bar1.nvim'
-  -- use 'foo2/bar2.nvim'
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end
