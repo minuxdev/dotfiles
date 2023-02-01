@@ -85,6 +85,8 @@ function terminal_emulator() {
   do
       [ "$PKG" = "npm" ] && ( sudo pacman -S "$PKG" --overwrite="*" --noconfirm ) || ( sudo pacman -S "$PKG" --noconfirm )
   done
+  
+  pip install jedi neovim
 
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
   source ~/.zshrc
