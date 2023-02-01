@@ -129,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -179,10 +184,25 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["scss-syntax.vim"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/scss-syntax.vim",
+    url = "https://github.com/cakebaker/scss-syntax.vim"
+  },
+  simpylfold = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/simpylfold",
+    url = "https://github.com/tmhedberg/simpylfold"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vim-argwrap"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-argwrap",
+    url = "https://github.com/FooSoft/vim-argwrap"
   }
 }
 

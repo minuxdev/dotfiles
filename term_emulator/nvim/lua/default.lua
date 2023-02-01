@@ -1,32 +1,30 @@
 
-
-local function map(mode, key, command)
-	vim.keymap.set(mode, key, command, { silent = true })
-end
+local set = vim.opt
 
 
-vim.g.mapleader = " "
+-- init configurations
 
--- File Manager
-map("i", "<C-s>", "<ESC> :w<CR>i")
-map("i", "<C-u>", "<ESC> :u<CR>i")
-map("i", "<C-r>", "<ESC> <C-r>")
-map("i", "<C-x>", "<ESC> :wq!<CR>")
-
--- Window Manager
--- navigation
-map('n', '<Leader>h', ":vsplit<CR>")
-map('n', '<Leader>v', ":split<CR>")
-map("n", "<Leader>hh", "<C-w>h")
-map("n", "<Leader>jj", "<C-w>j")
-map("n", "<Leader>kk", "<C-w>k")
-map("n", "<Leader>ll", "<C-w>l")
-
--- resize
-map("n", "<C-Up>", ":resize -2<CR>")
-map("n", "<C-Down>", ":resize +2<CR>")
-map("n", "<C-Left>", ":vertical resize +2<CR>")
-map("n", "<C-Right>", ":vertical resize -2<CR>")
+set.number = true
+set.relativenumber = true
+set.cursorline = true
+set.numberwidth = 4
+set.expandtab = true
+set.tabstop = 2
+set.softtabstop = 2
+set.shiftwidth = 2
+set.clipboard = 'unnamedplus'
+set.ignorecase = true
+set.smartcase = true
+set.autoindent = true
 
 
+
+vim.cmd [[
+    au BufNewFile, BufRead *.py 
+        \ setlocal tabstop=4 | 
+        \ setlocal softtabstop=4 |
+        \ setlocal shiftwidth=4 |
+        \ setlocal fileformat=unix |
+        \ setlocal textwidth=79 | 
+]]
 

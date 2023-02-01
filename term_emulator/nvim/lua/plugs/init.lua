@@ -4,5 +4,4 @@ require("plugs.lsp_config")
 require("plugs.treesitter")
 require("plugs.lualine")
 require("plugs.telescope")
-
-
+require("plugs.argwrap")

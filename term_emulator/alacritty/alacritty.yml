@@ -2,8 +2,8 @@
 
 window:
   padding:
-    x: 10
-    y: 10
+    x: 5
+    y: 5
 
   opacity: 0.8
 
@@ -13,19 +13,19 @@ font:
     family: Space Mono Nerd Font 
     style: Regular
 
-  bold:
-    family: Space Mono Bold Nerd Font
-    style: Bold
+      #  bold:
+      #family: Space Mono Bold Nerd Font
+      #style: Bold
 
   italic:
     family: Space Mono Italic Nerd Font 
     style: Italic
 
-  size: 11.0
+  size: 12.0
 
   offset:
     x: 0
-    y: 0
+    y: 4
 
   builtin_box_drawing: true
 

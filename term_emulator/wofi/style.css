@@ -1,0 +1,41 @@
+
+@define-color bg #453545;
+@define-color border #aaa;
+@define-color unselected #aaa;
+@define-color text #fff;
+
+
+
+window {
+    background-color: @bg;
+    font-size: 1rem;
+    font-family: 'Space Mono Nerd Font';
+}
+
+#outer-box {
+    margin: 1rem;
+}
+
+#input {
+    margin: 1rem 1rem;
+    padding: .5rem 1rem;
+    background-color: transparent;
+    border-radius: .5rem;
+    border: 1px solid @border;
+    color: @text;
+}
+
+
+#selected {
+    border-radius: .5rem;
+    border: 1px solid @border;
+    background-color: transparent;
+    padding: .6rem 1rem;
+    margin: .2rem 1rem;
+    color: @text;
+}
+
+#unselected {
+    color: @unselected;
+}
+

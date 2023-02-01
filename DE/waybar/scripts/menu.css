@@ -1,0 +1,53 @@
+
+/* Nordic Polar */
+@define-color dark #2e3440;
+@define-color semi-dark #3b4252;
+@define-color light-dark #434c5e;
+@define-color ligther-dark #4c566a;
+@define-color focused-text #ecff4;
+@define-color unfocused-text #d8dee9;
+
+
+window {
+    background-color: @dark;
+    border: 2px solid @light-dark;
+    font-size: 1rem;
+    font-family: 'Space Mono Nerd Font';
+    border-radius: .5rem;
+}
+
+#input {
+    margin: .5rem 1rem;
+    color: @focused-text;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 1rem;
+}
+
+#inner-box {
+    padding: 1rem;
+}
+
+
+
+#selected {
+    background-color: @light-dark;
+    padding: .5rem 1rem;
+    border: 1px solid @ligther-dark;
+}
+
+#unselected {
+    background-color: transparent;
+    padding: .5rem 1rem;
+    border: 1px solid transparent;
+}
+
+#text:selected {
+    color: @focused-text;
+}
+
+#text {
+    color: @unfocused-text;
+}
