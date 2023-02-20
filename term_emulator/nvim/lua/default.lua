@@ -18,6 +18,10 @@ set.smartcase = true
 set.autoindent = true
 set.swapfile = false
 
+vim.cmd[[ 
+  let g:jedi#force_py_version = 3
+]]
+
 vim.cmd[[
   let python_highlight_all = 1
 

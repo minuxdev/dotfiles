@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
     url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
+  ["jedi-vim"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/jedi-vim",
+    url = "https://github.com/davidhalter/jedi-vim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -185,11 +190,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/scss-syntax.vim",
     url = "https://github.com/cakebaker/scss-syntax.vim"
-  },
-  simpylfold = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/simpylfold",
-    url = "https://github.com/tmhedberg/simpylfold"
   },
   ["telescope.nvim"] = {
     loaded = true,
