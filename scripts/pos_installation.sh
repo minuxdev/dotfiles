@@ -83,7 +83,8 @@ function terminal_emulator() {
 
   for PKG in $PKGS
   do
-      [ "$PKG" = "npm" ] && ( sudo pacman -S "$PKG" --overwrite="*" --noconfirm ) || ( sudo pacman -S "$PKG" --noconfirm )
+      [ "$PKG" = "npm" ] && ( sudo pacman -S "$PKG" --overwrite="*" --noconfirm ) || \
+      ( sudo pacman -S "$PKG" --noconfirm )
   done
   
   pip install jedi neovim
@@ -97,11 +98,18 @@ function terminal_emulator() {
   source ~/.zshrc
  
   # installing vim-plug
-  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
+    --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
   [ -f "~/.config/alacritty" ] && ( rm ~/.config/alacritty )  
   cp -rv $HOME/dotfiles/term_emulator/* "$HOME/.config/" 
+  
+  sudo pacman -S samba gvfs-smb --noconfirm
+  [ -f "/etc/samba/" ] && \
+  (sudo cp -rv ~/dotfiles/term_emulator/samba/smb.conf /etc/samba/)
+
+  printf "\nRun 'smbpasswd -a your_name' to add yourself to samba server\n"
+  printf "Go to /etc/samba/smb.conf and configure the paths you want to share.\n"
 
   print_end_section 'HYPRLAND + NEOVIM INSTALLED SUCCESSFULLY'
 }
