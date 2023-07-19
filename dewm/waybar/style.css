@@ -1,0 +1,171 @@
+@import "./themes/macchiato.css";
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: "SpaceMono Nerd Font", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1rem;
+}
+
+window#waybar {
+  background-color: transparent;
+  border-bottom: 0px solid rgba(100, 114, 125, 0.5);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  margin: -1px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+  background-color: #3f3f3f;
+}
+
+window#waybar.chromium {
+  background-color: #000000;
+  border: none;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+  background: inherit;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: transparent;
+  color: #ffffff;
+}
+
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+  background-color: #64727d;
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#mode {
+  background-color: #64727d;
+  border-bottom: 3px solid #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#bluetooth,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#language,
+#keyboard-state,
+#mpd {
+  padding: 0px 12px;
+}
+#network {
+  /*border-radius: 4px 0 0 4px;*/
+}
+
+#custom-power,
+#pulseaudio {
+  color: @sky;
+  padding: 0 10px;
+  background-color: @surface1;
+}
+#pulseaudio {
+  margin-left: 10px;
+  /*border-radius: 20px 0 0 20px;*/
+}
+#custom-power {
+  /*border-radius: 0 20px 20px 0;*/
+  margin-right: 10px;
+}
+
+#clock,
+#memory,
+#cpu,
+#bluetooth,
+#network {
+  padding: 0 20px;
+  background-color: @surface0;
+}
+#clock {
+  color: @sapphire;
+  /*border-radius: 0 25px 25px 0;*/
+  margin-right: 10px;
+}
+#memory {
+  color: @peach;
+}
+#cpu {
+  color: @maroon;
+}
+#bluetooth {
+  color: @maroon;
+}
+#network {
+  color: @flamingo;
+  margin-left: 10px;
+  /*border-radius: 25px 0 0 25px;*/
+}
+
+#custom-menu {
+  margin-left: 10px;
+  /*border-radius: 20px 0 0 20px;*/
+  padding: 0 20px;
+  background-color: @overlay0;
+  color: @rosewater;
+}
+
+#window,
+#workspaces {
+  background-color: @surface1;
+  padding: 0 24px;
+  color: @teal;
+}
+#window:nth-child(last) {
+  /*border-radius: 20px;*/
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:last-child > #workspaces {
+  /*border-radius: 0 20px 20px 0;*/
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-left > widget:last-child > #workspaces {
+  margin-right: 0;
+}

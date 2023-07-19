@@ -1,0 +1,45 @@
+@import ".config/waybar/themes/macchiato.css";
+
+window {
+  background-color: @base;
+  border: 1px solid @sapphire;
+  font-size: 1rem;
+  font-family: "Space Mono Nerd Font";
+  border-radius: 0.05rem;
+}
+
+#input {
+  margin: 0.5rem 1rem;
+  color: @teal;
+  background-color: transparent;
+}
+
+#outer-box {
+  margin: 1rem;
+}
+
+#inner-box {
+  padding: 1rem;
+}
+
+#selected {
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+#unselected {
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+}
+
+#text:selected {
+  color: @peach;
+}
+
+#text {
+  color: @muave;
+  font-weight: 600;
+}

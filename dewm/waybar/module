@@ -1,0 +1,13 @@
+{
+    "custom/menu": {
+         "format": "  ",
+         "tooltip": false,
+         "on-click": "$HOME/.config/waybar/scripts/menu.sh",
+    },
+
+    "custom/power": {
+         "format": "襤",
+         "tooltip": false,
+         "on-click": "$HOME/.config/waybar/scripts/session_manager.sh",
+    },
+}

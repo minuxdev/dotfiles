@@ -1,0 +1,120 @@
+
+{
+   "layer": "top",
+    "height": "30",
+    "modules-left": ["custom/menu", "wlr/workspaces", ],
+    "modules-center": [ "hyprland/window"],
+    "modules-right": ["network", "bluetooth", "cpu", "memory", "clock", "pulseaudio", "tray", "custom/power"],
+
+    "wlr/workspaces": {
+ //       "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+        "sort-by-number": true,
+   },
+
+   "tray": {
+      "icon-size": 16,
+      "spacing": 20,
+   },
+
+   "keyboard-state": {
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+
+    "clock": {
+        "timezone": "Africa/Maputo",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "format-alt": "{:%d-%m-%Y}"
+    },
+
+//    "network" : {
+//      "interface": "wlp2s0",
+//      "format": "{ifname}",
+//      "format-wifi": "{essid} ({signalStrength}%) ",
+//      "format-ethernet": "{ifname} ",
+//      "format-disconnected": "", 
+//      "format-disconnected": "",
+//      "tooltip-format": "{ifname}",
+//      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+//      "tooltip-format-ethernet": "{ifname} ",
+//      "tooltip-format-disconnected": "Disconnected",
+//      "max-length": 50
+//    },
+
+    "bluetooth": {
+      "format": " {status}",
+      "format-disabled": " ",
+      "format-connected": "{num_connections} connected",
+      "tooltip-format": "{controller_alias}\t{controller_address}",
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{}%  "
+    },
+
+    "pulseaudio": {
+        
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+  "hyprland/window": {
+    "format" : " {} ",
+    "separate-outputs" : true,
+    "max-length": 30
+    },
+
+  "custom/menu" : {
+    "format": "  ",
+    "tooltip" : true,
+    "on-click": " ~/.config/waybar/scripts/menu.sh",
+  },
+
+  "custom/power": {
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "$HOME/.config/waybar/scripts/session_manager.sh",
+  },
+
+  "user": {
+        "format": " {user} (up {work_H}:{work_M}:{work_S} ↑)",
+        "interval": 1,
+        "height": 30,
+        "width": 30,
+        "icon": true,
+    },
+
+}
