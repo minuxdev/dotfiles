@@ -4,7 +4,7 @@
 
 MENU=$( echo "Shutdown Now
 Reboot
-Log Out" | wofi --style $HOME/.config/waybar/scripts/menu.css \
+Log Out" | wofi --style $HOME/.config/wofi/style.css \
     --height 200px --width 280px \
     -b --location top_right 1 \
     -x -40px -y 10px \

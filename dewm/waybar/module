@@ -2,7 +2,6 @@
     "custom/menu": {
          "format": "  ",
          "tooltip": false,
-         "on-click": "$HOME/.config/waybar/scripts/menu.sh",
     },
 
     "custom/power": {

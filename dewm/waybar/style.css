@@ -7,11 +7,10 @@
 }
 
 window#waybar {
-  background-color: transparent;
+  background-color: @base;
   border-bottom: 0px solid rgba(100, 114, 125, 0.5);
   transition-property: background-color;
   transition-duration: 0.5s;
-  margin: -1px;
 }
 
 window#waybar.hidden {
@@ -92,6 +91,7 @@ button:hover {
 #scratchpad,
 #language,
 #keyboard-state,
+#user,
 #mpd {
   padding: 0px 12px;
 }
@@ -100,72 +100,88 @@ button:hover {
 }
 
 #custom-power,
-#pulseaudio {
+#clock {
   color: @sky;
   padding: 0 10px;
-  background-color: @surface1;
-}
-#pulseaudio {
-  margin-left: 10px;
-  /*border-radius: 20px 0 0 20px;*/
-}
-#custom-power {
-  /*border-radius: 0 20px 20px 0;*/
-  margin-right: 10px;
-}
-
-#clock,
-#memory,
-#cpu,
-#bluetooth,
-#network {
-  padding: 0 20px;
   background-color: @surface0;
 }
+#pulseaudio {
+  margin-right: 4px;
+  border-radius: 0 4px 4px 0;
+  color: @flamingo;
+}
+#custom-power {
+  margin-right: 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+#pulseaudio,
+#memory,
+#cpu {
+  padding: 0 10px;
+  background-color: @surface0;
+}
+
+#network,
+#bluetooth {
+  padding: 0 10px;
+  background-color: @surface0;
+  color: @maroon;
+}
+
 #clock {
   color: @sapphire;
-  /*border-radius: 0 25px 25px 0;*/
-  margin-right: 10px;
+  border-radius: 4px 0 0 4px;
+  margin-left: 4px;
 }
 #memory {
   color: @peach;
 }
 #cpu {
   color: @maroon;
+  margin-left: 4px;
 }
 #bluetooth {
-  color: @maroon;
+  border-radius: 0 4px 4px 0;
+  margin-right: 4px;
 }
 #network {
-  color: @flamingo;
-  margin-left: 10px;
-  /*border-radius: 25px 0 0 25px;*/
+  border-radius: 4px 0 0 4px;
+  margin-left: 4px;
 }
 
+#user,
 #custom-menu {
   margin-left: 10px;
-  /*border-radius: 20px 0 0 20px;*/
-  padding: 0 20px;
-  background-color: @overlay0;
-  color: @rosewater;
+  margin-right: 8px;
+  border-radius: 4px;
+  padding: 0 10px;
+  background-color: @surface0;
+  color: @maroon;
 }
 
-#window,
+#user {
+  color: @sky;
+  margin: 0 8px;
+}
 #workspaces {
-  background-color: @surface1;
-  padding: 0 24px;
-  color: @teal;
+  background-color: @surface0;
+  padding: 0 10px;
+  color: @maroon;
 }
 #window:nth-child(last) {
-  /*border-radius: 20px;*/
+  background-color: transparent;
+  padding: 0 10px;
+  color: @sky;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:last-child > #workspaces {
-  /*border-radius: 0 20px 20px 0;*/
+.modules-left > widget:first-child > #workspaces {
+  border-radius: 0 4px 4px 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-left > widget:last-child > #workspaces {
+  border-radius: 4px 0 0 4px;
   margin-right: 0;
 }

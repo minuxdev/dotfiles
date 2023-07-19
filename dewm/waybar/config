@@ -2,9 +2,9 @@
 {
    "layer": "top",
     "height": "30",
-    "modules-left": ["custom/menu", "wlr/workspaces", ],
+    "modules-left": ["custom/menu", "wlr/workspaces", "user" ],
     "modules-center": [ "hyprland/window"],
-    "modules-right": ["network", "bluetooth", "cpu", "memory", "clock", "pulseaudio", "tray", "custom/power"],
+    "modules-right": ["network", "bluetooth", "cpu", "memory", "pulseaudio", "clock", "custom/power"],
 
     "wlr/workspaces": {
  //       "disable-scroll": true,
@@ -12,11 +12,11 @@
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
+//            "1": "",
+//            "2": "",
+//            "3": "",
+//            "4": "",
+//            "5": "",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -110,7 +110,8 @@
   },
 
   "user": {
-        "format": " {user} (up {work_H}:{work_M}:{work_S} ↑)",
+   //     "format": " {user} (up {work_H}:{work_M}:{work_S} ↑)",
+       "format": " {user} [up {work_H}:{work_M}:{work_S} ↑]",
         "interval": 1,
         "height": 30,
         "width": 30,
