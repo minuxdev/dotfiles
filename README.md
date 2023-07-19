@@ -7,7 +7,7 @@
   Install the basics you need to have archlinux up and running without any kind of configuration.
   The following packages are installed:
 
-              base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g
+              base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g networkmanager
 
 - **configurator.sh**
 
