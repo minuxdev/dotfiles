@@ -26,3 +26,12 @@ This scripts creates and adds the user to _wheel_ and _input_ groups,
 disable _password_ prompt when running commands with _sudo_.
 
 Also prompt the user to for _dotfiles_ directory.
+
+## DE/WM setup
+
+For this **Desktop Environment**, the following packages get configured
+
+- hyprland
+- waybar
+- wofi
+- hyprpaper
