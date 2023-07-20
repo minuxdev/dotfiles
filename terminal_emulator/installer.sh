@@ -17,17 +17,17 @@ fonts ()
 znap ()
 {
   sudo pacman -S zsh
-  printf """
+  printf "
 
 #=================== ALIASES ====================
-""" > ~/.zshrc
+" > ~/.zshrc
   
-  [ ! -d ~/.git-clones ] && (mkdir ~/.git-clones && cd ~/.git-clones)
-  mkdir ~/.zsh-plugins
-  cd ~/.zsh-plugins
+  [ ! -d ~/.git-clones ] && (mkdir ~/.git-clones)
+  mkdir ~/.git-clones/zsh-plugins &&
+  cd ~/.git-clones/zsh-plugins &&
   git clone https://github.com/marlonrichert/zsh-snap.git 
   awk -i inplace \
-    ' BEGINFILE { print "source ~/.zsh-plugins/zsh-snap/znap.zsh" }; { print } ' \
+    ' BEGINFILE { print "source ~/.git-clones/zsh-plugins/zsh-snap/znap.zsh" }; { print } ' \
     ~/.zshrc
   source ~/.zshrc
 
@@ -39,12 +39,15 @@ znap ()
     https://github.com/Aloxaf/fzf-tab.git \
     https://github.com/rupa/z.git \
 
-  PLUGINS="zsh-autocomplete zsh-autosuggestions zsh-autosuggestions zsh-colored-man-pages z fzf-tab"
-  for plugin in "$PLUGINS"
+    PLUGINS=(
+      zsh-autocomplete zsh-autosuggestions zsh-autosuggestions 
+      zsh-colored-man-pages z fzf-tab 'oh-my-zsh lib/completion'
+    )
+
+  for plugin in "${PLUGINS[@]}"
   do 
-    sed -i  "s/znap/ a znap source $plugin"   ~/.zshrc
+    sed -i "s/znap/ a znap source $plugin" ~/.zshrc
   done
-  sed -i  "s/znap/ a znap source oh-my-zsh lib\/completion"   ~/.zshrc
   source ~/.zshrc
 
   set_aliases ls="exa"
@@ -62,10 +65,12 @@ alacritty ()
 }
 
 tmux() {
-  sudo pacman -S tmux --noconfirm
-  cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
+  sudo pacman -S tmux --noconfirm &&
+  cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR" &&
 }
 
 fonts
 znap
 alacritty
+tmux
+
