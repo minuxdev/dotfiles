@@ -45,6 +45,7 @@ znap ()
     sed -i  "s/znap/ a znap source $plugin"   ~/.zshrc
   done
   sed -i  "s/znap/ a znap source oh-my-zsh lib\/completion"   ~/.zshrc
+  source ~/.zshrc
 
   set_aliases ls="exa"
   set_aliases at="alacritty-themes"
