@@ -27,6 +27,26 @@ disable _password_ prompt when running commands with _sudo_.
 
 Also prompt the user to for _dotfiles_ directory.
 
+---
+
+## Dependencies
+
+The following dependencies are installed and configured accordingly
+
+- AUR package manager
+
+  - Yet Another Yogurt (YAY)
+
+- audio
+  - pulseaudio
+  - pulseaudio-ctl
+  - pulseaudio-bluetooth
+  - pulseaudio-alsa
+  - pavucontrol
+  - playerctl
+
+---
+
 ## DE/WM setup
 
 For this **Desktop Environment**, the following packages get configured
