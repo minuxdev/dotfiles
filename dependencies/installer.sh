@@ -9,4 +9,19 @@ installer() {
   cd "yay-git" &&
   makepkg -si
 }
-installer
+
+audio ()
+{
+  sudo pacman -Sy \
+    pulseaudio pulseaudio-ctl pulseaudio-alsa \
+    pulseaudio-bluetooth pavucontrol playerctl
+}
+
+others ()
+{
+  sudo pacman -Sy ripgrep exa fzf --noconfirm
+}
+
+installer &&
+audio &&
+others
