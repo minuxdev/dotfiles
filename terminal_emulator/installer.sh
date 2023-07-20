@@ -61,6 +61,11 @@ alacritty ()
   cp -r "$BASE_DIR/alacritty/" "$CONFIG_DIR"
 }
 
+tmux() {
+  sudo pacman -S tmux --noconfirm
+  cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
+}
+
 fonts
 znap
 alacritty
