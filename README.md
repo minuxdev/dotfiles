@@ -27,7 +27,7 @@ disable _password_ prompt when running commands with _sudo_.
 
 Also prompt the user to for _dotfiles_ directory.
 
----
+----
 
 ## Dependencies
 
@@ -45,7 +45,7 @@ The following dependencies are installed and configured accordingly
   - pavucontrol
   - playerctl
 
----
+----
 
 ## DE/WM setup
 
@@ -55,3 +55,20 @@ For this **Desktop Environment**, the following packages get configured
 - waybar
 - wofi
 - hyprpaper
+
+----
+
+## Terminal emulator
+
+The terminal emulator that gets installed and configured is _alacritty_ 
+
+- install Nerd-Fonts
+- alacritty-themes
+- zsh
+- oh-my-zsh
+- znap
+- tmux 
+- set_alias: a script to quickly set aliases.
+- ssh_keys: install my ssh keys (ignored for security reasons.)
+
+----
