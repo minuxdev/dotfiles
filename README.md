@@ -45,6 +45,11 @@ The following dependencies are installed and configured accordingly
   - pavucontrol
   - playerctl
 
+- Others
+  - exa
+  - fzf
+  - ripgrep
+
 ----
 
 ## DE/WM setup

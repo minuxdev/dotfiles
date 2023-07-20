@@ -2,7 +2,7 @@
 CONFIG_DIR="~/.config"
 BASE_DIR="~/dotfiles/terminal_emulator"
 
-source "$BASE_DIR/scripts/set_alias.sh"
+source "$BASE_DIR/scripts/set_aliases.sh"
 
 fonts ()
 {
@@ -61,3 +61,6 @@ alacritty ()
   cp -r "$BASE_DIR/alacritty/" "$CONFIG_DIR"
 }
 
+fonts
+znap
+alacritty
