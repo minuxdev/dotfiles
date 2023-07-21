@@ -49,6 +49,7 @@ The following dependencies are installed and configured accordingly
   - exa
   - fzf
   - ripgrep
+  - tldr
 
 ----
 

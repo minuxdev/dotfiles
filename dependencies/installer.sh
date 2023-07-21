@@ -19,7 +19,7 @@ audio ()
 
 others ()
 {
-  sudo pacman -Sy ripgrep exa fzf --noconfirm
+  sudo pacman -Sy ripgrep exa fzf tldr --noconfirm
 }
 
 installer &&

@@ -2,13 +2,16 @@
 #
 set_aliases()
 {
-  [[ ! $# -gt 0 ]] && (printf "No alias provided! Provide a valid alias." exit 5)
-  printf "Setting the following aliases: ${argv[@]}"
-  for _alias in ${argv[@]}
+  [[ ! $# -gt 0 ]] && 
+    printf "No alias provided! Provide a valid alias." exit 5 ||
+
+  echo $@
+
+  for _alias in $@
   do 
-    sed -i " /ALIASES/ a alias $_alias " ~/.zshrc
+    sed  " /ALIASES/ a alias ${_alias} " ~/.zshrc
   done
   source ~/.zshrc
 }
 
-set_aliases $argv[@]
+set_aliases $@ 
