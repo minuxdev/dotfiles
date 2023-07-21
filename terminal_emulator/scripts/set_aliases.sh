@@ -7,11 +7,11 @@ set_aliases()
 
   echo $@
 
-  for _alias in $@
+  for _alias in "$@"
   do 
     sed  " /ALIASES/ a alias ${_alias} " ~/.zshrc
   done
   source ~/.zshrc
 }
 
-set_aliases $@ 
+set_aliases "$@" 
