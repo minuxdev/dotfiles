@@ -7,7 +7,7 @@ source "$BASE_DIR/scripts/set_aliases.sh"
 fonts ()
 {
     FONTS_DIR="~/.fonts/"
-    [ ! -d "$FONTS_DIR" ] && mkdir "$FONTS_DIR" 
+    [[ ! -d "$FONTS_DIR" ]] && mkdir "$FONTS_DIR" 
     cp -rv "$BASE_DIR/fonts/" "$FONTS_DIR"
     fc-cache fc-list | awk ' /(Space|Roboto)/ '
     sleep 2s
@@ -22,7 +22,7 @@ znap ()
 #=================== ALIASES ====================
 " > ~/.zshrc
   
-  [ ! -d ~/.git-clones ] && (mkdir ~/.git-clones)
+  [[ ! -d ~/.git-clones ]] && (mkdir ~/.git-clones) ||
   mkdir ~/.git-clones/zsh-plugins &&
   cd ~/.git-clones/zsh-plugins &&
   git clone https://github.com/marlonrichert/zsh-snap.git 
@@ -46,7 +46,7 @@ znap ()
 
   for plugin in "${PLUGINS[@]}"
   do 
-    sed -i "s/znap/ a znap source $plugin" ~/.zshrc
+    sed -i "/znap/ a znap source $plugin/q" ~/.zshrc
   done
   source ~/.zshrc
 
