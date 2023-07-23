@@ -13,10 +13,14 @@ znap_installer ()
 
   awk -i inplace \
     ' BEGINFILE { 
-      print "#======================== ZNAP ======================="
-      print "source ~/.git-clones/zsh-plugins/zsh-snap/znap.zsh\n"
-      print "\n#===================== ALIASES ========================\n\n"
-      }; { print } ' \
+        print "#======================== ZNAP ======================="
+        print "source ~/.git-clones/zsh-plugins/zsh-snap/znap.zsh\n"
+        print "\n#===================== ALIASES ========================\n\n"
+      }; 
+      { print }; 
+      ENDFILE { 
+        print "\n#===================== EXPORTS ========================\n\n"
+      }
     ~/.zshrc
   source ~/.zshrc
 
@@ -34,6 +38,8 @@ znap_installer ()
     znap install "$plugin"
     sed -i " 3 i\znap source $plugin " ~/.zshrc
   done
+
+LS_COLORS+=:ow=
   source ~/.zshrc
 }
 

@@ -1,5 +1,6 @@
 #!/bin/bash
-#
+
+
 set_aliases()
 {
   if [ ! $# -gt 0 ] 
@@ -7,7 +8,7 @@ set_aliases()
     printf "No alias provided! Provide a valid alias."
     return 5
   else
-    for _alias in "$@"
+    for _alias in "$1"
     do 
       sed -i " /ALIASES/ a alias ${_alias} " ~/.zshrc
     [ ! $? = 0] && 
