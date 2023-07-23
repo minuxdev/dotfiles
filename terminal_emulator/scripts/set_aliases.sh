@@ -2,16 +2,20 @@
 #
 set_aliases()
 {
-  [[ ! $# -gt 0 ]] && 
-    printf "No alias provided! Provide a valid alias." exit 5 ||
-
-  echo $@
-
-  for _alias in "$@"
-  do 
-    sed  " /ALIASES/ a alias ${_alias} " ~/.zshrc
-  done
-  source ~/.zshrc
+  if [ ! $# -gt 0 ] 
+  then
+    printf "No alias provided! Provide a valid alias."
+    return 5
+  else
+    for _alias in "$@"
+    do 
+      sed -i " /ALIASES/ a alias ${_alias} " ~/.zshrc
+    [ ! $? = 0] && 
+      printf "\nSorry! Could not create alias for ${_alias}!\n" ||
+      printf "\nAlias created!\n" 
+    done
+    source ~/.zshrc
+  fi
 }
 
 set_aliases "$@" 
