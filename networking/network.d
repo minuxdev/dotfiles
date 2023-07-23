@@ -1,7 +1,8 @@
 #!/bin/bash
 
-function networkd() {
-  sudo cp -r ~/dotfiles/networking/network /etc/systemd/
-
-  sudo systemctl enable --now systemd-networkd
+network() {
+  sudo systemctl enable --now NetworkManager
+  sudo cp -r ~/dotfiles/networking/system-connections /etc/NetworkManager/
 }
+
+network
