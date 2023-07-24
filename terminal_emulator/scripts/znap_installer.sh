@@ -38,6 +38,8 @@ znap_installer ()
     znap install "$plugin"
     sed -i " 3 i\znap source $plugin " ~/.zshrc
   done
+
+  dircolors -p | sed 's/;42/;01/' > ~/.dircolors
   source ~/.zshrc
 
   ALIASES=(
