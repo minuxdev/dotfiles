@@ -20,13 +20,6 @@ call_znap_installer ()
 
   /usr/bin/zsh "$BASE_DIR/scripts/znap_installer.sh"
 
-  set_aliases 'ls="lsd"'
-  set_aliases 'la="lsd -a"'
-  set_aliases 'll="lsd -la"'
-  set_aliases 'cd="z"'
-  set_aliases 'src="source ~/.zshrc"'
-  set_aliases 'da="python manager.py"'
-
 }
 
 alacritty ()
