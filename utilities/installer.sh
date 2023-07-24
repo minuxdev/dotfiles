@@ -27,9 +27,9 @@ generics() {
   set_aliases "${ALIASES[@]}"
 }
 
-bluetooth() {
+bluetooth () 
+{
   sudo pacman -S 'bluez' 'bluez-utils' --noconfirm 
-  
  sudo awk -i inplace ' 
   /PairableTimeout/ { print "PairableTimeout = 0" };
   /ControllerMode/ { print "ControllerMode = bredr" };
