@@ -5,24 +5,22 @@ BASE_DIR="$HOME/dotfiles"
 source "$HOME/terminal_emulator/scripts/set_aliases.sh"
 
 
-GENERICS=(
-  'bat' 'tldr' 'grim' 'rar' 'unzip' 'grim'
-  'man'
-)
-
 FROM_AUR=( )
 
 
 generics() {
-  sudo pacman -Sy "${UTILITIES[*]}" --noconfirm
+  GENERICS=(
+    bat lsd tldr grim unzip man
+  )
+  sudo pacman -Sy "${GENERICS[*]}" --noconfirm
+  yay -S rar --noconfirm
   
   ALIASES=(
      'ls="lsd"'
      'la="lsd -a"'
      'll="lsd -la"'
      'cd="z"'
-     'src="source ~/.zshrc"'
-     'da="python manager.py"'
+     'sf="source ~/.zshrc"'
   )
   set_aliases "${ALIASES[@]}"
 }
