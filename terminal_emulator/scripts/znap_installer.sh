@@ -20,7 +20,7 @@ znap_installer ()
       { print }; 
       ENDFILE { 
         print "\n#===================== EXPORTS ========================\n\n"
-      }
+      } '
     ~/.zshrc
   source ~/.zshrc
 
@@ -39,7 +39,7 @@ znap_installer ()
     sed -i " 3 i\znap source $plugin " ~/.zshrc
   done
 
-LS_COLORS+=:ow=
+  dircolors -p | sed 's/;42/;01/' > ~/.dircolors
   source ~/.zshrc
 }
 
