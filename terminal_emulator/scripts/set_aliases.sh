@@ -1,6 +1,5 @@
 #!/bin/bash
-
-
+#
 set_aliases()
 {
   if [ ! $# -gt 0 ] 
@@ -8,14 +7,17 @@ set_aliases()
     printf "No alias provided! Provide a valid alias."
     return 5
   else
-    for _alias in "$1"
+    index=0
+    for _alias in "$@"
     do 
       sed -i " /ALIASES/ a alias ${_alias} " ~/.zshrc
-    [ ! $? = 0] && 
+      index=((index + 1))
+      printf "$index"
+      [ ! $? = 0 ] && 
       printf "\nSorry! Could not create alias for ${_alias}!\n" ||
       printf "\nAlias created!\n" 
     done
-    source ~/.zshrc
+    [ -f "/bin/zsh" ] && source ~/.zshrc || source ~/.bashrc
   fi
 }
 
