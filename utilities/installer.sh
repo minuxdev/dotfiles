@@ -50,3 +50,8 @@ screenshot() {
   set_aliases 'shot="print_screen"'
 }
 
+
+generics 
+bluetooth
+monitoring
+screenshot
