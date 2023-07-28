@@ -17,12 +17,9 @@ audio ()
     pulseaudio-bluetooth pavucontrol playerctl
 }
 
-nvm() {
+nvm () {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | \
     bash | NVM_DIR="$HOME/.git-clones"
-  sed -i ' /EXPORTS/ a\export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" ' $HOME/.zshrc
-
 }
 
 others ()
@@ -33,3 +30,4 @@ others ()
 installer 
 audio 
 others
+nvm
