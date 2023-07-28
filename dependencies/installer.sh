@@ -17,11 +17,17 @@ audio ()
     pulseaudio-bluetooth pavucontrol playerctl
 }
 
+nvm () {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | \
+    bash | NVM_DIR="$HOME/.git-clones"
+}
+
 others ()
 {
   sudo pacman -Sy ripgrep --noconfirm
 }
 
-installer &&
-audio &&
+installer 
+audio 
 others
+nvm
