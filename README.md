@@ -45,11 +45,9 @@ The following dependencies are installed and configured accordingly
   - pavucontrol
   - playerctl
 
-- Others
-  - exa
-  - fzf
-  - ripgrep
-  - tldr
+- Programming 
+  - Node Version Manger (nvm)
+        This is *sourced* in **Terminal_Emulator** section, right after installing **zsh**.
 
 ----
 
@@ -72,9 +70,39 @@ The terminal emulator that gets installed and configured is _alacritty_
 - alacritty-themes
 - zsh
 - oh-my-zsh
+- fzf
 - znap
 - tmux 
-- set_alias: a script to quickly set aliases.
+- set_aliases: a script to quickly set aliases. Located in ~/.local/bin/
 - ssh_keys: install my ssh keys (ignored for security reasons.)
 
 ----
+
+## Utilities
+
+Some cool utilities:
+
+- Genericas
+  - bat : replace cat
+  - lsd : replace ls 
+  - gdu : replace du
+  - z : replace cd
+  - unzip
+  - man
+  - rar 
+
+- Bluetooth
+  - bluez
+  - bluez-utils
+
+- Monitoring
+  - bpytot : replace top and htop
+
+- Screenshot
+  - grim 
+  - slurp (dependency)
+
+- Others
+  - ripgrep
+  - tldr
+

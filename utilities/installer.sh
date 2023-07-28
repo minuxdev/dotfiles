@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR="$HOME/dotfiles"
+BASE_DIR="$HOME/dotfiles/utilities"
 
 source "$HOME/terminal_emulator/scripts/set_aliases.sh"
 
@@ -45,5 +45,8 @@ monitoring() {
 }
 
 screenshot() {
-
+  sudo pacman -S grim slurp &&
+  cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.local/bin/" 
+  set_aliases 'shot="print_screen"'
 }
+
