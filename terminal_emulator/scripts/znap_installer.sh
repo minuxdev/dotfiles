@@ -22,7 +22,12 @@ znap_installer ()
       print "\n#===================== ALIASES ========================\n\n"
       }; { print } ' \
     ~/.zshrc
-  source ~/.zshrc
+
+  # Sourcing Node Version Manager and installing node.
+  sed -i ' /EXPORTS/ a\export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" ' ~/.zshrc
+    source ~/.zshrc  && nvm install node
+
 
     PLUGINS=(
       'rupa/z' 
