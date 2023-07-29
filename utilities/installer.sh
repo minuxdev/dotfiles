@@ -39,8 +39,8 @@ bluetooth ()
 }
 
 mtp () {
-  sudo pacman -S jmtpfs
-  yay -Sy gvfs-mtp
+  sudo pacman -S jmtpfs --noconfirm
+  yay -Sy gvfs-mtp --noconfirm
 }
 
 monitoring() {
