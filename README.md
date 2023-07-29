@@ -95,10 +95,6 @@ Some cool utilities:
   - bluez
   - bluez-utils
 
-- MTP
-  - jmtpfs
-  - gvfs-mtp
-
 - Monitoring
   - bpytot : replace top and htop
 
@@ -110,6 +106,3 @@ Some cool utilities:
   - ripgrep
   - tldr
 
-- File Managers
-  - ranger
-  - nautilus

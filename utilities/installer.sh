@@ -32,15 +32,10 @@ bluetooth ()
   /PairableTimeout/ { print "PairableTimeout = 0" };
   /ControllerMode/ { print "ControllerMode = bredr" };
   /^(A|#A)utoEnable/ { print "AutoEnable = true" };
- a/DiscoverableTimeout/ {print "DiscoverableTimeout = 0" }; 1
+  /DiscoverableTimeout/ {print "DiscoverableTimeout = 0" }; 1
   ' /etc/bluetooth/main.conf
 
   systemctl enable --now bluetooth.service
-}
-
-mtp () {
-  sudo pacman -S jmtpfs --noconfirm
-  yay -Sy gvfs-mtp --noconfirm
 }
 
 monitoring() {
@@ -53,13 +48,10 @@ screenshot() {
   sudo pacman -S grim slurp &&
   cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.local/bin/" 
   set_aliases 'shot="print_screen"'
-  sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh" 
 }
-
 
 
 generics 
 bluetooth
-mtp
 monitoring
 screenshot
