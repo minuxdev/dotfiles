@@ -32,7 +32,7 @@ bluetooth ()
   /PairableTimeout/ { print "PairableTimeout = 0" };
   /ControllerMode/ { print "ControllerMode = bredr" };
   /^(A|#A)utoEnable/ { print "AutoEnable = true" };
-  /DiscoverableTimeout/ {print "DiscoverableTimeout = 0" }; 1
+ a/DiscoverableTimeout/ {print "DiscoverableTimeout = 0" }; 1
   ' /etc/bluetooth/main.conf
 
   systemctl enable --now bluetooth.service

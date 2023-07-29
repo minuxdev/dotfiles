@@ -106,3 +106,6 @@ Some cool utilities:
   - ripgrep
   - tldr
 
+- File Managers
+  - ranger
+  - nautilus
