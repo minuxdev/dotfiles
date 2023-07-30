@@ -45,12 +45,6 @@ The following dependencies are installed and configured accordingly
   - pavucontrol
   - playerctl
 
-- Others
-  - exa
-  - fzf
-  - ripgrep
-  - tldr
-
 ----
 
 ## DE/WM setup
@@ -71,10 +65,94 @@ The terminal emulator that gets installed and configured is _alacritty_
 - install Nerd-Fonts
 - alacritty-themes
 - zsh
+- Node Version Manger (nvm)
+- Node (needed by other packages)
 - oh-my-zsh
+- fzf
 - znap
 - tmux 
-- set_alias: a script to quickly set aliases.
+- set_aliases: a script to quickly set aliases. Located in ~/.local/bin/
 - ssh_keys: install my ssh keys (ignored for security reasons.)
 
 ----
+
+## Utilities
+
+Some cool utilities:
+
+- Genericas
+  - bat : replace cat
+  - lsd : replace ls 
+  - gdu : replace du
+  - z : replace cd
+  - unzip
+  - man
+  - rar 
+
+- Bluetooth
+  - bluez
+  - bluez-utils
+
+- MTP
+  - jmtpfs
+  - gvfs-mtp
+
+- Monitoring
+  - bpytot : replace top and htop
+
+- Screenshot
+  - grim 
+  - slurp (dependency)
+
+- Others
+  - ripgrep
+  - tldr
+
+- File Managers
+  - ranger
+  - nautilus
+
+## Programming
+
+- Node Packages
+  - scss
+  - live-server
+
+- Neovim Packages
+  - Packer
+  - Plugins
+    - Initial plugins
+        - nvim-tree.lua
+        - nvim-web-devicons
+        - nvim-treesitter/nvim-treesitter
+    - Line
+        - lualine.nvim
+    - Colorscheme
+        - RRethy/nvim-base16
+    - Telescope
+        - nvim-telescope/telescope.nvim
+        - nvim-lua/plenary.nvim
+    - Language Server Protocol
+        - williamboman/mason.nvim
+        - williamboman/mason-lspconfig.nvim
+        - neovim/nvim-lspconfig, *run = ' pip3 install neovim '*
+    - Formatters
+        - jose-elias-alvarez/null-ls.nvim, *run = ' npm install prettier ; pip3 install black'*
+        - nvie/vim-flake8, *run = 'pip3 install flake8'*
+        - lukas-reineke/lsp-format.nvim
+        - FooSoft/vim-argwrap
+        - scrooloose/nerdcommenter
+    - Autocompletion
+        - hrsh7th/cmp-nvim-lsp
+        - hrsh7th/nvim-cmp
+        - L3MON4D3/LuaSnip
+        - saadparwaiz1/cmp_luasnip
+        - rafamadriz/friendly-snippets
+    - HTML and SCSS support
+        - cakebaker/scss-syntax.vim, *run = ' npm install -g vscode-langservers-extracted '*
+        - hail2u/vim-css3-syntax
+        - pangloss/vim-javascript
+        - othree/html5.vim
+    - Tabline
+        - romgrk/barbar.nvim
+        - lewis6991/gitsigns.nvim
