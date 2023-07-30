@@ -113,3 +113,46 @@ Some cool utilities:
 - File Managers
   - ranger
   - nautilus
+
+## Programming
+
+- NPM (through NVM)
+
+- Neovim
+  - Packer
+  - Plugins
+    - Initial plugins
+        - nvim-tree.lua
+        - nvim-web-devicons
+        - nvim-treesitter/nvim-treesitter
+    - Line
+        - lualine.nvim
+    - Colorscheme
+        - RRethy/nvim-base16
+    - Telescope
+        - nvim-telescope/telescope.nvim
+        - nvim-lua/plenary.nvim
+    - Language Server Protocol
+        - williamboman/mason.nvim
+        - williamboman/mason-lspconfig.nvim
+        - neovim/nvim-lspconfig, *run = ' pip3 install neovim '*
+    - Formatters
+        - jose-elias-alvarez/null-ls.nvim, *run = ' npm install prettier ; pip3 install black'*
+        - nvie/vim-flake8, *run = 'pip3 install flake8'*
+        - lukas-reineke/lsp-format.nvim
+        - FooSoft/vim-argwrap
+        - scrooloose/nerdcommenter
+    - Autocompletion
+        - hrsh7th/cmp-nvim-lsp
+        - hrsh7th/nvim-cmp
+        - L3MON4D3/LuaSnip
+        - saadparwaiz1/cmp_luasnip
+        - rafamadriz/friendly-snippets
+    - HTML and SCSS support
+        - cakebaker/scss-syntax.vim, *run = ' npm install -g vscode-langservers-extracted '*
+        - hail2u/vim-css3-syntax
+        - pangloss/vim-javascript
+        - othree/html5.vim
+    - Tabline
+        - romgrk/barbar.nvim
+        - lewis6991/gitsigns.nvim
