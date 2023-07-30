@@ -34,6 +34,7 @@ alacritty ()
 tmux() {
   sudo pacman -S tmux --noconfirm &&
   cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
+  cp -rv "$BASE_DIR/tmux/sessions/" "$HOME/.local/bin/"
 }
 
 fonts
