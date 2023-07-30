@@ -1,6 +1,10 @@
 #!/bin/bash
 
+source  ../progress_notes.sh
+
 installer() {
+  start_task 'YAY'
+
   YAY_DIR="$HOME/.git-clones"
   [ ! -d "$YAY_DIR" ] && mkdir "$YAY_DIR"
   cd "$YAY_DIR" && 
@@ -8,28 +12,26 @@ installer() {
   git clone https://aur.archlinux.org/yay-git.git &&
   cd "yay-git" &&
   makepkg -si
+
+  end_task
 }
 
-audio ()
-{
+audio () {
+  start_task 'AUDIO'
+
   sudo pacman -Sy \
     pulseaudio pulseaudio-ctl pulseaudio-alsa \
     pulseaudio-bluetooth pavucontrol playerctl
+
+  end_task
 }
 
-nvm () {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash 
-  touch "$HOME/.zshrc"
-  echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" ' > "$HOME/.zshrc"
-}
-
-others ()
-{
+others () {
+  start_task 'OTHERS'
   sudo pacman -Sy ripgrep --noconfirm
+  end_task
 }
 
 installer 
 audio 
 others
-nvm
