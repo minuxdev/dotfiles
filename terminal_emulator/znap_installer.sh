@@ -1,7 +1,15 @@
 #!/bin/zsh
 
+nvm_installer () {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash 
+  source "$HOME/.zshrc"
+  sudo nvm install node 
+}
+
 znap_installer ()
 {
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
   [ ! -d ~/.git-clones ] && mkdir ~/.git-clones 
 
   mkdir -p ~/.git-clones/zsh-plugins 
@@ -38,4 +46,5 @@ znap_installer ()
   source ~/.zshrc
 }
 
+nvm_installer
 znap_installer

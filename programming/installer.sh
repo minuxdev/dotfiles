@@ -3,9 +3,7 @@
 BASE_DIR="$HOME/dotfiles/programming"
 source "$HOME/terminal_emulator/scripts/set_aliases.sh"
 
-npm_install () {
-  nvm install node
-}
+  sudo npm install -g scss live-server
 
 nvim () {
   sudo pacman -Sy neovim --noconfirm

@@ -45,10 +45,6 @@ The following dependencies are installed and configured accordingly
   - pavucontrol
   - playerctl
 
-- Programming 
-  - Node Version Manger (nvm)
-        This is *sourced* in **Terminal_Emulator** section, right after installing **zsh**.
-
 ----
 
 ## DE/WM setup
@@ -69,6 +65,8 @@ The terminal emulator that gets installed and configured is _alacritty_
 - install Nerd-Fonts
 - alacritty-themes
 - zsh
+- Node Version Manger (nvm)
+- Node (needed by other packages)
 - oh-my-zsh
 - fzf
 - znap
@@ -116,9 +114,11 @@ Some cool utilities:
 
 ## Programming
 
-- NPM (through NVM)
+- Node Packages
+  - scss
+  - live-server
 
-- Neovim
+- Neovim Packages
   - Packer
   - Plugins
     - Initial plugins
