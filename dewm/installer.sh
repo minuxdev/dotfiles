@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source ~/dotfiles/progress_notes.sh
+source $HOME/dotfiles/progress_notes.sh
 
-CONFIG_DIR="~/.config"
-BASE_SRC_DIR="~/dotfiles/dewm"
+CONFIG_DIR="$HOME/.config"
+BASE_SRC_DIR="$HOME/dotfiles/dewm"
 
 hyprland ()
 {

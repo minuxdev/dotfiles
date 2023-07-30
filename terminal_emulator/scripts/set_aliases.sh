@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 #
 set_aliases()
 {
@@ -17,7 +17,7 @@ set_aliases()
       printf "\nSorry! Could not create alias for ${_alias}!\n" ||
       printf "\nAlias created!\n" 
     done
-    [ -f "/bin/zsh" ] && source ~/.zshrc || source ~/.bashrc
+    source ~/.zshrc
   fi
 }
 
