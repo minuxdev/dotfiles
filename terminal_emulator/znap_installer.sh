@@ -8,6 +8,8 @@ nvm_installer () {
 
 znap_installer ()
 {
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
   [ ! -d ~/.git-clones ] && mkdir ~/.git-clones 
 
   mkdir -p ~/.git-clones/zsh-plugins 
