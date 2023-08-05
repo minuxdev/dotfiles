@@ -46,6 +46,5 @@ wofi ()
   end_task
 }
 
-[ ! -f "/usr/bin/yay" ] && 
-  printf "Helper not installed!"; exit 10 || 
-  hyprland; waybar; hyprpaper; wofi
+[ ! -f "/usr/bin/yay" ] && (printf "Helper not installed!"; exit 10) || 
+  (hyprland; waybar; hyprpaper; wofi)

@@ -1,17 +1,22 @@
 #!/bin/zsh
 
+source "$HOME/dotfiles/progress_notes.sh"
+
 nvm_installer () {
+  start_task 'NVM_INSTALLER'
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash 
-  source "$HOME/.zshrc"
+  source "$HOME/.zshrc" &&
   sudo nvm install node 
+  end_start
 }
 
 znap_installer ()
 {
+  start_task 'ZNAP__INSTALLER'
+
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   [ ! -d ~/.git-clones ] && mkdir ~/.git-clones 
-
   mkdir -p ~/.git-clones/zsh-plugins 
   cd ~/.git-clones/zsh-plugins 
   git clone https://github.com/marlonrichert/zsh-snap.git 
@@ -25,10 +30,6 @@ znap_installer ()
     ~/.zshrc
   source ~/.zshrc
 
-
-    printf "
-  Done clonning 
-  """
     PLUGINS=(
       'rupa/z' 
       'Aloxaf/fzf-tab' 
@@ -44,6 +45,8 @@ znap_installer ()
     sed -i " 3 i\znap source $plugin " ~/.zshrc
   done
   source ~/.zshrc
+
+  end_task
 }
 
 nvm_installer
