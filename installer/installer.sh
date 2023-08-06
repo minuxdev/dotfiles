@@ -26,11 +26,11 @@ IF YOU FULLY AGREE WITH THIS POINTS, LET'S START, SKIP OTHERWISE!!!
 
 installer () 
 {
-    # update the system clock
-    timedatectl status
-    
-    # list all devices 
-    lsblk -f
+	# update the system clock
+	timedatectl status
+
+	# list all devices 
+	lsblk -f
 
 printf """
 
@@ -67,53 +67,53 @@ e.g. nvme0n1p1
         break;
     done
 
-    # format and mount swap partition
-    printf "\n\n"
-    read -p "Do you want to use swap partition? [y/any key]" ANSWER
+	# format and mount swap partition
+	printf "\n\n"
+	read -p "Do you want to use swap partition? [y/any key]" ANSWER
 
-    if [ "$ANSWER" = 'y' ]
-    then
-      lsblk -f
-      read -p "SWAP PARTITION: " PARTITION
-      while true
-      do
-          [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
-          mkswap "/dev/$PARTITION"
-          swapon "/dev/$PARTITION"
+	if [ "$ANSWER" = 'y' ]
+		then
+		lsblk -f
+		read -p "SWAP PARTITION: " PARTITION
+		while true
+		do
+		[ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
+		mkswap "/dev/$PARTITION"
+		swapon "/dev/$PARTITION"
 
-          [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
-            (printf "Something went wrong!")
-          break;
-      done
-    fi
+		[ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
+		(printf "Something went wrong!")
+		break;
+		done
+	fi
 
-    printf "\n\nInstalling keys\n"
-    # initializing keys
-    pacman-key --init
-    
-    #add default archlinux keys
-    pacman-key --populate archlinux
+	printf "\n\nInstalling keys\n"
+	# initializing keys
+	pacman-key --init
 
-    # install archlinux-keyring
-    pacman -Sy archlinux-keyring --noconfirm
+	#add default archlinux keys
+	pacman-key --populate archlinux
 
-    # install system
-    printf "\n\nBeginning the system installation\n"
-    pacstrap /mnt base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g --noconfirm
+	# install archlinux-keyring
+	pacman -Sy archlinux-keyring --noconfirm
 
-    [ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
+	# install system
+	printf "\n\nBeginning the system installation\n"
+	pacstrap /mnt base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g --noconfirm
 
-    printf "
+	[ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
+
+	printf "
 
 CONGRATULATIONS!!!
 THE INSTALLATION PROCESS HAS FINISHED SUCCESSFULLY!
 NOW LET'S CONFIGURE IT...
 
 "
-  cp ~/installers/configurator.sh /mnt/
+	cp ~/installers/configurator.sh /mnt/
 
-  genfstab -L /mnt >> /mnt/etc/fstab
-  arch-chroot /mnt ./configurator.sh
+	genfstab -L /mnt >> /mnt/etc/fstab
+	arch-chroot /mnt ./configurator.sh
 
 	if [ $? = 0 ]
 	then

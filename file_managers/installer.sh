@@ -22,5 +22,5 @@ ranger ()
   end_task
 }
 
-pacman -S nautilus --noconfirm
+sudo pacman -S nautilus --noconfirm
 ranger 
