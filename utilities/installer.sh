@@ -69,11 +69,16 @@ screenshot ()
 	start_task 'SCREENSHOT'
 	
 	yay -S imlib2 --noconfirm
-	sudo pacman -S grim slurp --noconfirm &&
-	cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.local/bin/" 
-	$set_aliases 'shot="print_screen"'
+	sudo pacman -S grim slurp --noconfirm 
+	
+	BINARIES="$HOME/.bin"
+	[ ! -d "$BINARIES" ] && mkdir "$BINARIES"
+	cp -rv "$BASE_DIR/print_screen.sh" "$BINARIES"
 	sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh " \
 	"$HOME/.config/hypr/hyprland.conf" 
+	grep '.bin' "$HOME/.zshrc"
+	[ "$?" != 0 ] && sed -i ' /EXPORTS/a\export PATH=$BINARIES:$PATH ' "$HOME/.zshrc"
+	$set_aliases 'shot="print_screen"'
 	
 	end_task
 }
