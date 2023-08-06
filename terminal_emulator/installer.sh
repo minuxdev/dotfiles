@@ -39,4 +39,3 @@ fonts
 call_znap_installer
 alacritty
 tmux
-
