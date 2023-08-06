@@ -66,7 +66,9 @@ screenshot() {
 }
 
 players () {
+	start_task 'PLAYERS'
 	sudo pacman -S vlc cmus mpv --noconfirm
+	end_task
 }
 
 browsers () {
@@ -78,8 +80,8 @@ browsers () {
 
 generics 
 bluetooth
-#mtp
-#monitoring
+mtp
+monitoring
 screenshot
 players
-#browsers
+browsers
