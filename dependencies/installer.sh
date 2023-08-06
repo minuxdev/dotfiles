@@ -1,6 +1,7 @@
 #!/bin/bash
 
-installer() {
+installer () 
+{
   YAY_DIR="$HOME/.git-clones"
   [ ! -d "$YAY_DIR" ] && mkdir "$YAY_DIR"
   cd "$YAY_DIR" && 

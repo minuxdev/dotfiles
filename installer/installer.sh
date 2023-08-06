@@ -1,13 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 
-function welcome_note() { printf """
+welcome_note () 
+{ 
+printf """
 ==========================================================================
 ==========================================================================
 
                         ARCH_INSTALLER Ver:0.2
 
 ==========================================================================
-               Author: __minux__ | Release: 2023, July
+                 Author: __minux__ | Release: 2023, July
 ==========================================================================
 
 WELCOME TO ARCHLINUX INSTALLATION SCRIPT
@@ -22,8 +24,8 @@ IF YOU FULLY AGREE WITH THIS POINTS, LET'S START, SKIP OTHERWISE!!!
 """
 }
 
-function installer() {
-
+installer () 
+{
     # update the system clock
     timedatectl status
     
@@ -85,7 +87,6 @@ e.g. nvme0n1p1
       done
     fi
 
-
     printf "\n\nInstalling keys\n"
     # initializing keys
     pacman-key --init
@@ -103,18 +104,33 @@ e.g. nvme0n1p1
     [ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
 
     printf "
-\n
+
 CONGRATULATIONS!!!
 THE INSTALLATION PROCESS HAS FINISHED SUCCESSFULLY!
 NOW LET'S CONFIGURE IT...
-\n
+
 "
   cp ~/installers/configurator.sh /mnt/
 
   genfstab -L /mnt >> /mnt/etc/fstab
-  arch-chroot /mnt
+  arch-chroot /mnt ./configurator.sh
 
-  [ $? = 0 ] || ( printf "Failed to chroot to new root. Exiting... \n"; exit )
+	if [ $? = 0 ]
+	then
+		printf "
+Thanks for using this script. 
+Feel free to let me know about your experience here: minux.midi@gmail.com
+
+Reboot the system.
+		"
+	else
+		printf "
+First of all, thanks for trying this script. 
+Follow the error message and try to fix it.
+
+Feel free to let me know about your experience here: minux.midi@gmail.com
+"
+	fi
 
 }
 

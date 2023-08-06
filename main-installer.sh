@@ -1,68 +1,67 @@
 #!/bin/bash
 
 
-PRINT=$(printf "
-MENU\n\n
+while true 
+do
+	printf "
+MENU
 
-1. DESKTOP ENVIRONMENT / WINDOWS MANAGER\n
-2. DEPENDENCIES\n
-3. NETWORKING\n
-4. TERMINAL EMULATOR\n
-5. UTILITIES\n
-6. FILE MANAGERS\n
-7. PROGRAMMING\n
-q. EXIT\n
-============================================\n
+1. DESKTOP ENVIRONMENT / WINDOWS MANAGER
+2. DEPENDENCIES
+3. NETWORKING
+4. TERMINAL EMULATOR
+5. UTILITIES
+6. FILE MANAGERS
+7. PROGRAMMING
+A. INSTALL ALL
+M. BACK TO MENU
+Q. EXIT
+---------------------------------------
+Choice: 
 "
-)
-echo $PRINT
-
-while read -p "Select option: " OPTION
-do 
-  case "$OPTION" in
-    1) 
-        $HOME/dotfiles/dewm/installer.sh
-        echo $PRINT
-        continue
-    ;;
-    2)
-        $HOME/dotfiles/dependencies/installer.sh
-        echo $PRINT
-        continue
-    ;;
-    3)
-        $HOME/dotfiles/networking/installer.sh
-        echo $PRINT
-        continue
-      ;;
-    4)
-        $HOME/dotfiles/terminal_emulator/installer.sh
-        echo $PRINT
-        continue
-    ;;
-    5)
-        $HOME/dotfiles/utilities/installer.sh
-        echo $PRINT
-        continue
-    ;;
-    6)
-        $HOME/dotfiles/file_managers/installer.sh
-        echo $PRINT
-        continue
-    ;;
-    7)
-        $HOME/dotfiles/programming/installer.sh
-        echo $PRINT
-        continue
-    ;;
-  'q')
-        break 
-    ;;
-    *) 
-        echo $PRINT
-       printf "INVALID OPTION!\n"
-        continue
-    ;;
-  esac
-
+	read CHOICE 
+		case $CHOICE in 
+			1)
+				$HOME/dotfiles/dewm/installer.sh
+				;;
+			2)
+				$HOME/dotfiles/dependencies/installer.sh
+				;;
+			3)
+				$HOME/dotfiles/networking/installer.sh
+				;;
+			4)
+				$HOME/dotfiles/terminal_emulator/installer.sh
+				;;
+			5)
+				$HOME/dotfiles/utilities/installer.sh
+				;;
+			6)
+				$HOME/dotfiles/file_managers/installer.sh
+				;;
+			7)
+				$HOME/dotfiles/programming/installer.sh
+				;;
+			a|A)
+				printf "You are about to run all scripts described in the menu.\n"
+				read -p "Proceed?: 1 - Yes or 0 - No " OPTION
+				[ "$OPTION" = "0" ] && continue
+				
+				$HOME/dotfiles/dewm/installer.sh &&
+				$HOME/dotfiles/dependencies/installer.sh &&
+				$HOME/dotfiles/networking/installer.sh &&
+				$HOME/dotfiles/terminal_emulator/installer.sh &&
+				$HOME/dotfiles/utilities/installer.sh &&
+				$HOME/dotfiles/file_managers/installer.sh &&
+				$HOME/dotfiles/programming/installer.sh
+				;;
+			q|Q)
+				printf "\nThank you for using this script. \
+				Feel free to make comments here: minux.midi@gmail.com\n"
+				exit
+				;;
+			*)
+				printf "Invalid option, try again!\n"
+				;;
+		esac
 done

@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
   --use 'github/copilot.vim'
   use 'FooSoft/vim-argwrap'
   use 'lukas-reineke/lsp-format.nvim'
+  use 'mg979/vim-visual-multi'
 
   -- Autocompletion
   use 'hrsh7th/cmp-nvim-lsp'

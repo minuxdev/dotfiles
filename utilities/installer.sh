@@ -4,10 +4,12 @@ BASE_DIR="$HOME/dotfiles/utilities"
 source "$HOME/dotfiles/progress_notes.sh"
 set_aliases="$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
 
-generics() {
+generics () 
+{
 	start_task 'GENERICS'
+	
 	GENERICS=(
-	bat lsd tldr grim unzip man ristretto gdu tree
+		bat lsd tldr grim unzip man ristretto gdu tree
 	)
 	sudo pacman -Sy ${GENERICS[*]} --noconfirm
 	yay -Sy rar --noconfirm
@@ -20,7 +22,7 @@ generics() {
 	'du="gdu"'
 	'sf="source ~/.zshrc"'
 	)
-	set_aliases "${ALIASES[@]}"
+	$set_aliases "${ALIASES[@]}"
 
 	end_task
 }
@@ -28,6 +30,7 @@ generics() {
 bluetooth () 
 {
 	start_task 'BLUETOOTH'
+	
 	sudo pacman -S bluez bluez-utils --noconfirm 
 	sudo awk -i inplace ' 
 	/PairableTimeout/ { print "PairableTimeout = 0" };
@@ -40,40 +43,56 @@ bluetooth ()
 	end_task
 }
 
-mtp () {
+mtp () 
+{
 	start_task 'MTP'
+	
 	sudo pacman -S jmtpfs --noconfirm
 	yay -Sy gvfs-mtp --noconfirm
+	
 	end_task
 }
 
-monitoring() {
+monitoring() 
+{
 	start_task 'MONITORING'
+	
 	pip3 install bpytop &&
 	sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.local/bin ' ~/.zshrc
-	set_aliases 'top="bpytop"'
+	$set_aliases 'top="bpytop"'
+	
 	end_task
 }
 
-screenshot() {
+screenshot () 
+{
 	start_task 'SCREENSHOT'
+	
 	yay -S imlib2 --noconfirm
 	sudo pacman -S grim slurp --noconfirm &&
 	cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.local/bin/" 
-	set_aliases 'shot="print_screen"'
-	sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh " "$HOME/.config/hypr/hyprland.conf" 
+	$set_aliases 'shot="print_screen"'
+	sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh " \
+	"$HOME/.config/hypr/hyprland.conf" 
+	
 	end_task
 }
 
-players () {
+players () 
+{
 	start_task 'PLAYERS'
+	
 	sudo pacman -S vlc cmus mpv --noconfirm
+	
 	end_task
 }
 
-browsers () {
+browsers () 
+{
 	start_task 'BROWSERS'
+	
 	sudo pacman -S firefox chromium --noconfirm
+	
 	end_task
 }
 

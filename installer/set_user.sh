@@ -1,6 +1,7 @@
 #!/bin/bash
 
-create_user() {
+create_user () 
+{
     while read -p "Username: " USERNAME
     do
         cat /etc/passwd | grep -w "$USERNAME"

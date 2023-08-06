@@ -2,15 +2,18 @@
 
 source "$HOME/dotfiles/progress_notes.sh"
 
-nvm_installer () {
+nvm_installer () 
+{
   start_task 'NVM_INSTALLER'
+  
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash 
   source "$HOME/.zshrc" &&
   sudo nvm install node 
+  
   end_start
 }
 
-znap_installer ()
+znap_installer () 
 {
   start_task 'ZNAP_INSTALLER'
 
@@ -50,3 +53,4 @@ znap_installer ()
 
 nvm_installer
 znap_installer
+

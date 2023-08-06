@@ -7,7 +7,15 @@
   Install the basics you need to have archlinux up and running without any kind of configuration.
   The following packages are installed:
 
-              base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g networkmanager
+- base-devel 
+- linux 
+- systemd-sysvcompat 
+- iputils 
+- git 
+- grub 
+- efibootmgr 
+- ntfs-3g 
+- networkmanager
 
 - **configurator.sh**
 
@@ -170,6 +178,7 @@ Some cool utilities:
         - L3MON4D3/LuaSnip
         - saadparwaiz1/cmp_luasnip
         - rafamadriz/friendly-snippets
+        - mg979/vim-visual-multi
     - HTML and SCSS support
         - cakebaker/scss-syntax.vim, *run = ' npm install -g vscode-langservers-extracted '*
         - hail2u/vim-css3-syntax

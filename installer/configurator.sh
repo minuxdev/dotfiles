@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 
-function new_root_config() {
+new_root_config () 
+{
 
 printf "
 =============================================================================
@@ -31,7 +32,7 @@ printf "$HOSTNAME" > /etc/hostname
 # install grub
 printf"\n\nInstalling grub\n\n"
 grub-install --efi-directory=/efi --target=x86_64-efi 
-[[ $? = 0 ]] || echo "GRUB-INSTALL FAILED TO INSTALL TRY GAIN!";
+[ $? = 0 ] || echo "GRUB-INSTALL FAILED TO INSTALL TRY GAIN!";
 grub-mkconfig -o /boot/grub/grub.cfg
 efibootmgr
 
@@ -42,7 +43,7 @@ awk -i inplace ' /ParallelDownloads/ { $1 = substr($1,2) }; 1 ' /etc/pacman.conf
 printf "\nSET A PASSWORD FOR USER ROOT\n"
 passwd
 
-printf """\n
+printf """
 CONGRATULATIONS!!!
 
 THE INSTALLATION HAS FINISHED SUCCESSFULLY. 

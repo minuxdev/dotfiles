@@ -4,7 +4,8 @@ source "$HOME/dotfiles/progress_notes.sh"
 BASE_DIR="$HOME/dotfiles/file_managers"
 set_aliases="$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
 
-ranger () {
+ranger () 
+{
   start_task 'RANGER'
 
   sudo pacman -Sy ueberzug highlight --noconfirm
@@ -17,7 +18,7 @@ ranger () {
     sed -i " /EXPORTS/a\export $exported " ~/.zshrc
   done
   source ~/.zshrc
-  set_aliases 'rg="ranger"'
+  $set_aliases 'rg="ranger"'
   end_task
 }
 
