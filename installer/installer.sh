@@ -101,7 +101,7 @@ e.g. nvme0n1p1
 	printf "\n\nBeginning the system installation\n"
 	pacstrap /mnt base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g --noconfirm
 
-	[ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
+	[ $? != 0 ] && echo "SORRY! THE INSTALLATION PROCESS FAILED!"
 
 	printf "
 
@@ -115,7 +115,7 @@ NOW LET'S CONFIGURE IT...
 	genfstab -L /mnt >> /mnt/etc/fstab
 	arch-chroot /mnt ./configurator.sh
 
-	if [ $? = 0 ]
+	if [ "$?" = 0 ]
 	then
 		printf "
 Thanks for using this script. 
