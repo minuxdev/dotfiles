@@ -27,16 +27,16 @@ nvim ()
   
   	sudo pacman -Sy neovim --noconfirm
   	yay -S wl-clipboard --noconfirm
-	
-	mv "$BASE_DIR/nvim" "$BASE_DIR/nvim.bkp"
-  	cp -rv "$BASE_DIR/nvim" "$HOME/.config/"
+    CONFIG_DIR"$HOME/.config/nvim"
+    [ ! -d "$CONFIG_DIR" ] && "$CONFIG_DIR" "$CONFIG_DIR.BKP"
+  	cp -rv "$BASE_DIR/nvim" "$CONFIG_DIR"
   	$set_aliases 'nv="nvim"'
   
 	end_task
 }
 
 npm_packages
-text_editors
+text_editos
 nvim
 ALIASES=('da="python manager.py"'
      'dac="python manager.py createsuperuser --username"'
