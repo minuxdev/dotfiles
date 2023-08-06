@@ -27,7 +27,8 @@ nvim ()
   
   	sudo pacman -Sy neovim --noconfirm
   	yay -S wl-clipboard --noconfirm
-
+	
+	mv "$BASE_DIR/nvim" "$BASE_DIR/nvim.bkp"
   	cp -rv "$BASE_DIR/nvim" "$HOME/.config/"
   	$set_aliases 'nv="nvim"'
   

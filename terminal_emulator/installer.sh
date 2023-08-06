@@ -90,7 +90,11 @@ nvm_installer ()
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
   grep 'NVM_DIR/nvm.sh' "$HOME/.zshrc"
   [ ! "$?" = 0 ] && echo -e ' /EXPORTS/a\export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" \n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> "$HOME/.zshrc"
-  /usr/bin/zsh -i -c "source $HOME/.zshrc && nvm install node"
+  /usr/bin/zsh -i -c "\
+  		source $HOME/.zshrc && \
+  		nvm install node && \
+  		npm install -g npm && \
+  		npm install -g semver@7"
   
   end_start
 }
