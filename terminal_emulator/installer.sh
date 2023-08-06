@@ -73,11 +73,13 @@ fuzzy_finder ()
 	
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
-
-	sed -i ' /EXPORTS/a\export FZF_DEFAULT_OPTS="--extended" ' "$HOME/.zshrc"
-	sed -i ' /EXPORTS/a\export FZF_DEFAULT_COMMAND="fd --type f" ' "$HOME/.zshrc"
-	sed -i ' /EXPORTS/a\export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND" ' "$HOME/.zshrc"
-	
+	grep 'FZF_DEFAULT_COMMAND' "$HOME/.zshrc"
+	if [ "$?" != 0 ]
+	then
+		sed -i ' /EXPORTS/a\export FZF_DEFAULT_OPTS="--extended" ' "$HOME/.zshrc"
+		sed -i ' /EXPORTS/a\export FZF_DEFAULT_COMMAND="fd --type f" ' "$HOME/.zshrc"
+		sed -i ' /EXPORTS/a\export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND" ' "$HOME/.zshrc"
+	fi
 	end_task
 }
 
