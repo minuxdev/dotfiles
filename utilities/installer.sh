@@ -2,41 +2,42 @@
 
 BASE_DIR="$HOME/dotfiles/utilities"
 source "$HOME/dotfiles/progress_notes.sh"
-source "$HOME/terminal_emulator/scripts/set_aliases.sh"
+set_aliases="$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
 
 generics() {
-  start_task 'GENERICS'
-  GENERICS=(
-    bat lsd tldr grim unzip man
-  )
-  sudo pacman -Sy "${GENERICS[*]}" --noconfirm
-  yay -S rar --noconfirm
-  
-  ALIASES=(
-     'ls="lsd"'
-     'la="lsd -a"'
-     'll="lsd -la"'
-     'cd="z"'
-     'sf="source ~/.zshrc"'
-  )
-  set_aliases "${ALIASES[@]}"
+	start_task 'GENERICS'
+	GENERICS=(
+	bat lsd tldr grim unzip man ristretto gdu tree
+	)
+	sudo pacman -Sy ${GENERICS[*]} --noconfirm
+	yay -Sy rar --noconfirm
 
-end_task
+	ALIASES=(
+	'ls="lsd"'
+	'la="lsd -a"'
+	'll="lsd -la"'
+	'cd="z"'
+	'du="gdu"'
+	'sf="source ~/.zshrc"'
+	)
+	set_aliases "${ALIASES[@]}"
+
+	end_task
 }
 
 bluetooth () 
 {
   start_task 'BLUETOOTH'
-  sudo pacman -S 'bluez' 'bluez-utils' --noconfirm 
- sudo awk -i inplace ' 
+  sudo pacman -S bluez bluez-utils --noconfirm 
+  sudo awk -i inplace ' 
   /PairableTimeout/ { print "PairableTimeout = 0" };
   /ControllerMode/ { print "ControllerMode = bredr" };
   /^(A|#A)utoEnable/ { print "AutoEnable = true" };
- a/DiscoverableTimeout/ {print "DiscoverableTimeout = 0" }; 1
+ a/DiscoverableTimeout/ { print "DiscoverableTimeout = 0" }; 1
   ' /etc/bluetooth/main.conf
 
   systemctl enable --now bluetooth.service
-end_task
+  end_task
 }
 
 mtp () {
@@ -60,7 +61,7 @@ screenshot() {
   sudo pacman -S grim slurp --noconfirm &&
   cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.local/bin/" 
   set_aliases 'shot="print_screen"'
-  sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh" 
+  sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh " "$HOME/.config/hypr/hyprland.conf" 
   end_task
 }
 
@@ -73,7 +74,7 @@ browsers () {
 
 generics 
 bluetooth
-mtp
-monitoring
+#mtp
+#monitoring
 screenshot
-browsers
+#browsers

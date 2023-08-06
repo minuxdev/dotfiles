@@ -12,7 +12,7 @@ nvm_installer () {
 
 znap_installer ()
 {
-  start_task 'ZNAP__INSTALLER'
+  start_task 'ZNAP_INSTALLER'
 
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -37,7 +37,6 @@ znap_installer ()
       'marlonrichert/zsh-autosuggestions'
       'zsh-users/zsh-syntax-highlighting'
     )
-
 
   for plugin in "${PLUGINS[@]}"
   do 

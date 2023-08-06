@@ -29,6 +29,15 @@ Also prompt the user to for _dotfiles_ directory.
 
 ----
 
+## Network
+
+Enable and config *NetworkManger*.
+
+Install **samba** and copy *smb.conf* to */etc/samba/* with minimal to make it working.
+Add the current user group (**@wheel** is the default one, defined by **set_user.sh**) to samba, enable and start the service.
+
+----
+
 ## Dependencies
 
 The following dependencies are installed and configured accordingly
@@ -88,6 +97,8 @@ Some cool utilities:
   - unzip
   - man
   - rar 
+  - ristretto (image viewer)
+  - tree
 
 - Bluetooth
   - bluez
@@ -110,6 +121,8 @@ Some cool utilities:
 
 - File Managers
   - ranger
+  	- Plugins
+  		- ranger-cmus
   - nautilus
 
 ## Programming
