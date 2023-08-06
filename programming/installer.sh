@@ -37,3 +37,10 @@ nvim ()
 npm_packages
 text_editors
 nvim
+ALIASES=('da="python manager.py"'
+     'dac="python manager.py createsuperuser --username"'
+     'dar="python manager.py runserver"'
+     'dap="python manager.py startapp"'
+   )
+
+$set_aliases "${ALIASES[@]}"

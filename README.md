@@ -86,6 +86,7 @@ The terminal emulator that gets installed and configured is _alacritty_
 - Node (needed by other packages)
 - oh-my-zsh
 - fzf
+- fd
 - znap
 - tmux 
 - set_aliases: a script to quickly set aliases. Located in ~/.local/bin/
