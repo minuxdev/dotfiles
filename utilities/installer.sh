@@ -96,7 +96,6 @@ browsers ()
 	end_task
 }
 
-
 generics 
 bluetooth
 mtp
