@@ -27,48 +27,52 @@ generics() {
 
 bluetooth () 
 {
-  start_task 'BLUETOOTH'
-  sudo pacman -S bluez bluez-utils --noconfirm 
-  sudo awk -i inplace ' 
-  /PairableTimeout/ { print "PairableTimeout = 0" };
-  /ControllerMode/ { print "ControllerMode = bredr" };
-  /^(A|#A)utoEnable/ { print "AutoEnable = true" };
- a/DiscoverableTimeout/ { print "DiscoverableTimeout = 0" }; 1
-  ' /etc/bluetooth/main.conf
+	start_task 'BLUETOOTH'
+	sudo pacman -S bluez bluez-utils --noconfirm 
+	sudo awk -i inplace ' 
+	/PairableTimeout/ { print "PairableTimeout = 0" };
+	/ControllerMode/ { print "ControllerMode = bredr" };
+	/^(A|#A)utoEnable/ { print "AutoEnable = true" };
+	a/DiscoverableTimeout/ { print "DiscoverableTimeout = 0" }; 1
+	' /etc/bluetooth/main.conf
 
-  systemctl enable --now bluetooth.service
-  end_task
+	systemctl enable --now bluetooth.service
+	end_task
 }
 
 mtp () {
-  start_task 'MTP'
-  sudo pacman -S jmtpfs --noconfirm
-  yay -Sy gvfs-mtp --noconfirm
-  end_task
+	start_task 'MTP'
+	sudo pacman -S jmtpfs --noconfirm
+	yay -Sy gvfs-mtp --noconfirm
+	end_task
 }
 
 monitoring() {
-  start_task 'MONITORING'
-  pip3 install bpytop &&
-  sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.local/bin ' ~/.zshrc
-  set_aliases 'top="bpytop"'
-  end_task
+	start_task 'MONITORING'
+	pip3 install bpytop &&
+	sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.local/bin ' ~/.zshrc
+	set_aliases 'top="bpytop"'
+	end_task
 }
 
 screenshot() {
-  start_task 'SCREENSHOT'
-  yay -S imlib2 --noconfirm
-  sudo pacman -S grim slurp --noconfirm &&
-  cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.local/bin/" 
-  set_aliases 'shot="print_screen"'
-  sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh " "$HOME/.config/hypr/hyprland.conf" 
-  end_task
+	start_task 'SCREENSHOT'
+	yay -S imlib2 --noconfirm
+	sudo pacman -S grim slurp --noconfirm &&
+	cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.local/bin/" 
+	set_aliases 'shot="print_screen"'
+	sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh " "$HOME/.config/hypr/hyprland.conf" 
+	end_task
+}
+
+players () {
+	sudo pacman -S vlc cmus mpv --noconfirm
 }
 
 browsers () {
-  start_task 'BROWSERS'
-  sudo pacman -S firefox chromium --noconfirm
-  end_task
+	start_task 'BROWSERS'
+	sudo pacman -S firefox chromium --noconfirm
+	end_task
 }
 
 
@@ -77,4 +81,5 @@ bluetooth
 #mtp
 #monitoring
 screenshot
+players
 #browsers

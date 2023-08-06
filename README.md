@@ -125,11 +125,20 @@ Some cool utilities:
   		- ranger-cmus
   - nautilus
 
+- Players
+	- cmus
+	- vlc
+	- mpv
+
 ## Programming
 
 - Node Packages
   - scss
   - live-server
+
+- Text editors
+	- kate 
+	- gedit 
 
 - Neovim Packages
   - Packer
