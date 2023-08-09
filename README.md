@@ -124,9 +124,14 @@ Some cool utilities:
   - grim 
   - slurp (dependency)
 
+- Browsers
+  - firefox
+  - chromium
+
 - Others
   - ripgrep
   - tldr
+  - qbittorrent
 
 - File Managers
   - ranger
