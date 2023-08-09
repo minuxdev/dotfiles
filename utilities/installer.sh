@@ -40,6 +40,7 @@ bluetooth ()
 	' /etc/bluetooth/main.conf
 
 	systemctl enable --now bluetooth.service
+	$set_aliases 'bctl="bluetoothctl"'
 	end_task
 }
 
@@ -96,7 +97,7 @@ browsers ()
 {
 	start_task 'BROWSERS'
 	
-	sudo pacman -S firefox chromium --noconfirm
+	sudo pacman -S firefox chromium qbittorrent --noconfirm
 	
 	end_task
 }

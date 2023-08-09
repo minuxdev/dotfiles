@@ -111,6 +111,7 @@ NOW LET'S CONFIGURE IT...
 
 "
 	cp ~/installers/configurator.sh /mnt/
+	chmod 0775 /mnt/configurator.sh
 
 	genfstab -L /mnt >> /mnt/etc/fstab
 	arch-chroot /mnt ./configurator.sh
