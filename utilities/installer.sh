@@ -9,7 +9,7 @@ generics ()
 	start_task 'GENERICS'
 	
 	GENERICS=(
-		bat lsd tldr grim unzip man ristretto gdu tree
+		bat lsd tldr grim unzip man ristretto gdu tree rsync
 	)
 	sudo pacman -Sy ${GENERICS[*]} --noconfirm
 	yay -Sy rar --noconfirm
@@ -18,9 +18,9 @@ generics ()
 	'ls="lsd"'
 	'la="lsd -a"'
 	'll="lsd -la"'
-	'cd="z"'
 	'du="gdu"'
 	'sf="source ~/.zshrc"'
+  'rs="rsync -auv"'
 	)
 	$set_aliases "${ALIASES[@]}"
 
