@@ -21,7 +21,7 @@ hwclock --systohc
 
 # localization
 printf "\n\nSetting up location\n"
-awk -i inplace ' /en_US.UTF-8/ { $1 = substr($1, 2) }; 1 ' /etc/locale.gen
+awk -i inplace ' /en_US.UTF-8/ { $1 = substr($1, 2 }; 1 ' /etc/locale.gen
 locale-gen
 printf "LANG=en_US.UTF-8" > /etc/locale.conf
 
@@ -30,14 +30,14 @@ read -p "Insert hostname: " HOSTNAME
 printf "$HOSTNAME" > /etc/hostname
 
 # install grub
-printf"\n\nInstalling grub\n\n"
+printf "\n\nInstalling grub\n\n"
 grub-install --efi-directory=/efi --target=x86_64-efi 
-[ $? = 0 ] || echo "GRUB-INSTALL FAILED TO INSTALL TRY GAIN!";
-grub-mkconfig -o /boot/grub/grub.cfg
+[ $? != 0 ] && echo "GRUB-INSTALL FAILED TO INSTALL TRY GAIN!" || 
+grub-mkconfig -o /boot/grub/grub.cfg &&
 efibootmgr
 
 # Enabling parallel downloads
-awk -i inplace ' /ParallelDownloads/ { $1 = substr($1,2) }; 1 ' /etc/pacman.conf
+awk -i inplace ' /ParallelDownloads/ { $1 = substr($1, 2) }; 1 ' /etc/pacman.conf
 
 # setting roots password
 printf "\nSET A PASSWORD FOR USER ROOT\n"
@@ -48,7 +48,7 @@ CONGRATULATIONS!!!
 
 THE INSTALLATION HAS FINISHED SUCCESSFULLY. 
 
-EXITING FROM CHROOT...
+EXITING CHROOT...
 """
 sleep 3s
 exit;

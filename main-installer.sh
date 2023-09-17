@@ -6,9 +6,9 @@ do
 	printf "
 MENU
 
-1. DESKTOP ENVIRONMENT / WINDOWS MANAGER
+1. NETWORKING
 2. DEPENDENCIES
-3. NETWORKING
+3. DESKTOP ENVIRONMENT / WINDOWS MANAGER
 4. TERMINAL EMULATOR
 5. UTILITIES
 6. FILE MANAGERS
@@ -22,13 +22,13 @@ Choice:
 	read CHOICE 
 		case $CHOICE in 
 			1)
-				$HOME/dotfiles/dewm/installer.sh
+				$HOME/dotfiles/networking/installer.sh
 				;;
 			2)
 				$HOME/dotfiles/dependencies/installer.sh
 				;;
 			3)
-				$HOME/dotfiles/networking/installer.sh
+				$HOME/dotfiles/dewm/installer.sh
 				;;
 			4)
 				$HOME/dotfiles/terminal_emulator/installer.sh
@@ -47,8 +47,8 @@ Choice:
 				read -p "Proceed?: 1 - Yes or 0 - No " OPTION
 				[ "$OPTION" = "0" ] && continue
 				
-				$HOME/dotfiles/dewm/installer.sh &&
 				$HOME/dotfiles/dependencies/installer.sh &&
+				$HOME/dotfiles/dewm/installer.sh &&
 				$HOME/dotfiles/networking/installer.sh &&
 				$HOME/dotfiles/terminal_emulator/installer.sh &&
 				$HOME/dotfiles/utilities/installer.sh &&

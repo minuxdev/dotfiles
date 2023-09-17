@@ -7,7 +7,10 @@ source "$HOME/dotfiles/progress_notes.sh"
 npm_packages () 
 { 
   	start_task 'NPM PACKAGES'
-  	sudo npm install -g scss live-server 
+
+  	sudo npm install -g live-server 
+  	sudo npm install -g scss 
+
   	end_task
 }
 
@@ -27,7 +30,7 @@ nvim ()
   
   	sudo pacman -Sy neovim --noconfirm
   	yay -S wl-clipboard --noconfirm
-    CONFIG_DIR"$HOME/.config/nvim"
+	    CONFIG_DIR="$HOME/.config/nvim"
     [ ! -d "$CONFIG_DIR" ] && "$CONFIG_DIR" "$CONFIG_DIR.BKP"
   	cp -rv "$BASE_DIR/nvim" "$CONFIG_DIR"
   	$set_aliases 'nv="nvim"'

@@ -58,8 +58,8 @@ monitoring()
 {
 	start_task 'MONITORING'
 	
-	pip3 install bpytop &&
-	sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.local/bin ' ~/.zshrc
+  sudo pacman -S bpytop --noconfirm
+	sed -i " /== EXPORTS/a\export PATH=$PATH:$HOME/.bin " ~/.zshrc
 	$set_aliases 'top="bpytop"'
 	
 	end_task
@@ -76,7 +76,7 @@ screenshot ()
 	[ ! -d "$BINARIES" ] && mkdir "$BINARIES"
 	cp -rv "$BASE_DIR/print_screen.sh" "$BINARIES"
 	sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.local/bin/print_screen.sh " \
-	"$HOME/.config/hypr/hyprland.conf" 
+	"$HOME/.config/hyprland/hyprland.conf" 
 	grep '.bin' "$HOME/.zshrc"
 	[ "$?" != 0 ] && sed -i ' /EXPORTS/a\export PATH=$BINARIES:$PATH ' "$HOME/.zshrc"
 	$set_aliases 'shot="print_screen"'

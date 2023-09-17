@@ -31,8 +31,7 @@ zsh_installer ()
 	git clone https://github.com/marlonrichert/zsh-snap.git
 
   	printf "Cleaning zshrc file...\n"
-	sed -i ' /^#/d ' ~/.zshrc
-	sed -i ' /^$/d ' ~/.zshrc
+	sed -i -e ' /^#/d ' -e ' /^$/d ' ~/.zshrc
 	
 	awk -i inplace \
 	' BEGINFILE { 
@@ -69,16 +68,16 @@ fuzzy_finder ()
 {
 	start_task 'FUZZY_FINDER'
 	
-	sudo pacman -S fd
+	sudo pacman -S fd --noconfirm
 	
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 	grep 'FZF_DEFAULT_COMMAND' "$HOME/.zshrc"
 	if [ "$?" != 0 ]
 	then
-		sed -i ' /EXPORTS/a\export FZF_DEFAULT_OPTS="--extended" ' "$HOME/.zshrc"
-		sed -i ' /EXPORTS/a\export FZF_DEFAULT_COMMAND="fd --type f" ' "$HOME/.zshrc"
-		sed -i ' /EXPORTS/a\export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND" ' "$HOME/.zshrc"
+		sed -i ' /== EXPORTS/a\export FZF_DEFAULT_OPTS="--extended" ' "$HOME/.zshrc"
+		sed -i ' /== EXPORTS/a\export FZF_DEFAULT_COMMAND="fd --type f" ' "$HOME/.zshrc"
+		sed -i ' /== EXPORTS/a\export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND" ' "$HOME/.zshrc"
 	fi
 	end_task
 }
@@ -89,14 +88,16 @@ nvm_installer ()
   
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
   grep 'NVM_DIR/nvm.sh' "$HOME/.zshrc"
-  [ ! "$?" = 0 ] && echo -e ' /EXPORTS/a\export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" \n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> "$HOME/.zshrc"
+  [ ! "$?" = 0 ] && echo -e \
+  ' export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || \
+  printf %s "${XDG_CONFIG_HOME}/nvm")" \n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> "$HOME/.zshrc"
   /usr/bin/zsh -i -c "\
   		source $HOME/.zshrc && \
   		nvm install node && \
   		npm install -g npm && \
   		npm install -g semver@7"
   
-  end_start
+  end_task
 }
 
 alacritty () 
@@ -123,7 +124,7 @@ tmux ()
 	cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
 	cp -rv "$BASE_DIR/tmux/sessions/" "$BINARIES"
 	grep '.bin' "$HOME/.zshrc"
-	[ "$?" != 0 ] && sed -i ' /EXPORTS/a\export PATH=$BINARIES:$PATH ' "$HOME/.zshrc"
+	[ "$?" != 0 ] && sed -i " /== EXPORTS/a\export PATH=$BINARIES:$PATH " "$HOME/.zshrc"
 	
 	$set_aliases 'tm="tmux"'
 	
