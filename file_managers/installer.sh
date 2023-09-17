@@ -15,10 +15,11 @@ ranger ()
   VALUES=('EDITOR=nvim' 'BAT_STYLE=base16' 'SHELL=/usr/bin/zsh')
   for exported in "${VALUES[@]}"
   do 
-    sed -i " /EXPORTS/a\export $exported " ~/.zshrc
+    sed -i " /== EXPORTS/a\export $exported " ~/.zshrc
   done
   source ~/.zshrc
   $set_aliases 'rg="ranger"'
+
   end_task
 }
 
