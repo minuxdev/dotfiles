@@ -9,7 +9,7 @@ npm_packages ()
   	start_task 'NPM PACKAGES'
 
   	sudo npm install -g live-server 
-  	sudo npm install -g scss 
+  	sudo npm install -g sass 
 
   	end_task
 }

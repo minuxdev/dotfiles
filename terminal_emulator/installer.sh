@@ -58,6 +58,9 @@ zsh_installer ()
 		/usr/bin/zsh -i -c  "znap install $plugin"
 		sed -i " 3 i\znap source $plugin " ~/.zshrc
 	done
+
+  dircolors -p | sed 's/;42/;01/' > ~/.dircolors
+
 	/usr/bin/zsh -i -c 'source "$HOME/.zshrc"'
 
 	end_task
