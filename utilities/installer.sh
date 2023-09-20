@@ -14,11 +14,15 @@ generics ()
 	sudo pacman -Sy ${GENERICS[*]} --noconfirm
 	yay -Sy rar --noconfirm
 
+  mkdir "$HOME/.config/gdu" &&
+  cp -r "$BASE_DIR/gdu.yaml" "$HOME/.config/gdu/"
+
 	ALIASES=(
 	'ls="lsd"'
 	'la="lsd -a"'
 	'll="lsd -la"'
 	'du="gdu"'
+	'dud="gdu -d"'
 	'sf="source ~/.zshrc"'
   'rs="rsync -auv"'
 	)
