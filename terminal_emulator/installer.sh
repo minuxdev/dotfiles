@@ -125,7 +125,7 @@ tmux ()
 	BINARIES="$HOME/.bin"
 	[ ! -d "$BINARIES" ] && mkdir "$BINARIES"
 	cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
-	cp -rv "$BASE_DIR/tmux/sessions/" "$BINARIES"
+	cp -rv "$BASE_DIR/tmux/sessions/*" "$BINARIES"
 	grep '.bin' "$HOME/.zshrc"
 	[ "$?" != 0 ] && sed -i " /== EXPORTS/a\export PATH=$BINARIES:$PATH " "$HOME/.zshrc"
 	

@@ -11,6 +11,8 @@ npm_packages ()
   	sudo npm install -g live-server 
   	sudo npm install -g sass 
 
+  	$set_aliases 'lvs="live-server $1"'
+
   	end_task
 }
 
