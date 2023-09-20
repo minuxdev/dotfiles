@@ -14,8 +14,10 @@ installer ()
 audio ()
 {
   sudo pacman -Sy \
-    pulseaudio pulseaudio-ctl pulseaudio-alsa \
-    pulseaudio-bluetooth pavucontrol playerctl
+    pulseaudio  pulseaudio-alsa \
+    pulseaudio-bluetooth pavucontrol playerctl --noconfirm
+
+  yay -S pulseaudio-ctl --noconfirm
 }
 
 others ()
