@@ -4,18 +4,20 @@
 
 - **installer.sh**
 
-  Install the basics you need to have archlinux up and running without any kind of configuration.
+  Install the basics you need to have archlinux up and running without any 
+  kind of configuration.
   The following packages are installed:
 
 - base-devel 
 - linux 
+- linux-firmware
 - systemd-sysvcompat 
 - iputils 
 - git 
 - grub 
 - efibootmgr 
 - ntfs-3g 
-- networkmanager
+- iwd
 
 - **configurator.sh**
 
@@ -39,10 +41,14 @@ Also prompt the user to for _dotfiles_ directory.
 
 ## Network
 
-Enable and config *NetworkManger*.
+Enable and config *systemd-networkd*.
 
-Install **samba** and copy *smb.conf* to */etc/samba/* with minimal to make it working.
-Add the current user group (**@wheel** is the default one, defined by **set_user.sh**) to samba, enable and start the service.
+- ufw
+- net-tools
+- samba
+    - copy minimal *smb.conf* example to */etc/samba/*
+    - add current user group (**wheel**) to samba
+    - enable and start the service
 
 ----
 
@@ -103,11 +109,11 @@ Some cool utilities:
   - lsd : replace ls 
   - gdu : replace du
   - z : replace cd
-  - unzip
   - man
-  - rar 
   - ristretto (image viewer)
   - tree
+  - rsync
+  - atool
 
 - Bluetooth
   - bluez
@@ -135,6 +141,7 @@ Some cool utilities:
 
 - File Managers
   - ranger
+    - proppler
   	- Plugins
   		- ranger-cmus
   - nautilus
@@ -147,7 +154,7 @@ Some cool utilities:
 ## Programming
 
 - Node Packages
-  - scss
+  - sass
   - live-server
 
 - Text editors

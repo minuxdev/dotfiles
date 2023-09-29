@@ -9,6 +9,8 @@ handle_network ()
 	
 	sudo cp -rv "$BASE_DIR"/configs/* /etc/
 	sudo systemctl enable --now systemd-networkd
+
+  sudo pacman -S ufw net-tools --noconfirm
 	
 	end_task
 }

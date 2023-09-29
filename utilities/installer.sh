@@ -9,10 +9,9 @@ generics ()
 	start_task 'GENERICS'
 	
 	GENERICS=(
-		bat lsd tldr grim unzip man ristretto gdu tree rsync
+		bat lsd tldr grim atool man ristretto gdu tree rsync
 	)
 	sudo pacman -Sy ${GENERICS[*]} --noconfirm
-	yay -Sy rar --noconfirm
 
   mkdir "$HOME/.config/gdu" &&
   cp -r "$BASE_DIR/gdu.yaml" "$HOME/.config/gdu/"
@@ -25,6 +24,7 @@ generics ()
 	'dud="gdu -d"'
 	'sf="source ~/.zshrc"'
   'rs="rsync -auv"'
+  'xfile="atool -x $1"'
 	)
 	$set_aliases "${ALIASES[@]}"
 
