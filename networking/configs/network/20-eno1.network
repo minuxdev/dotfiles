@@ -1,9 +1,9 @@
 [Match]
-Name=wlp*
+Name=eno*
 
 [Network]
 DHCP=yes
 
 [DHCPv4]
-RouteMetric=20
+RouteMetric=500
 

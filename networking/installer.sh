@@ -3,12 +3,12 @@
 source "$HOME/dotfiles/progress_notes.sh"
 BASE_DIR="$HOME/dotfiles/networking"
 
-network_manager () 
+sys_networkd ()
 {
-	start_task 'NPM PACKAGES'
+	start_task 'SYSTEMD-NETWORKD'
 	
-	sudo systemctl enable --now NetworkManager
-	sudo cp -rv "$BASE_DIR/system-connections" /etc/NetworkManager/
+	sudo systemctl enable --now systemd-networkd
+	sudo cp -rv "$BASE_DIR"/configs/* /etc/
 	
 	end_task
 }
@@ -25,6 +25,5 @@ samba ()
 	
 	end_task
 }
-
-network_manager
+sys_networkd
 samba
