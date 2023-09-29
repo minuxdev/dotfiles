@@ -34,7 +34,8 @@ installer ()
 
 printf """
 
-Make sure you inform the partitions correctly, any typo may cause a failure during this process.
+Make sure you inform the partitions correctly.
+Any typo may cause a failure during this process.
 e.g. sda1 
 e.g. nvme0n1p1
 """
@@ -43,7 +44,8 @@ e.g. nvme0n1p1
     read -p "ROOT PARTITION: " PARTITION
     while true 
     do
-        [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. ROOT PARTITION: " PARTITION; continue )
+        [ -b "/dev/$PARTITION" ] || 
+          ( read -p "INVALID, TRY AGAIN. ROOT PARTITION: " PARTITION; continue )
         mkfs.ext4 "/dev/$PARTITION"
         mount "/dev/$PARTITION" "/mnt"
 
@@ -62,7 +64,8 @@ e.g. nvme0n1p1
     		read -p "EFI PARTITION: " PARTITION
     		while true
     		do
-			[ ! -b "/dev/$PARTITION" ] && ( read -p "INVALID, TRY AGAIN. EFI PARTITION: " PARTITION; continue )
+			[  -b "/dev/$PARTITION" ] || 
+        ( read -p "INVALID, TRY AGAIN. EFI PARTITION: " PARTITION; continue )
 			read -p "DO YOU WANT TO FORMAT EFI PARTITION? [y]es [n]o " ANSWER
 
         		[ "$ANSWER" = "y" ] && mkfs.fat -F 32 "/dev/$PARTITION"
@@ -84,11 +87,12 @@ e.g. nvme0n1p1
 		read -p "SWAP PARTITION: " PARTITION
 		while true
 		do
-		[ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
+		[ -b "/dev/$PARTITION" ] || 
+      ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
 		mkswap "/dev/$PARTITION"
 		swapon "/dev/$PARTITION"
 
-		[ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
+		[ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || 
 		(printf "Something went wrong!")
 		break;
 		done
@@ -106,7 +110,7 @@ e.g. nvme0n1p1
 
 	# install system
 	printf "\n\nBeginning the system installation\n"
-	pacstrap /mnt base-devel linux linux-firmware systemd-sysvcompat iputils networkmanager vim git grub efibootmgr ntfs-3g  --noconfirm
+	pacstrap /mnt base-devel linux linux-firmware systemd-sysvcompat iputils iwd vim git grub efibootmgr ntfs-3g  --noconfirm
 
 	[ $? != 0 ] && ( echo "SORRY! THE INSTALLATION PROCESS FAILED! EXITING..."; return 1 )
 

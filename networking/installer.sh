@@ -3,12 +3,12 @@
 source "$HOME/dotfiles/progress_notes.sh"
 BASE_DIR="$HOME/dotfiles/networking"
 
-sys_networkd ()
+handle_network ()
 {
 	start_task 'SYSTEMD-NETWORKD'
 	
-	sudo systemctl enable --now systemd-networkd
 	sudo cp -rv "$BASE_DIR"/configs/* /etc/
+	sudo systemctl enable --now systemd-networkd
 	
 	end_task
 }
@@ -25,5 +25,5 @@ samba ()
 	
 	end_task
 }
-sys_networkd
+handle_network
 samba
