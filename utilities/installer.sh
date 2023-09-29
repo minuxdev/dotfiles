@@ -38,6 +38,7 @@ bluetooth ()
 	sudo pacman -S bluez bluez-utils --noconfirm 
 	sudo awk -i inplace ' 
 	/PairableTimeout/ { print "PairableTimeout = 0" };
+	/AlwaysPairable/ { print "AlwaysPairable = true" };
 	/ControllerMode/ { print "ControllerMode = bredr" };
 	/^(A|#A)utoEnable/ { print "AutoEnable = true" };
 	/DiscoverableTimeout/ { print "DiscoverableTimeout = 0" }; 1
