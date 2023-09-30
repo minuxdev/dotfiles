@@ -20,7 +20,7 @@ samba ()
 	start_task 'SAMBA'
 	
 	sudo pacman -S samba --noconfirm
-	sudo cp -rv "$BASE_DIR/samba" /etc/samba
+	sudo cp -rv "$BASE_DIR/samba" /etc/
 	USER=`whoami`
 	smbpasswd -a "$USER"
 	systemctl enable --now smb
