@@ -141,7 +141,12 @@ Some cool utilities:
 
 - File Managers
   - ranger
-    - proppler
+    -rc.conf
+        - proppler (pdf)
+        - inkscape (image)
+        - display (image)
+        - ristretto (image)
+
   	- Plugins
   		- ranger-cmus
   - nautilus
