@@ -1,9 +1,0 @@
-[Match]
-Name=eno*
-
-[Network]
-DHCP=yes
-
-[DHCPv4]
-RouteMetric=500
-

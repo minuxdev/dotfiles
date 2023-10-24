@@ -1,0 +1,6 @@
+[Match]
+Name=eno*
+
+[Link]
+BitsPerSecond=1G
+Duplex=full
