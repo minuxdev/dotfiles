@@ -7,7 +7,7 @@ handle_network ()
 {
 	start_task 'SYSTEMD-NETWORKD'
 	
-	sudo cp -rv "$BASE_DIR"/configs/* /etc/
+	sudo cp -rv "$BASE_DIR"/configs/* /etc/systemd/
 	sudo systemctl enable --now systemd-networkd
 
   sudo pacman -S ufw net-tools --noconfirm
@@ -20,9 +20,10 @@ samba ()
 	start_task 'SAMBA'
 	
 	sudo pacman -S samba --noconfirm
-	sudo cp -rv "$BASE_DIR/samba" /etc/
 	USER=`whoami`
-	smbpasswd -a "$USER"
+	sudo cp -rv "$BASE_DIR/samba" /etc/
+  sudo sed -i " /[shared]/a path=/home/$USER/ " /etc/samba/samba.conf
+	sudo smbpasswd -a "$USER"
 	systemctl enable --now smb
 	
 	end_task

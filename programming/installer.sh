@@ -43,10 +43,13 @@ nvim ()
 npm_packages
 text_editos
 nvim
-ALIASES=('da="python manager.py"'
-     'dac="python manager.py createsuperuser --username"'
-     'dar="python manager.py runserver"'
-     'dap="python manager.py startapp"'
+
+sudo pacman -S python-pipenv
+
+ALIASES=('da="python manage.py"'
+     'pmc="python manage.py createsuperuser --username $1"'
+     'pmr="python manage.py runserver"'
+     'pms="python manage.py startapp"'
    )
 
 $set_aliases "${ALIASES[@]}"

@@ -146,6 +146,7 @@ Some cool utilities:
         - inkscape (image)
         - display (image)
         - ristretto (image)
+        - als (extractor)
 
   	- Plugins
   		- ranger-cmus
