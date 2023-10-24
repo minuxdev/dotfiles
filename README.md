@@ -45,6 +45,7 @@ Enable and config *systemd-networkd*.
 
 - ufw
 - net-tools
+- ethtool
 - samba
     - copy minimal *smb.conf* example to */etc/samba/*
     - add current user group (**wheel**) to samba
