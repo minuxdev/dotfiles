@@ -54,7 +54,7 @@ mtp ()
 	start_task 'MTP'
 	
 	sudo pacman -S jmtpfs --noconfirm
-	yay -Sy gvfs-mtp --noconfirm
+	yay -Sy gvfs-smb gvfs-mtp --noconfirm
 	
 	end_task
 }
