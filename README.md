@@ -123,6 +123,7 @@ Some cool utilities:
 - MTP
   - jmtpfs
   - gvfs-mtp
+  - gvfs-smb
 
 - Monitoring
   - bpytot : replace top and htop
@@ -139,6 +140,7 @@ Some cool utilities:
   - ripgrep
   - tldr
   - qbittorrent
+  - testdisk
 
 - File Managers
   - ranger

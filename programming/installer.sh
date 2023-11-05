@@ -20,7 +20,7 @@ text_editors ()
 {
   	start_task 'TEXT EDITORS'
   
-  	sudo pacman -Sy kate --noconfirm
+  	sudo pacman -S kate --noconfirm
   	[ $? != 0 ] && sudo pacman -S gedit --noconfirm
 
 	end_task
@@ -30,7 +30,7 @@ nvim ()
 {
   	start_task 'IDE: NVIM'
   
-  	sudo pacman -Sy neovim --noconfirm
+  	sudo pacman -S neovim --noconfirm
   	yay -S wl-clipboard --noconfirm
 	    CONFIG_DIR="$HOME/.config/nvim"
     [ ! -d "$CONFIG_DIR" ] && "$CONFIG_DIR" "$CONFIG_DIR.BKP"
@@ -40,11 +40,6 @@ nvim ()
 	end_task
 }
 
-npm_packages
-text_editos
-nvim
-
-sudo pacman -S python-pipenv
 
 ALIASES=('da="python manage.py"'
      'pmc="python manage.py createsuperuser --username $1"'
@@ -53,3 +48,8 @@ ALIASES=('da="python manage.py"'
    )
 
 $set_aliases "${ALIASES[@]}"
+
+sudo pacman -Sy python-pipenv
+npm_packages
+text_editors
+nvim

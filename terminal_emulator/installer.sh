@@ -134,6 +134,8 @@ tmux ()
 	end_task
 }
 
+sudo pacman -Sy
+
 fonts
 zsh_installer
 nvm_installer
