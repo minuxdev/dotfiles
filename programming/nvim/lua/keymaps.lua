@@ -41,8 +41,8 @@ map('n', '<a-Left>', ':vertical resize -2<CR>')
 map('n', '<a-Right>', ':vertical resize +2<CR>')
 
 -- terminal
-map('n', '<meader>tt', ':term<CR>i')
-map('n', '<leader>tl', ':vsplit term<CR>i')
+map('n', '<leader>tt', ':term<CR>i')
+
 
 
 -- Insert Mod

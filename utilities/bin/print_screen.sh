@@ -23,5 +23,5 @@ grimshot() {
       ;;
     esac
   done
-  grim -t "$FORMAT" -g "$(slurp)" -q 100 "$DIRECTORY/$NAME.$FORMAT"
 }
+grim -t "$FORMAT" -g "$(slurp)" -q 100 "$DIRECTORY/$NAME.$FORMAT"

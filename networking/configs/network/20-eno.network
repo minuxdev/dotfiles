@@ -1,0 +1,11 @@
+[Match]
+Name=eno*
+
+[Network]
+Address=192.168.1.100/24
+
+
+[Route]
+Metric=100
+Gateway=192.168.1.1
+

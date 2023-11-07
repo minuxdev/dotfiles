@@ -46,3 +46,17 @@ lspconfig.pyright.setup {
   capabilities = capabilities,
   filetypes = { 'python' },
 }
+--
+-- Shell
+local augroup = vim.api.nvim_create_augroup("zshAsBash", {})
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = augroup,
+  pattern = { "*.sh", "*.zsh" },
+  command = "silent! set filetype=sh",
+})
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'sh', 'zsh', 'bash' }
+
+}

@@ -33,7 +33,6 @@ vim.cmd [[
 
 -- Python specific sets
 local filetype = vim.bo.filetype
-print(filetype)
 if filetype == 'python' then
   vim.cmd [[
     set listchars=tab:→\ ,eol:↲
