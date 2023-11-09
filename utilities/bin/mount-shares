@@ -18,12 +18,11 @@ do
     *)
       echo "Invalid arguments. Using default.";;
   esac
-  [ -f $CREDENTIALS ] && rm $CREDENTIALS
 done
 
-[ ! -f $CREDENTIALS ] && 
-	echo -e "usernamae=$USER\npassword=$PASSWD\ndomain=DATACENTER" > $CREDENTIALS &&
-	chmod 0600 $CREDENTIALS
+[ -f $CREDENTIALS ] && rm $CREDENTIALS
+echo -e "usernamae=$USER\npassword=$PASSWD\ndomain=DATACENTER" > $CREDENTIALS
+chmod 0600 $CREDENTIALS
 
 # UMOUNT ALL CIFS DRIVERS
 sudo umount -f //$SERVER/d_rec $DATABASE/d_rec 2&>/dev/null
