@@ -22,10 +22,6 @@ map('n', '<leader><leader>x', ':only<CR>')
 -- Tabs
 map('n', '<leader>tn', ':tabnew<cr>')
 map('n', '<leader>ti', ':tab split<cr>')
--- map('n', '<leader>hh', ':-tabnext<cr>')
--- map('n', '<leader>ll', ':-tabnext<cr>')
--- map('n', '<leader>qq', ':tabclose<cr>')
--- map('n', '<leader>oq', ':tabonly<cr>')
 
 -- File Manager
 map('n', '<leader>ss', '<ESC> :w!<CR>')
@@ -33,6 +29,7 @@ map('n', '<leader>uu', '<ESC> :u<CR>')
 map('n', '<leader>rr', '<ESC> <C-r>')
 map('n', '<leader>sk', '<ESC> :wq!<CR>')
 map('n', '<leader>cv', ':qa!<CR>')
+map('n', '<leader>kf', ':bd!<CR>')
 
 -- resize
 map('n', '<a-Up>', ':resize -2<CR>')
@@ -46,4 +43,4 @@ map('n', '<leader>tt', ':term<CR>i')
 
 
 -- Insert Mod
---map('i', '<C-/>', ':<ESC>I#<ESC>')
+map('n', '<leader>g', ':g/%s/norm o%s')

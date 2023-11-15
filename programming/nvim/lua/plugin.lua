@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
     'nvie/vim-flake8',
     run = 'pip3 install flake8'
   }
+  use 'tpope/vim-haml'
 
   -- For programming
   use 'nvim-treesitter/nvim-treesitter'

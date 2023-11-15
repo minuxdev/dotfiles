@@ -1,6 +1,7 @@
 -- Definging  initial options
 local set = vim.opt
 
+
 set.number = true
 set.relativenumber = true
 set.numberwidth = 4
@@ -23,7 +24,7 @@ set.showbreak = '↪'
 -- Commands
 -- CursorLine
 set.cursorline = true
-vim.cmd [[ highlight CursorLine gui=none ]]
+vim.cmd [[ au TextYankPost * silent! lua vim.hightlight.on_yank() ]]
 
 -- Show characters like end of line
 vim.cmd [[
