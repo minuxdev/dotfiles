@@ -1,9 +1,11 @@
---require('luasnip.loaders.from_vscode').lazy_load()
+local lspconf = require('lspconfig')
 local important_ls, luasnip = pcall(require, 'luasnip')
 if not important_ls then return end
 
 local important_cmp, cmp = pcall(require, 'cmp')
 if not important_cmp then return end
+
+require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
@@ -12,7 +14,7 @@ cmp.setup({
     ['<c-t>'] = cmp.mapping.complete(),
     ['<c-e>'] = cmp.mapping.abort(),
     ['<cr>'] = cmp.mapping.confirm({
-      select = false,
+      select = true,
     }),
     ["<TAB>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -48,12 +50,19 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end
   },
-  preselect = cmp.PreselectMode.Item,
-
+  preselect = true,
   window = {
     documentation = cmp.config.window.bordered(),
     completion = cmp.config.window.bordered(),
   },
 
 
+})
+
+
+lspconf.emmet_language_server.setup({
+  filetypes = { "css", "html", "python", "sass", "scss", "javascript" },
+  init_options = {
+    showSuggestionsAsSnippets = false
+  }
 })
