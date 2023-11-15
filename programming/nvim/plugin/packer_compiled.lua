@@ -224,6 +224,11 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-flake8",
     url = "https://github.com/nvie/vim-flake8"
   },
+  ["vim-haml"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-haml",
+    url = "https://github.com/tpope/vim-haml"
+  },
   ["vim-javascript"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-javascript",
