@@ -20,13 +20,20 @@ set.autowrite = true
 set.autoread = true
 set.list = true
 set.showbreak = '↪'
+set.fillchars = "vert:|"
+
 
 -- Commands
 -- CursorLine
 set.cursorline = true
-vim.cmd [[ au TextYankPost * silent! lua vim.hightlight.on_yank() ]]
 
--- Show characters like end of line
+vim.cmd [[
+  augroup highlight_yank
+    autocmd!
+  augroup END
+]]
+
+-- Show characters
 vim.cmd [[
     set listchars=eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
   ]]

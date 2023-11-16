@@ -84,10 +84,20 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   cmp_luasnip = {
     loaded = true,
@@ -118,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/lsp-format.nvim",
     url = "https://github.com/lukas-reineke/lsp-format.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -194,6 +209,11 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/scss-syntax.vim",
     url = "https://github.com/cakebaker/scss-syntax.vim"
   },
+  ["tagalong.vim"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/tagalong.vim",
+    url = "https://github.com/AndrewRadev/tagalong.vim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -214,11 +234,6 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-argwrap",
     url = "https://github.com/FooSoft/vim-argwrap"
   },
-  ["vim-css3-syntax"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-css3-syntax",
-    url = "https://github.com/hail2u/vim-css3-syntax"
-  },
   ["vim-flake8"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-flake8",
@@ -238,6 +253,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
     url = "https://github.com/mg979/vim-visual-multi"
+  },
+  ["vim-zoomwin"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-zoomwin",
+    url = "https://github.com/markstory/vim-zoomwin"
   }
 }
 
