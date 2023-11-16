@@ -55,30 +55,36 @@ return require('packer').startup(function(use)
     'nvie/vim-flake8',
     run = 'pip3 install flake8'
   }
+  use 'tpope/vim-haml'
 
   -- For programming
   use 'nvim-treesitter/nvim-treesitter'
   --use 'github/copilot.vim'
   use 'FooSoft/vim-argwrap'
   use 'lukas-reineke/lsp-format.nvim'
+  use 'mg979/vim-visual-multi'
 
   -- Autocompletion
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
+  use 'ray-x/lsp_signature.nvim'
+
 
   -- SCSS support
   use {
     'cakebaker/scss-syntax.vim',
     run = ' npm install -g vscode-langservers-extracted '
   }
-  use 'hail2u/vim-css3-syntax'
   use 'pangloss/vim-javascript'
 
   -- HTML support
   use 'othree/html5.vim'
+  use 'AndrewRadev/tagalong.vim'
 
   -- Comment
   use 'scrooloose/nerdcommenter'
@@ -88,6 +94,8 @@ return require('packer').startup(function(use)
     'romgrk/barbar.nvim',
     'lewis6991/gitsigns.nvim',
   }
+
+  use 'markstory/vim-zoomwin'
 
 
   if packer_bootstrap then

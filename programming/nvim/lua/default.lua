@@ -1,6 +1,7 @@
 -- Definging  initial options
 local set = vim.opt
 
+
 set.number = true
 set.relativenumber = true
 set.numberwidth = 4
@@ -19,13 +20,20 @@ set.autowrite = true
 set.autoread = true
 set.list = true
 set.showbreak = '↪'
+set.fillchars = "vert:|"
+
 
 -- Commands
 -- CursorLine
 set.cursorline = true
-vim.cmd [[ highlight CursorLine gui=none ]]
 
--- Show characters like end of line
+vim.cmd [[
+  augroup highlight_yank
+    autocmd!
+  augroup END
+]]
+
+-- Show characters
 vim.cmd [[
     set listchars=eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
   ]]
@@ -33,7 +41,6 @@ vim.cmd [[
 
 -- Python specific sets
 local filetype = vim.bo.filetype
-print(filetype)
 if filetype == 'python' then
   vim.cmd [[
     set listchars=tab:→\ ,eol:↲

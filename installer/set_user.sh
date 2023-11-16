@@ -1,6 +1,7 @@
 #!/bin/bash
 
-create_user() {
+create_user () 
+{
     while read -p "Username: " USERNAME
     do
         cat /etc/passwd | grep -w "$USERNAME"
@@ -15,10 +16,10 @@ create_user() {
     
     read -p "Dotfiles complete path: " DOTFILES
     
-    cp -rv "$DOTFILES" /home/"$USERNAME"/
+    cp -rv "$DOTFILES" "/home/$USERNAME/"
+    chown -R "$USERNAME":wheel "/home/$USERNAME/dotfiles"
 
     printf "User %s was created successfully!\n" $USERNAME
-    printf "Login as $USERNAME to proceed."
 }
 
 create_user
