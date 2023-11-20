@@ -63,11 +63,31 @@ sudo curl -L \
 	end_task
 }
 
+_postgresql () {
+  start_task "POSTGRES"
+
+  sudo pacman -S postgresql --noconfirm 
+  clear 
+  sleep 10
+  printf "
+  In order to start using postgres you need to initialize PostgreSQL data directory.
+  Paste the following command in postgres shell and exit when the process gets done.
+
+  initdb --locale en_US.UTF-8 -D /var/lib/postgres/data
+
+  "
+  sudo su - postgres
+  systemctl enable --now postgres
+
+	end_task
+}
+
 sudo pacman -Sy python-pipenv
 npm_packages
 text_editors
 nvim
 _docker
+_postgresql
 
 ALIASES=('da="python manage.py"'
      'dac="python manage.py createsuperuser "'
