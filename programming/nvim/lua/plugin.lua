@@ -14,66 +14,41 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  -- Initial plugins
-  use 'nvim-tree/nvim-tree.lua'
-  use 'nvim-tree/nvim-web-devicons'
+  use 'nvim-tree/nvim-tree.lua'     -- File browser
+  use 'nvim-tree/nvim-web-devicons' -- Icons
+  use 'nvim-lualine/lualine.nvim'   -- Status and tabline
 
-  -- Line
-  use 'nvim-lualine/lualine.nvim'
-  use {
-    'vim-airline/vim-airline',
-    requires = { { 'vim-airline/vim-airline-themes' } }
-  }
-
-  -- Colorscheme
-  use {
-    'ellisonleao/gruvbox.nvim',
-    'RRethy/nvim-base16',
-    'joshdick/onedark.vim'
-  }
+  use 'RRethy/nvim-base16'          -- Colorschemes
+  use 'norcalli/nvim-colorizer.lua' -- Shows the color of the color code
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { { 'nvim-lua/plenary.nvim' } }
-  }
+  } -- For searching
 
-  -- Language Server Protocol
   use {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-    run = ' pip3 install neovim ',
+    'williamboman/mason.nvim',               -- Portable package manager for installing LSP, DAP, Linters and Formatters
+    'williamboman/mason-lspconfig.nvim',     -- Connect mason.vim and lspconfig
+    'neovim/nvim-lspconfig',                 -- For LSP configurations
   }
 
   use {
-    'jose-elias-alvarez/null-ls.nvim',
-    run = ' npm install prettier ; pip3 install black'
+    'jose-elias-alvarez/null-ls.nvim', -- Adds extra tools that cannot act like LSP by themselves
   }
 
-  -- formatters
-  use {
-    'nvie/vim-flake8',
-    run = 'pip3 install flake8'
-  }
-  use 'tpope/vim-haml'
-
-  -- For programming
-  use 'nvim-treesitter/nvim-treesitter'
-  --use 'github/copilot.vim'
-  use 'FooSoft/vim-argwrap'
-  use 'lukas-reineke/lsp-format.nvim'
-  use 'mg979/vim-visual-multi'
+  use 'nvim-treesitter/nvim-treesitter' -- Code highlights
+  use 'mg979/vim-visual-multi' -- Multi cursors like 'Alt-click' in 'vs-code'
 
   -- Autocompletion
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'rafamadriz/friendly-snippets'
-  use 'ray-x/lsp_signature.nvim'
-
+  use 'hrsh7th/cmp-path' 
+  use 'L3MON4D3/LuaSnip'             -- Snippets engine
+  use 'saadparwaiz1/cmp_luasnip' -- LuaSnip completion
+  use 'rafamadriz/friendly-snippets' -- Snippets collection
+  use 'ray-x/lsp_signature.nvim'     -- To show function signuture on type like   
+  use 'windwp/nvim-autopairs'        -- For auto close pairs of (), [], {}, '', ""
 
   -- SCSS support
   use {
@@ -89,14 +64,7 @@ return require('packer').startup(function(use)
   -- Comment
   use 'scrooloose/nerdcommenter'
 
-  -- Tabline
-  use {
-    'romgrk/barbar.nvim',
-    'lewis6991/gitsigns.nvim',
-  }
-
   use 'markstory/vim-zoomwin'
-
 
   if packer_bootstrap then
     require('packer').sync()

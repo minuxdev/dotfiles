@@ -1,10 +1,16 @@
 vim.o.termguicolors = true
 
---local hasOnedark = pcall(require, 'onedark')
---if hasOnedark then
---  vim.o.noshowmode = 1
---  vim.cmd [[ colorscheme onedark ]]
---else
---  vim.cmd [[ colorscheme base16-catppuccin ]]
---end
-vim.cmd [[ colorscheme base16-catppuccin ]]
+vim.cmd [[
+  colorscheme base16-catppuccin
+]]
+
+vim.api.nvim_set_hl(0, "TelescopeBorder", { ctermbg = 122 })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { ctermbg = 122 })
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { ctermbg = 352, ctermfg = 122 })
+
+local c_status, colorizer = pcall(require, 'colorizer')
+if not c_status then return end
+colorizer.setup(
+  {},
+  { mode = 'background' }
+)

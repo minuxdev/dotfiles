@@ -41,4 +41,4 @@ require("nvim-tree").setup({
 vim.opt.termguicolors = true
 
 -- toggle NvimTreeToggle
-vim.keymap.set("n", "<Leader>e", ":NvimTreeFindFileToggle<CR>")
+vim.keymap.set("n", "<Leader>t", ":NvimTreeFindFileToggle<CR>")

@@ -40,10 +40,8 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    {
       { name = 'buffer' },
       { name = 'path' },
-    },
   }),
   snippet = {
     expand = function(args)
@@ -61,8 +59,8 @@ cmp.setup({
 
 
 lspconf.emmet_language_server.setup({
-  filetypes = { "css", "html", "python", "sass", "scss", "javascript" },
+  filetypes = { "css", "html", "sass", "scss" },
   init_options = {
-    showSuggestionsAsSnippets = false
+    showSuggestionsAsSnippets = true
   }
 })

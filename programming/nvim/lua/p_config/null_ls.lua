@@ -3,16 +3,31 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
-local hover = null_ls.builtins.hover
-local code_actions = null_ls.builtins.code_actions
+local completions = null_ls.builtins.completion
 
 local sources = {
-  formatting.prettier,
-  formatting.black.with({
-    extra_args = { '--fast' },
-    filetypes = { 'python' }
+
+  -- diagnostics
+  diagnostics.flake8.with({ -- for python
+    diagnostic_config = {
+      underline = true,
+      virtual_text = false,
+      severity_sort = true,
+    },
+    extra_args = { '--max-complexity', '3' }
   }),
-  diagnostics.flake8,
+
+  -- formatters
+  formatting.djlint.with({
+    filetypes = { 'djangohtml', 'jinja2', 'django' }, -- for django
+  }),
+  formatting.black.with({
+    extra_args = { '--quiet', '--line-length', '79' } -- for python
+  }),
+  formatting.prettier,                                -- for most of front-end languages
+  formatting.lua_format,                              -- for lua
+  formatting.eslint,
+
 }
 
 null_ls.setup({
@@ -21,13 +36,9 @@ null_ls.setup({
 
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format()
-        end
-      })
+      vim.cmd [[
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+      ]]
     end
   end,
 })

@@ -79,11 +79,6 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["barbar.nvim"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -109,25 +104,10 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
-  ["gitsigns.nvim"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
-    url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
-  },
   ["html5.vim"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/html5.vim",
     url = "https://github.com/othree/html5.vim"
-  },
-  ["lsp-format.nvim"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/lsp-format.nvim",
-    url = "https://github.com/lukas-reineke/lsp-format.nvim"
   },
   ["lsp_signature.nvim"] = {
     loaded = true,
@@ -159,6 +139,11 @@ _G.packer_plugins = {
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-base16"] = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/nvim-base16",
@@ -168,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/minux/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -188,11 +178,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
-  },
-  ["onedark.vim"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/onedark.vim",
-    url = "https://github.com/joshdick/onedark.vim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -218,31 +203,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minux/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["vim-airline"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-airline",
-    url = "https://github.com/vim-airline/vim-airline"
-  },
-  ["vim-airline-themes"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-airline-themes",
-    url = "https://github.com/vim-airline/vim-airline-themes"
-  },
-  ["vim-argwrap"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-argwrap",
-    url = "https://github.com/FooSoft/vim-argwrap"
-  },
-  ["vim-flake8"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-flake8",
-    url = "https://github.com/nvie/vim-flake8"
-  },
-  ["vim-haml"] = {
-    loaded = true,
-    path = "/home/minux/.local/share/nvim/site/pack/packer/start/vim-haml",
-    url = "https://github.com/tpope/vim-haml"
   },
   ["vim-javascript"] = {
     loaded = true,

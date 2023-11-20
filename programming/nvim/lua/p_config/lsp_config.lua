@@ -1,17 +1,25 @@
-require('mason').setup()
-require('mason-lspconfig').setup({
-  ensure_installed = { 'pyright', 'lua_ls', 'bashls', 'html', 'emmet_language_server' }
-})
-
-
-
+local status, mason = pcall(require, 'mason')
 
 local lspconfig = require('lspconfig')
+
+if not status then return end
+
+mason.setup(
+  {
+    ui = {
+      border = 'rounded',
+      width  = 0.8,
+      height = 0.6,
+    }
+  }
+)
+require('mason-lspconfig').setup({
+  ensure_installed = { 'pyright', 'lua_ls', 'bashls', 'emmet_language_server', 'html', 'eslint' }
+})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local on_attach = function(client)
-  require('lsp-format').on_attach(client)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
@@ -20,42 +28,27 @@ local on_attach = function(client)
   vim.keymap.set('n', 'ff', '<cmd>lua vim.lsp.buf.format()<cr>', {})
 end
 
--- Lua
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { 'lua' },
-
-  Lua = {
-    workspace = { checkThirdParty = false },
-    telemetry = { enable = false },
-  }
-}
-
--- HTML
-lspconfig.html.setup {}
--- Enable SCSS filetype
-vim.cmd('autocmd BufRead,BufNewFile *.scss set filetype=scss')
--- Enable HTML filetype
-vim.cmd('autocmd BufRead,BufNewFile *.html set filetype=html')
-
--- Python
-lspconfig.pyright.setup {
+lspconfig.pyright.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { 'python' },
-}
---
--- Shell
-local augroup = vim.api.nvim_create_augroup("zshAsBash", {})
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  group = augroup,
-  pattern = { "*.sh", "*.zsh" },
-  command = "silent! set filetype=sh",
+  settings = {
+    pyright = {
+      autoImportCompletion = true,
+    }
+  },
 })
-lspconfig.bashls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { 'sh', 'zsh', 'bash' }
 
-}
+lspconfig.lua_ls.setup({
+  capabilities = capabilities,
+  filetypes = { 'lua' },
+})
+lspconfig.bashls.setup({
+  capabilities = capabilities,
+  filetypes = { 'sh', 'zsh' },
+})
+
+lspconfig.html.setup({
+  capabilities = capabilities,
+  filetypes = { 'html' },
+})
