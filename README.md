@@ -4,20 +4,10 @@
 
 - **installer.sh**
 
-  Install the basics you need to have archlinux up and running without any 
-  kind of configuration.
+  Install the basics you need to have archlinux up and running without any kind of configuration.
   The following packages are installed:
 
-- base-devel 
-- linux 
-- linux-firmware
-- systemd-sysvcompat 
-- iputils 
-- git 
-- grub 
-- efibootmgr 
-- ntfs-3g 
-- iwd
+              base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g networkmanager
 
 - **configurator.sh**
 
@@ -36,20 +26,6 @@ This scripts creates and adds the user to _wheel_ and _input_ groups,
 disable _password_ prompt when running commands with _sudo_.
 
 Also prompt the user to for _dotfiles_ directory.
-
-----
-
-## Network
-
-Enable and config *systemd-networkd*.
-
-- ufw
-- net-tools
-- ethtool
-- samba
-    - copy minimal *smb.conf* example to */etc/samba/*
-    - add current user group (**wheel**) to samba
-    - enable and start the service
 
 ----
 
@@ -93,7 +69,6 @@ The terminal emulator that gets installed and configured is _alacritty_
 - Node (needed by other packages)
 - oh-my-zsh
 - fzf
-- fd
 - znap
 - tmux 
 - set_aliases: a script to quickly set aliases. Located in ~/.local/bin/
@@ -110,11 +85,9 @@ Some cool utilities:
   - lsd : replace ls 
   - gdu : replace du
   - z : replace cd
+  - unzip
   - man
-  - ristretto (image viewer)
-  - tree
-  - rsync
-  - atool
+  - rar 
 
 - Bluetooth
   - bluez
@@ -123,7 +96,6 @@ Some cool utilities:
 - MTP
   - jmtpfs
   - gvfs-mtp
-  - gvfs-smb
 
 - Monitoring
   - bpytot : replace top and htop
@@ -132,43 +104,19 @@ Some cool utilities:
   - grim 
   - slurp (dependency)
 
-- Browsers
-  - firefox
-  - chromium
-
 - Others
   - ripgrep
   - tldr
-  - qbittorrent
-  - testdisk
 
 - File Managers
   - ranger
-    -rc.conf
-        - proppler (pdf)
-        - inkscape (image)
-        - display (image)
-        - ristretto (image)
-        - als (extractor)
-
-  	- Plugins
-  		- ranger-cmus
   - nautilus
-
-- Players
-	- cmus
-	- vlc
-	- mpv
 
 ## Programming
 
 - Node Packages
-  - sass
+  - scss
   - live-server
-
-- Text editors
-	- kate 
-	- gedit 
 
 - Neovim Packages
   - Packer
@@ -200,7 +148,6 @@ Some cool utilities:
         - L3MON4D3/LuaSnip
         - saadparwaiz1/cmp_luasnip
         - rafamadriz/friendly-snippets
-        - mg979/vim-visual-multi
     - HTML and SCSS support
         - cakebaker/scss-syntax.vim, *run = ' npm install -g vscode-langservers-extracted '*
         - hail2u/vim-css3-syntax

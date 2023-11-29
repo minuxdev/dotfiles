@@ -17,15 +17,16 @@ require('mason-lspconfig').setup({
   ensure_installed = { 'pyright', 'lua_ls', 'bashls', 'emmet_language_server', 'html', 'eslint' }
 })
 
+local map = vim.api.nvim_set_keymap
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local on_attach = function(client)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.implementation, {})
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-  vim.keymap.set('n', 'ff', '<cmd>lua vim.lsp.buf.format()<cr>', {})
+  map('n', '<leader>rn', vim.lsp.buf.rename(), {})
+  map('n', '<leader>ca', vim.lsp.buf.code_action(), {})
+  map('n', 'gd', vim.lsp.buf.definition(), {})
+  map('n', '<leader>ca', vim.lsp.buf.implementation(), {})
+  map('n', 'K', vim.lsp.buf.hover(), {})
+  map('n', 'ff', '<cmd>lua vim.lsp.buf.format()<cr>', {})
 end
 
 lspconfig.pyright.setup({

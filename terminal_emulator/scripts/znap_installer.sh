@@ -33,6 +33,7 @@ znap_installer ()
       'rupa/z' 
       'Aloxaf/fzf-tab' 
       'z-shell/zsh-lsd'
+      'marlonrichert/zsh-autocomplete' 
       'marlonrichert/zsh-autosuggestions'
       'zsh-users/zsh-syntax-highlighting'
     )

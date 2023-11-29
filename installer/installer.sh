@@ -1,15 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
-welcome_note () 
-{ 
-printf """
+function welcome_note() { printf """
 ==========================================================================
 ==========================================================================
 
                         ARCH_INSTALLER Ver:0.2
 
 ==========================================================================
-                 Author: __minux__ | Release: 2023, July
+               Author: __minux__ | Release: 2023, July
 ==========================================================================
 
 WELCOME TO ARCHLINUX INSTALLATION SCRIPT
@@ -24,18 +22,17 @@ IF YOU FULLY AGREE WITH THIS POINTS, LET'S START, SKIP OTHERWISE!!!
 """
 }
 
-installer () 
-{
-	# update the system clock
-	timedatectl status
+function installer() {
 
-	# list all devices 
-	lsblk -f
+    # update the system clock
+    timedatectl status
+    
+    # list all devices 
+    lsblk -f
 
 printf """
 
-Make sure you inform the partitions correctly.
-Any typo may cause a failure during this process.
+Make sure you inform the partitions correctly, any typo may cause a failure during this process.
 e.g. sda1 
 e.g. nvme0n1p1
 """
@@ -44,8 +41,7 @@ e.g. nvme0n1p1
     read -p "ROOT PARTITION: " PARTITION
     while true 
     do
-        [ -b "/dev/$PARTITION" ] || 
-          ( read -p "INVALID, TRY AGAIN. ROOT PARTITION: " PARTITION; continue )
+        [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. ROOT PARTITION: " PARTITION; continue )
         mkfs.ext4 "/dev/$PARTITION"
         mount "/dev/$PARTITION" "/mnt"
 
@@ -56,93 +52,69 @@ e.g. nvme0n1p1
 
     # format and mount efi partition
     printf "\n\n"
-	read -p "Do you want to use EFI partition? [y]es [n]o" ANSWER
+    lsblk -f
+    read -p "EFI PARTITION: " PARTITION
+    while true
+    do
+        [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. EFI PARTITION: " PARTITION; continue )
+        mkfs.fat -F 32 "/dev/$PARTITION"
+        mount --mkdir "/dev/$PARTITION" "/mnt/efi"
 
-	if [ "$ANSWER" = 'y' ]
-		then
-		lsblk -f
-    		read -p "EFI PARTITION: " PARTITION
-    		while true
-    		do
-			[  -b "/dev/$PARTITION" ] || 
-        ( read -p "INVALID, TRY AGAIN. EFI PARTITION: " PARTITION; continue )
-			read -p "DO YOU WANT TO FORMAT EFI PARTITION? [y]es [n]o " ANSWER
+        [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
+          (printf "Something went wrong!")
+        break;
+    done
 
-        		[ "$ANSWER" = "y" ] && mkfs.fat -F 32 "/dev/$PARTITION"
-        		mount --mkdir "/dev/$PARTITION" "/mnt/efi"
+    # format and mount swap partition
+    printf "\n\n"
+    read -p "Do you want to use swap partition? [y/any key]" ANSWER
 
-		        [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || 
-		        (printf "Something went wrong!")
-        		break;
-    		done
-	fi
+    if [ "$ANSWER" = 'y' ]
+    then
+      lsblk -f
+      read -p "SWAP PARTITION: " PARTITION
+      while true
+      do
+          [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
+          mkswap "/dev/$PARTITION"
+          swapon "/dev/$PARTITION"
 
-	# format and mount swap partition
-	printf "\n\n"
-	read -p "Do you want to use swap partition? [y/any key]" ANSWER
+          [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
+            (printf "Something went wrong!")
+          break;
+      done
+    fi
 
-	if [ "$ANSWER" = 'y' ]
-		then
-		lsblk -f
-		read -p "SWAP PARTITION: " PARTITION
-		while true
-		do
-		[ -b "/dev/$PARTITION" ] || 
-      ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
-		mkswap "/dev/$PARTITION"
-		swapon "/dev/$PARTITION"
 
-		[ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || 
-		(printf "Something went wrong!")
-		break;
-		done
-	fi
+    printf "\n\nInstalling keys\n"
+    # initializing keys
+    pacman-key --init
+    
+    #add default archlinux keys
+    pacman-key --populate archlinux
 
-	printf "\n\nInstalling keys\n"
-	# initializing keys
-	pacman-key --init
+    # install archlinux-keyring
+    pacman -Sy archlinux-keyring --noconfirm
 
-	#add default archlinux keys
-	pacman-key --populate archlinux
+    # install system
+    printf "\n\nBeginning the system installation\n"
+    pacstrap /mnt base-devel linux systemd-sysvcompat iputils git grub efibootmgr ntfs-3g --noconfirm
 
-	# install archlinux-keyring
-	pacman -Sy archlinux-keyring --noconfirm
+    [ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
 
-	# install system
-	printf "\n\nBeginning the system installation\n"
-	pacstrap /mnt base-devel linux linux-firmware systemd-sysvcompat iputils iwd vim git grub efibootmgr ntfs-3g  --noconfirm
-
-	[ $? != 0 ] && ( echo "SORRY! THE INSTALLATION PROCESS FAILED! EXITING..."; return 1 )
-
-	printf "
-
+    printf "
+\n
 CONGRATULATIONS!!!
 THE INSTALLATION PROCESS HAS FINISHED SUCCESSFULLY!
 NOW LET'S CONFIGURE IT...
-
+\n
 "
-	cp -r installer/ /mnt/
-	chmod 0775 /mnt/installer/configurator.sh
+  cp ~/installers/configurator.sh /mnt/
 
-	genfstab -L /mnt >> /mnt/etc/fstab
-	arch-chroot /mnt ./installer/configurator.sh
+  genfstab -L /mnt >> /mnt/etc/fstab
+  arch-chroot /mnt
 
-	if [ "$?" = 0 ]
-	then
-		printf "
-Thanks for using this script. 
-Feel free to let me know about your experience here: minux.midi@gmail.com
-
-Reboot the system.
-		"
-	else
-		printf "
-First of all, thanks for trying this script. 
-Follow the error message and try to fix it.
-
-Feel free to let me know about your experience here: minux.midi@gmail.com
-"
-	fi
+  [ $? = 0 ] || ( printf "Failed to chroot to new root. Exiting... \n"; exit )
 
 }
 
