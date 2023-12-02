@@ -63,6 +63,14 @@ sudo curl -L \
 	end_task
 }
 
+_staruml () {
+  	start_task 'STARUML'
+
+    yay -S staruml --noconfirm
+  
+    end_task
+}
+
 _postgresql () {
   start_task "POSTGRES"
 
@@ -87,19 +95,22 @@ npm_packages
 text_editors
 nvim
 _docker
+_staruml
 _postgresql
 
-ALIASES=('da="python manage.py"'
-     'dac="python manage.py createsuperuser "'
-     'dar="python manage.py runserver"'
-     'das="python manage.py startapp"'
-     'dat="python manage.py test"'
-     'gs="git status"'
-     'gl="git log --oneline"'
-     'ga="git add"'
-     'gc="git commit -m"'
-     'gub="git checkout $1 -- $2"'
-   )
+ALIASES=(
+   'da="python manage.py"'
+   'dac="python manage.py createsuperuser "'
+   'dar="python manage.py runserver"'
+   'das="python manage.py startapp"'
+   'dat="python manage.py test"'
+   'gs="git status"'
+   'gl="git log --oneline"'
+   'ga="git add"'
+   'gc="git commit -m"'
+   'gub="git checkout $1 -- $2"'
+   'uml="staruml"'
+)
 
 $set_aliases "${ALIASES[@]}"
 
