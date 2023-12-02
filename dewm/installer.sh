@@ -46,5 +46,25 @@ wofi ()
   end_task
 }
 
-[ ! -f "/usr/bin/yay" ] && (printf "Helper not installed!"; exit 10) || 
-  (hyprland; waybar; hyprpaper; wofi)
+_sddm () 
+{
+  start_task 'SDDM'
+  
+  yay -S sddm-git --noconfirm
+
+  [ ! -f /etc/sddm.conf ] &&
+    sudo echo "
+[Autologin]
+User=$USER
+Session=hyprland
+      " > /etc/sddm.conf ||
+        sudo sed -i -e "s/User=/User=$USER/" -e "s/Session=/Session=hyprland" /etc/sddm.conf
+
+  systemctl enable sddm
+
+  end_task
+}
+
+[ ! -f "/usr/bin/yay" ] && 
+  (printf "Helper not installed!"; exit 10) || 
+  (hyprland; waybar; hyprpaper; wofi; _sddm)

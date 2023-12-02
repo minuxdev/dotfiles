@@ -9,7 +9,7 @@ npm_packages ()
   	start_task 'NPM PACKAGES'
 
   	sudo npm install -g live-server 
-  	sudo npm install -g sass prettier
+  	sudo npm install -g sass
 
   	$set_aliases 'lvs="live-server $1"'
 
@@ -30,7 +30,7 @@ nvim ()
 {
   	start_task 'IDE: NVIM'
   
-    packages='python-pytest python-neovim python-black python-isort shfmt shellcheck stylua luacheck htmlhint stylelint eslint ctags'
+    packages='python-pytest python-neovim htmlhint ctags'
 
   	sudo pacman -S neovim
     sudo pacman -S $packages --noconfirm
