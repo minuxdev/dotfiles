@@ -56,8 +56,9 @@ Choice:
 				$HOME/dotfiles/programming/installer.sh
 				;;
 			q|Q)
-				printf "\nThank you for using this script. \
-				Feel free to make comments here: minux.midi@gmail.com\n"
+				printf "
+\nThank you for using this script. \
+Feel free to make comments here: minux.midi@gmail.com\n"
 				exit
 				;;
 			*)
