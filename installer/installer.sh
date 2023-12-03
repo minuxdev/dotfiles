@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 function welcome_note() { printf """
 ==========================================================================
@@ -57,8 +57,12 @@ e.g. nvme0n1p1
     while true
     do
         [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. EFI PARTITION: " PARTITION; continue )
-        mkfs.fat -F 32 "/dev/$PARTITION"
-        mount --mkdir "/dev/$PARTITION" "/mnt/efi"
+        read -p "DO YOU WANT TO FORMAT THIS PARTITION? [y]es [n]o " ANSWER
+        while true
+        do
+          [ $ANSWER = 'y'] &&  mkfs.fat -F 32 "/dev/$PARTITION"
+          mount --mkdir "/dev/$PARTITION" "/mnt/efi"
+        done
 
         [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
           (printf "Something went wrong!")
