@@ -27,9 +27,10 @@ return require('packer').startup(function(use)
   } -- For searching
 
   use {
-    'williamboman/mason.nvim',               -- Portable package manager for installing LSP, DAP, Linters and Formatters
-    'williamboman/mason-lspconfig.nvim',     -- Connect mason.vim and lspconfig
-    'neovim/nvim-lspconfig',                 -- For LSP configurations
+    'williamboman/mason.nvim',           -- Portable package manager for installing LSP, DAP, Linters and Formatters
+    'williamboman/mason-lspconfig.nvim', -- Connect mason.vim and lspconfig
+    'jay-babu/mason-null-ls.nvim',       -- Connect `null-ls` and `mason`
+    'neovim/nvim-lspconfig',             -- For LSP configurations
   }
 
   use {
@@ -37,17 +38,17 @@ return require('packer').startup(function(use)
   }
 
   use 'nvim-treesitter/nvim-treesitter' -- Code highlights
-  use 'mg979/vim-visual-multi' -- Multi cursors like 'Alt-click' in 'vs-code'
+  use 'mg979/vim-visual-multi'          -- Multi cursors like 'Alt-click' in 'vs-code'
 
   -- Autocompletion
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path' 
+  use 'hrsh7th/cmp-path'
   use 'L3MON4D3/LuaSnip'             -- Snippets engine
-  use 'saadparwaiz1/cmp_luasnip' -- LuaSnip completion
+  use 'saadparwaiz1/cmp_luasnip'     -- LuaSnip completion
   use 'rafamadriz/friendly-snippets' -- Snippets collection
-  use 'ray-x/lsp_signature.nvim'     -- To show function signuture on type like   
+  use 'ray-x/lsp_signature.nvim'     -- To show function signuture on type like
   use 'windwp/nvim-autopairs'        -- For auto close pairs of (), [], {}, '', ""
 
   -- SCSS support

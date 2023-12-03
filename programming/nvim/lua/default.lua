@@ -1,7 +1,6 @@
 -- Definging  initial options
 local set = vim.opt
 
-
 set.number = true
 set.relativenumber = true
 set.numberwidth = 4
@@ -9,7 +8,7 @@ set.expandtab = true
 set.tabstop = 2
 set.softtabstop = 2
 set.shiftwidth = 2
-set.clipboard = 'unnamedplus' -- require wl-clipboard from AUR
+set.clipboard = "unnamedplus" -- require wl-clipboard from AUR
 set.ignorecase = true
 set.smartcase = true
 set.autoindent = true
@@ -19,34 +18,28 @@ set.laststatus = 2
 set.autowrite = true
 set.autoread = true
 set.list = true
-set.showbreak = '↪'
+set.showbreak = "↪"
 set.fillchars = "vert:|"
-
 
 -- Commands
 -- CursorLine
 set.cursorline = true
 
-vim.cmd [[
+vim.cmd([[
   augroup highlight_yank
     autocmd!
   augroup END
-]]
+]])
 
 -- Show characters
-vim.cmd [[
-    set listchars=eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-  ]]
-
+vim.cmd([[
+  set listchars=eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,tab:•→
+]])
 
 -- Python specific sets
 local filetype = vim.bo.filetype
-if filetype == 'python' then
-  vim.cmd [[
-    set listchars=tab:→\ ,eol:↲
-  ]]
-
-  vim.cmd [[
+if filetype == "python" then
+	vim.cmd([[
     let python_highlight_all = 1
     au Filetype python
     \ setlocal tabstop=4 |
@@ -57,5 +50,5 @@ if filetype == 'python' then
     \ setlocal autoindent |
     \ setlocal fileformat=unix |
     \ setlocal colorcolumn=80 |
-  ]]
+  ]])
 end
