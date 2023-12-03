@@ -10,11 +10,11 @@ window:
 
 font:
   normal:
-    family: Space Mono Nerd Font
+    family: Roboto Mono Nerd Font
     style: Regular
 
   italic:
-    family: Space Mono Italic Nerd Font
+    family: Roboto Mono Italic Nerd Font
     style: Italic
 
   size: 12.0
