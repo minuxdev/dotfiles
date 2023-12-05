@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/dotfiles/progress_notes.sh
+source "$HOME/dotfiles/progress_notes.sh"
 
 CONFIG_DIR="$HOME/.config"
 BASE_SRC_DIR="$HOME/dotfiles/dewm"
@@ -11,7 +11,16 @@ hyprland ()
 
   sudo pacman -Sy xorg-xwayland --noconfirm
   yay -S hyprland-git --noconfirm
-  cp -rv "$BASE_SRC_DIR/hyprland" "$CONFIG_DIR/"
+  cp -rv "$BASE_SRC_DIR/hypr" "$CONFIG_DIR/"
+
+  end_task 
+}
+
+hyprpaper ()
+{
+  start_task 'HYPRPAPER'
+
+  yay -S hyprpaper-git --noconfirm
 
   end_task 
 }
@@ -26,15 +35,6 @@ waybar ()
   end_task 
 }
 
-hyprpaper ()
-{
-  start_task 'HYPRPAPER'
-
-  yay -S hyprpaper-git --noconfirm
-  cp -rv "$BASE_SRC_DIR/hyprpaper" "$CONFIG_DIR/"
-
-  end_task 
-}
 
 wofi ()
 {
@@ -67,4 +67,4 @@ Session=hyprland
 
 [ ! -f "/usr/bin/yay" ] && 
   (printf "Helper not installed!"; exit 10) || 
-  (hyprland; waybar; hyprpaper; wofi; _sddm)
+  (hyprland; hyprpaper; waybar; wofi; _sddm)
