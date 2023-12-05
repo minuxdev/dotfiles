@@ -20,5 +20,6 @@ ranger () {
   end_task
 }
 
+
 pacman -S nautilus --noconfirm
 ranger 

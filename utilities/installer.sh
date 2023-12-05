@@ -7,7 +7,7 @@ source "$HOME/terminal_emulator/scripts/set_aliases.sh"
 generics() {
   start_task 'GENERICS'
   GENERICS=(
-    bat lsd tldr grim unzip man
+    bat lsd tldr grim unzip man als
   )
   sudo pacman -Sy "${GENERICS[*]}" --noconfirm
   yay -S rar --noconfirm
@@ -16,7 +16,6 @@ generics() {
      'ls="lsd"'
      'la="lsd -a"'
      'll="lsd -la"'
-     'cd="z"'
      'sf="source ~/.zshrc"'
   )
   set_aliases "${ALIASES[@]}"
@@ -67,6 +66,14 @@ screenshot() {
 browsers () {
   start_task 'BROWSERS'
   sudo pacman -S firefox chromium --noconfirm
+  end_task
+}
+
+players() {
+  start_task 'PLAYERS' 
+
+  sudo pacman -S vlc mpv audacious cmus --noconfirm
+
   end_task
 }
 

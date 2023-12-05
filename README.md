@@ -87,7 +87,7 @@ Some cool utilities:
   - z : replace cd
   - unzip
   - man
-  - rar 
+  - als 
 
 - Bluetooth
   - bluez
@@ -112,10 +112,16 @@ Some cool utilities:
   - ranger
   - nautilus
 
+- Players
+  - vlc
+  - mpv
+  - audacious
+  - cmus
+
 ## Programming
 
 - Node Packages
-  - scss
+  - sass
   - live-server
 
 - Neovim Packages
