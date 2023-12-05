@@ -36,8 +36,8 @@ nvim ()
   sudo pacman -S $packages --noconfirm
   yay -S wl-clipboard flake8 --noconfirm
 
-    CONFIG_DIR="$HOME/.config/nvim"
-  [ ! -d "$CONFIG_DIR" ] && "$CONFIG_DIR" "$CONFIG_DIR.BKP"
+  CONFIG_DIR="$HOME/.config/nvim"
+  [ -d "$CONFIG_DIR" ] && mv "$CONFIG_DIR" "$CONFIG_DIR.BKP"
   cp -rv "$BASE_DIR/nvim" "$CONFIG_DIR"
   $set_aliases 'nv="nvim"'
   
