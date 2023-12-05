@@ -10,7 +10,7 @@ network() {
 }
 
 _samba() {
-  sudo pacman -Sy samba --noconfirm
+  sudo pacman -Sy samba gvfs-smb --noconfirm
   sudo smbpasswd -a $USER
 
   sudo cp -r $BASE_DIR/samba /etc/

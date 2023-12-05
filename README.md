@@ -58,6 +58,14 @@ For this **Desktop Environment**, the following packages get configured
 
 ----
 
+## Networking
+
+- systemd-networkd
+- samba
+- gvfs-smb
+
+----
+
 ## Terminal emulator
 
 The terminal emulator that gets installed and configured is _alacritty_ 
