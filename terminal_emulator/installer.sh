@@ -78,9 +78,9 @@ fuzzy_finder ()
 	grep 'FZF_DEFAULT_COMMAND' "$HOME/.zshrc"
 	if [ "$?" != 0 ]
 	then
-		sed -i ' /== EXPORTS/a\export FZF_DEFAULT_OPTS="--extended" ' "$HOME/.zshrc"
-		sed -i ' /== EXPORTS/a\export FZF_DEFAULT_COMMAND="fd --type f" ' "$HOME/.zshrc"
-		sed -i ' /== EXPORTS/a\export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND" ' "$HOME/.zshrc"
+		sed -i -e ' /== EXPORTS/a\export FZF_DEFAULT_OPTS="--extended" ' \
+		-e ' /== EXPORTS/a\export FZF_DEFAULT_COMMAND="fd --type f" '\
+		-e ' /== EXPORTS/a\export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND" ' "$HOME/.zshrc"
 	fi
 	end_task
 }
@@ -109,7 +109,7 @@ alacritty ()
 	
 	sudo pacman -S alacritty --noconfirm
 	yay -S alacritty-themes --noconfirm
-	cp -r "$BASE_DIR/alacritty/" "$CONFIG_DIR"
+	cp -r "$BASE_DIR/alacritty" "$CONFIG_DIR"
 
 	$set_aliases 'at="alacritty-themes"'
 	
