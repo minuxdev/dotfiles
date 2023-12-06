@@ -9,8 +9,7 @@ hyprland ()
 {
   start_task 'HYPRLAND'
 
-  sudo pacman -Sy xorg-xwayland noveau --noconfirm
-  yay -S hyprland-git --noconfirm
+  sudo pacman -Sy hyprland --noconfirm
   cp -rv "$BASE_SRC_DIR/hypr" "$CONFIG_DIR/"
 
   end_task 

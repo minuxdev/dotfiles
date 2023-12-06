@@ -21,5 +21,5 @@ ranger () {
 }
 
 
-pacman -S nautilus --noconfirm
+pacman -S nautilus gvfs-smb --noconfirm
 ranger 

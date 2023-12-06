@@ -104,7 +104,7 @@ e.g. nvme0n1p1
     # install system
     printf "\n\nBeginning the system installation\n"
     pacstrap /mnt base-devel linux linux-firmware systemd-sysvcompat iputils \
-    git grub efibootmgr ntfs-3g --noconfirm
+    git grub efibootmgr ntfs-3g vim iproute2 --noconfirm
 
     [ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
 
@@ -118,7 +118,7 @@ NOW LET'S CONFIGURE IT...
   cp ~/installer/configurator.sh /mnt/
 
   genfstab -L /mnt >> /mnt/etc/fstab
-  arch-chroot /mnt "sh configurator.sh"
+  arch-chroot /mnt
 
   [ $? = 0 ] || ( printf "Failed to chroot to new root. Exiting... \n"; exit )
 

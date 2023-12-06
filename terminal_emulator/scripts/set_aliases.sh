@@ -11,8 +11,8 @@ set_aliases()
     for _alias in "$@"
     do 
       sed -i " /ALIASES/ a alias ${_alias} " ~/.zshrc
-      index=((index + 1))
-      printf "$index"
+#      index=((index + 1))
+#      printf "$index"
       [ ! $? = 0 ] && 
       printf "\nSorry! Could not create alias for ${_alias}!\n" ||
       printf "\nAlias created!\n" 
