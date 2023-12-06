@@ -23,7 +23,7 @@ IF YOU FULLY AGREE WITH THIS POINTS, LET'S START, SKIP OTHERWISE!!!
 """
 }
 
-function installer() {
+_installer() {
 
     # update the system clock
     timedatectl status
@@ -124,4 +124,4 @@ NOW LET'S CONFIGURE IT...
 }
 
 welcome_note
-installer
+_installer
