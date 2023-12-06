@@ -6,7 +6,8 @@ network() {
   sudo cp -r "$BASE_DIR/configs/network" /etc/systemd/
   sudo cp -r "$BASE_DIR/configs/resolv.conf" /etc/
   sudo systemctl enable --now systemd-networkd
-  ping -c 4 google.com
+  sudo systemctl enable --now iwd
+  ping -c 2 google.com
 }
 
 _samba() {

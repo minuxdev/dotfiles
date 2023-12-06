@@ -1,0 +1,66 @@
+@import "colors"
+
+configuration {
+  font: "Roboto Mono Nerd Font";
+  modi: "drun";
+  show-icons: true;
+  combi-modi: "window,drun,ssh";
+    icon-theme: 				"WhiteSur";
+    display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "";
+    display-emoji:              "󰞅";
+    display-clipboard:          "";
+	drun-display-format:        "{name}";
+    window-format:              "{t}";
+}
+
+window {
+transparency: "real";
+  padding: 20px;
+  location: center;
+  anchor: center;
+}
+
+mainbox {
+enabled: true;
+children: ["inputbar", "listview"];
+}
+
+inputbar {
+enabled: true;
+children: ["entry"];
+}
+
+listview {
+enabled: true;
+columns: 4;
+lines: 4;
+spacing: 20px;
+}
+
+element {
+enabled: true;
+padding: 20px;
+orientation: vertical;
+max-width: 100px;
+}
+
+element-icon {
+size: 64px;
+background: transparent;
+}
+
+element-text {
+  background: transparent;
+  vertical-align: 0.5;
+  horizontal-align: 0.0;
+}
+
+entry {
+placeholder: "Search here...";
+cursor: "pointer";
+padding: 20px;
+}
+

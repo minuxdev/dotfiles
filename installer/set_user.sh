@@ -15,9 +15,9 @@ create_user() {
     
     read -p "Dotfiles complete path: " DOTFILES
 
-    chown -R $USERNAME:wheel $DOTFILES
     
     cp -rv "$DOTFILES" "/home/$USERNAME/"
+    chown -R $USERNAME:wheel "/home/$USERNAME/dotfiles"
 
     systemctl enable --now systemd-timesyncd
 
