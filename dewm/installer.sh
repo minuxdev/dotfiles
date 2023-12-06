@@ -27,8 +27,8 @@ hyprpaper ()
 waybar ()
 {
   start_task 'WAYBAR'
-
-  yay -S waybar-hyprland-git --noconfirm
+  
+  sudo pacman -S waybar --noconfirm
   cp -rv "$BASE_SRC_DIR/waybar" "$CONFIG_DIR/"
 
   end_task 
