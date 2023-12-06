@@ -1,6 +1,7 @@
 #!/bin/sh
 
-function welcome_note() { printf """
+welcome_note()
+{ printf """
 ==========================================================================
 ==========================================================================
 
@@ -57,13 +58,13 @@ e.g. nvme0n1p1
     while true
     do
         [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. EFI PARTITION: " PARTITION; continue )
-        read -p "DO YOU WANT TO FORMAT THIS PARTITION? [y]es [n]o " ANSWER
-        while true
-        do
-          [ $ANSWER = 'y'] &&  mkfs.fat -F 32 "/dev/$PARTITION"
+#        read -p "DO YOU WANT TO FORMAT THIS PARTITION? [y]es [n]o " ANSWER
+#        while true
+#        do
+#          [ $ANSWER = 'y' ] &&  mkfs.fat -F 32 "/dev/$PARTITION"
           mount --mkdir "/dev/$PARTITION" "/mnt/efi"
-        done
-
+#        done
+#
         [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
           (printf "Something went wrong!")
         break;
@@ -113,10 +114,10 @@ THE INSTALLATION PROCESS HAS FINISHED SUCCESSFULLY!
 NOW LET'S CONFIGURE IT...
 \n
 "
-  cp ~/installers/configurator.sh /mnt/
+  cp ~/installer/configurator.sh /mnt/
 
   genfstab -L /mnt >> /mnt/etc/fstab
-  arch-chroot /mnt
+  arch-chroot /mnt "sh configurator.sh"
 
   [ $? = 0 ] || ( printf "Failed to chroot to new root. Exiting... \n"; exit )
 

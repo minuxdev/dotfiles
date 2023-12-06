@@ -14,11 +14,18 @@ create_user() {
     done
     
     read -p "Dotfiles complete path: " DOTFILES
-    
-    cp -rv "$DOTFILES" /home/"$USERNAME"/
 
-    printf "User %s was created successfully!\n" $USERNAME
+    chown -R $USERNAME:wheel $DOTFILES
+    
+    cp -rv "$DOTFILES" "/home/$USERNAME/"
+
+    systemctl enable --now systemd-timesyncd
+
+    USERNAME="${USERNAME^^}"
+
+    printf "User $USERNAME was created successfully!\n" 
     printf "Login as $USERNAME to proceed."
+
 }
 
 create_user

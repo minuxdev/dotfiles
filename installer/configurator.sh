@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-function new_root_config() {
+new_root_config()
+{
 
 printf "
 =============================================================================
