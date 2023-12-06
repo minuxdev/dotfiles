@@ -8,7 +8,7 @@ welcome_note()
                         ARCH_INSTALLER Ver:0.2
 
 ==========================================================================
-               Author: __minux__ | Release: 2023, July
+               Author: __minux__ | Release: 2023, December
 ==========================================================================
 
 WELCOME TO ARCHLINUX INSTALLATION SCRIPT
@@ -78,11 +78,12 @@ e.g. nvme0n1p1
       read -p "SWAP PARTITION: " PARTITION
       while true
       do
-          [ -b "/dev/$PARTITION" ] || ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
+          [ -b "/dev/$PARTITION" ] || 
+            ( read -p "INVALID, TRY AGAIN. SWAP PARTITION: " PARTITION; continue )
           mkswap "/dev/$PARTITION"
           swapon "/dev/$PARTITION"
 
-          [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || \
+          [ "$?" = 0 ] && (printf "\nPartition mounted!\n\n") || 
             (printf "Something went wrong!")
           break;
       done
@@ -101,7 +102,8 @@ e.g. nvme0n1p1
 
     # install system
     printf "\n\nBeginning the system installation\n"
-    pacstrap /mnt base-devel linux linux-firmware systemd-sysvcompat iputils git grub efibootmgr ntfs-3g --noconfirm
+    pacstrap /mnt base-devel linux linux-firmware systemd-sysvcompat iputils \
+    git grub efibootmgr ntfs-3g --noconfirm
 
     [ $? = 0 ] || ( echo "SORRY! THE INSTALLATION FAILED!"; exit 13; )
 
