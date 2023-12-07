@@ -14,10 +14,10 @@ hyprland() {
 	end_task
 }
 
-hyprpaper() {
+wallpaper() {
 	start_task 'HYPRPAPER'
 
-	yay -S hyprpaper-git --noconfirm
+	sudo pacman -S swaybg
 
 	end_task
 }
@@ -33,8 +33,7 @@ waybar() {
 
 _rofi() {
 	start_task 'ROFI'
-
-	yay -S rofi --noconfirm
+	sudo pacman -S rofi --noconfirm
 	cp -rv "$BASE_SRC_DIR/rofi" "$CONFIG_DIR/"
 
 	end_task
@@ -58,15 +57,8 @@ Session=hyprland
 	end_task
 }
 
-[ ! -f "/usr/bin/yay" ] &&
-	(
-		printf "Helper not installed!"
-		exit 10
-	) ||
-	(
-		hyprland
-		hyprpaper
-		waybar
-		_rofi
-		_sddm
-	)
+hyprland
+wallpaper
+waybar
+_rofi
+_sddm
