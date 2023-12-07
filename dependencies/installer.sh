@@ -25,7 +25,7 @@ others() {
 	sudo pacman -Sy ripgrep --noconfirm
 }
 
-#_yay
-#firmwares
+_yay
+firmwares
 audio
-#others
+others
