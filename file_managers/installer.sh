@@ -2,15 +2,16 @@
 #
 source "$HOME/dotfiles/progress_notes.sh"
 BASE_DIR="$HOME/dotfiles/file_managers"
+CONFIG_DIR="$HOME/.config"
 
 ranger () {
   start_task 'RANGER'
 
   sudo pacman -S ranger ueberzug highlight --noconfirm
   yay -S bat poppler --noconfirm
-  cp -rv "$BASE_DIR/ranger" "$HOME/.config/"
+  cp -rv "$BASE_DIR/ranger" "$CONFIG_DIR" 
 
-  VALUES=('EDITOR=nvim' 'BAT_STYLE=base16' 'SHELL=/usr/bin/zsh')
+  VALUES=('EDITOR=nvim' 'SHELL=/usr/bin/zsh')
   for exported in "${VALUES[@]}"
   do 
     sed -i " /EXPORTS/a\export $exported " ~/.zshrc

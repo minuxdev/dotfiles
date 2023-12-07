@@ -26,8 +26,8 @@ zsh_installer() {
 	mkdir -p ~/.git-clones/zsh-plugins
 	cd ~/.git-clones/zsh-plugins || return
 	git clone https://github.com/marlonrichert/zsh-snap.git
-	cd ~/.git-clones/ &&
-		printf "Cleaning zshrc file...\n"
+
+	printf "Cleaning zshrc file...\n"
 	sed -i -e ' /^#/d ' -e ' /^$/d ' ~/.zshrc
 
 	awk -i inplace \
@@ -115,7 +115,7 @@ tmux() {
 	BINARIES="$HOME/.bin"
 	[ ! -d "$BINARIES" ] && mkdir "$BINARIES"
 	cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
-	cp -rv "$BASE_DIR/tmux/sessions/*" "$BINARIES"
+	cp -rv "$BASE_DIR/tmux/sessions/" "$BINARIES"
 	grep '.bin' "$HOME/.zshrc"
 	[ "$?" != 0 ] && sed -i " /== EXPORTS/a\export PATH=$BINARIES:$PATH " "$HOME/.zshrc"
 

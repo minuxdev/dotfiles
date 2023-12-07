@@ -11,7 +11,7 @@ npm_packages ()
   sudo npm install -g live-server 
   sudo npm install -g sass
 
-  $set_aliases 'lvs="live-server $1"'
+  $set_aliases 'lvs="live-server" "$1"'
 
   end_task
 }
@@ -108,7 +108,7 @@ ALIASES=(
   'gl="git log --oneline"'
   'ga="git add"'
   'gc="git commit -m"'
-  'gub="git checkout $1 -- $2"'
+  'gub="git checkout %s -- %s" "$1" "$2"'
   'uml="staruml"'
 )
 

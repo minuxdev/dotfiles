@@ -15,7 +15,8 @@ generics() {
 		'ls="lsd"'
 		'la="lsd -a"'
 		'll="lsd -la"'
-		'sf="source ~/.zshrc"'
+		'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
+		'sf="source %s/.zshrc" "$HOME"'
 	)
 	set_aliases "${ALIASES[@]}"
 
@@ -45,7 +46,7 @@ mtp() {
 
 monitoring() {
 	start_task 'MONITORING'
-	pip3 install bpytop &&
+	sudo pacman -S bpytop &&
 		sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.bin ' ~/.zshrc
 	set_aliases 'top="bpytop"'
 	end_task
