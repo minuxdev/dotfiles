@@ -2,10 +2,11 @@
 Name=eno*
 
 [Network]
-Address=192.168.1.100/24
-
-
-[Route]
-Metric=100
+Address=192.168.1.101/24
 Gateway=192.168.1.1
+DNS=192.168.1.1
+
+
+[DHCPv4]
+RouteMetric=500
 
