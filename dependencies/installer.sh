@@ -1,6 +1,6 @@
 #!/bin/bash
 
-installer() {
+_yay() {
 	YAY_DIR="$HOME/.git-clones"
 	[ ! -d "$YAY_DIR" ] && mkdir "$YAY_DIR"
 	cd "$YAY_DIR" &&
@@ -16,15 +16,16 @@ firmwares() {
 
 audio() {
 	sudo pacman -Sy \
-		pulseaudio pulseaudio-ctl pulseaudio-alsa \
-		pulseaudio-bluetooth pavucontrol playerctl
+		pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol playerctl --noconfirm
+
+	yay -S pulseaudio-ctl --noconfirm
 }
 
 others() {
 	sudo pacman -Sy ripgrep --noconfirm
 }
 
-installer
-firmwares
+#_yay
+#firmwares
 audio
-others
+#others
