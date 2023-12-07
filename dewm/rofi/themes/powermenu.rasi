@@ -1,0 +1,21 @@
+
+@import "main"
+
+mainbox {
+  children: ["listview"];
+}
+window {
+  width: 340px;
+  border: 1px;
+  border-color: @BDR;
+}
+listview {
+  columns: 3;
+  lines: 1;
+}
+element {
+  children: ["element-text"];
+  border: 1px;
+  border-color: @BDR;
+}
+

@@ -1,0 +1,75 @@
+@import "colors"
+
+* {
+  font: "SpaceMono Nerd Font 12";
+}
+
+configuratioin {
+  modi: "dmenu,drun,window";
+  show-icons: true;
+}
+
+window {
+  padding: 20px;
+  location: center;
+  anchor: center;
+  background-color: @BG;
+  text-color: @FG;
+}
+
+mainbox {
+  enabled: true;
+  children: ["inputbar","listview"];
+}
+
+inputbar {
+  padding: 20px;
+  children: ["entry"];
+}
+
+listview {
+  enabled: true;
+  columns: 4;
+  lines: 4;
+  spacing: 20px;
+  background-color: @SEL;
+  scrollbar: false;
+}
+
+
+element {
+  enabled: true;
+  padding: 10px;
+  children: ["element-icon", "element-text"];
+  background-color: @SEL;
+  orientation: vertical;
+}
+
+element selected {
+  enabled: true;
+  background-color: @BDR;
+  border: transparent;
+}
+
+element-icon {
+  size: 64px;
+  background-color: inherit;
+  text-color: inherit;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  color: @BDR;
+}
+
+element-text selected {
+  color: @SEL;
+}
+
+entry {
+  color: @BDR;
+}
+

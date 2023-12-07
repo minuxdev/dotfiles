@@ -1,0 +1,21 @@
+@import "main"
+
+inputbar, entry, mainbox {
+  background-color: @BG;
+}
+mainbox {
+spacing: 20px;
+}
+element, window {
+  border: 1px;
+  border-color: @BDR;
+}
+inputbar {
+children: ["entry"];
+  background-color: @BDR;
+}
+entry {
+  placeholder: "Search here...";
+  text-color: @SEL;
+  background-color: @BDR;
+}
