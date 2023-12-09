@@ -5,5 +5,5 @@ Name=enp0s2*
 DHCP=yes
 
 [DHCPv4]
-RouteMetric=50
+RouteMetric=10
 
