@@ -2,10 +2,14 @@
 
 tmux has-session -t stack 2 >/dev/null
 
-if [[ $? != 0 ]]; then
-	[[ ! -d $1 ]] && (BASE_DIR=$HOME/projects/$1 && mkdir -p $BASE_DIR) ||
+if [ $? != 0 ]; then
+	if [ ! -d "$1" ]; then
+		BASE_DIR="$HOME/projects/$1" && mkdir -p "$BASE_DIR"
+	else
 		BASE_DIR="$1"
-	tmux new-session -s stack -c $BASE_DIR \; \
+	fi
+
+	tmux new-session -s stack -c "$BASE_DIR" \; \
 		rename-window 'IDE' \; \
 		new-window \; \
 		rename-window 'Terminal' \; \
