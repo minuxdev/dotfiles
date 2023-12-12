@@ -1,16 +1,14 @@
 local lspconfig = require("lspconfig")
 
-
-
 local map = vim.api.nvim_set_keymap
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local on_attach = function(client)
-  map("n", "<leader>rn", vim.lsp.buf.rename(), {})
-  map("n", "<leader>ca", vim.lsp.buf.code_action(), {})
+  map("n", "gr", vim.lsp.buf.rename(), {})
+  map("n", "ga", vim.lsp.buf.code_action(), {})
   map("n", "gd", vim.lsp.buf.definition(), {})
-  map("n", "<leader>ca", vim.lsp.buf.implementation(), {})
-  map("n", "K", vim.lsp.buf.hover(), {})
+  map("n", "gi", vim.lsp.buf.implementation(), {})
+  map("n", "H", vim.lsp.buf.hover(), {})
   map("n", "ff", "<cmd>lua vim.lsp.buf.format()<cr>", {})
 end
 
@@ -21,7 +19,7 @@ lspconfig.pyright.setup({
   settings = {
     pyright = {
       autoImportCompletion = true,
-    }
+    },
   },
 })
 

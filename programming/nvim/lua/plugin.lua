@@ -20,6 +20,7 @@ return require("packer").startup(function(use)
 
 	use("RRethy/nvim-base16") -- Colorschemes
 	use("norcalli/nvim-colorizer.lua") -- Shows the color of the color code
+	use({ "AlphaTechnolog/pywal.nvim", as = "pywal" })
 
 	use({
 		"nvim-telescope/telescope.nvim",
