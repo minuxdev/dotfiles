@@ -22,7 +22,7 @@ audio() {
 }
 
 others() {
-	sudo pacman -Sy ripgrep --noconfirm
+	sudo pacman -Sy ripgrep figlet --noconfirm
 }
 
 _yay
