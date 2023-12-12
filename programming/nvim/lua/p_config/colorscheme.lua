@@ -14,4 +14,9 @@ local c_status, colorizer = pcall(require, "colorizer")
 if not c_status then
 	return
 end
-colorizer.setup()
+colorizer.setup({
+	"*",
+	sass = { rgb_fn = true },
+	css = { rgb_fn = true },
+	html = { name = false },
+})
