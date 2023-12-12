@@ -95,18 +95,6 @@ nvm_installer() {
 	end_task
 }
 
-alacritty() {
-	start_task 'ALACRITTY'
-
-	sudo pacman -S alacritty --noconfirm
-	yay -S alacritty-themes --noconfirm
-	cp -r "$BASE_DIR/alacritty" "$CONFIG_DIR"
-
-	$set_aliases 'at="alacritty-themes"'
-
-	end_task
-}
-
 tmux() {
 	start_task 'TMUX'
 
@@ -143,5 +131,4 @@ sudo pacman -Sy
 fonts
 zsh_installer
 nvm_installer
-alacritty
 tmux
