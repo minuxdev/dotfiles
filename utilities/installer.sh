@@ -7,7 +7,7 @@ source "$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
 generics() {
 	start_task 'GENERICS'
 	GENERICS=(
-		bat lsd tldr grim unzip man rsync
+		bat lsd tldr grim unzip man rsync less
 	)
 	sudo pacman -Sy "${GENERICS[*]}" --noconfirm
 
