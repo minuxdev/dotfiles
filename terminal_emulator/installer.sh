@@ -124,6 +124,20 @@ tmux() {
 	end_task
 }
 
+wallpaper() {
+	start_task 'WALPAPER'
+
+	sudo pacman -S python-pywal --noconfirm
+	yay -S swww --noconfirm
+	echo -e "exec = $CONFIG_DIR/scripts/wallpapers.sh" >>~/.config/hypr/hyprland.conf
+
+	echo -e "exec = wal -R" >>~/.config/hypr/hyprland.conf
+
+	echo -e "\n(cat ~/.cache/wal/sequences &)\nsource ~/.cache/wal/colors-tty.sh" >>~/.zshrc
+
+	end_task
+}
+
 sudo pacman -Sy
 
 fonts

@@ -14,14 +14,6 @@ hyprland() {
 	end_task
 }
 
-wallpaper() {
-	start_task 'HYPRPAPER'
-
-	sudo pacman -S swaybg
-
-	end_task
-}
-
 waybar() {
 	start_task 'WAYBAR'
 
@@ -58,7 +50,6 @@ Session=hyprland
 }
 
 hyprland
-wallpaper
 waybar
 _rofi
 _sddm
