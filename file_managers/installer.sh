@@ -28,5 +28,5 @@ ranger () {
 }
 
 
-sudo pacman -S nautilus gvfs-smb --noconfirm
+sudo pacman -Sy nautilus gvfs-smb --noconfirm
 ranger 
