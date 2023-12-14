@@ -7,7 +7,7 @@ source "$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
 generics() {
 	start_task 'GENERICS'
 	GENERICS=(
-		lsd man tldr grim unzip man rsync less
+		lsd gdu man tldr unzip rsync less
 	)
 	sudo pacman -Sy "${GENERICS[*]}" --noconfirm
 
@@ -54,9 +54,9 @@ monitoring() {
 screenshot() {
 	start_task 'SCREENSHOT'
 	yay -S imlib2 --noconfirm
-	sudo pacman -S grim slurp --noconfirm &&
-		cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.bin/"
-	set_aliases 'shot="print_screen"'
+
+	sudo pacman -S grim slurp --noconfirm
+	cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.bin/"
 	sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.bin/print_screen.sh"
 	end_task
 }
