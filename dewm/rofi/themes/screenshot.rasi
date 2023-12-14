@@ -1,0 +1,32 @@
+@import "main"
+
+configuration {
+  font: "CaskaydiaCove Nerd Font 12";
+  modi: "dmenu";
+}
+
+
+entry, mainbox {
+  background-color: transparent;
+}
+
+window {
+  width: 400px;
+}
+
+mainbox {
+  children: ["listview"];
+}
+
+listview {
+  columns: 1;
+  lines: 3;
+}
+element {
+  children: ["element-text"];
+}
+element-text {
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+}
+

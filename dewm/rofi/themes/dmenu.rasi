@@ -1,17 +1,24 @@
 @import "main"
 
+configuration {
+  font: "CaskaydiaCove Nerd Font 12";
+  display-drun: "Apps: ";
+  drun-display-format: "{name}";
+
+}
+
 inputbar, entry, mainbox {
   background-color: @BG;
 }
 mainbox {
-spacing: 20px;
+  spacing: 20px;
 }
 element, window {
-  border: 1px;
+  border: 0px;
   border-color: @BDR;
 }
 inputbar {
-children: ["entry"];
+  children: ["prompt","entry"];
   background-color: @BDR;
 }
 entry {

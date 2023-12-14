@@ -24,7 +24,12 @@ mainbox {
 
 inputbar {
   padding: 20px;
-  children: ["entry"];
+  children: ["prompt", "entry"];
+}
+
+
+entry {
+  color: @BDR;
 }
 
 listview {
@@ -48,7 +53,6 @@ element {
 element selected {
   enabled: true;
   background-color: @BDR;
-  border: transparent;
 }
 
 element-icon {
@@ -69,7 +73,4 @@ element-text selected {
   color: @SEL;
 }
 
-entry {
-  color: @BDR;
-}
 

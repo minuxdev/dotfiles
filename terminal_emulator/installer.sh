@@ -117,6 +117,7 @@ wallpaper() {
 
 	sudo pacman -S python-pywal --noconfirm
 	yay -S swww --noconfirm
+	echo -e "exec = swww init" >>~/.config/hypr/hyprland.conf
 	echo -e "exec = $CONFIG_DIR/scripts/wallpapers.sh" >>~/.config/hypr/hyprland.conf
 
 	echo -e "exec = wal -R" >>~/.config/hypr/hyprland.conf
