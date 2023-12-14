@@ -62,6 +62,21 @@ zsh_installer() {
 	end_task
 }
 
+urxvt() {
+
+	start_task 'RXVT-UNICODE'
+
+	yay -S rxvt-unicode-truecolor-wide-glyphs --noconfirm
+	sudo pacman -S urxvt-perls xorg-xrdb --noconfirm
+
+	set_aliases 'xd="xrdb -merge ~/.Xdefaults"'
+
+	cp -rv "$BASE_DIR/.Xdefaults" ~/
+	printf "\nclear" >>~/.zshrc
+
+	end_task
+}
+
 fuzzy_finder() {
 	start_task 'FUZZY_FINDER'
 
@@ -104,7 +119,7 @@ tmux() {
 	[ ! -d "$BINARIES" ] && mkdir "$BINARIES"
 	cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
 	cp -rv "$BASE_DIR"/tmux/sessions/* "$BINARIES"
-	grep '.bin' "$HOME/.zshrc"
+	grep '.bin'$ "$HOME/.zshrc"
 	[ "$?" != 0 ] && sed -i " /== EXPORTS/a\export PATH=$BINARIES:$PATH " "$HOME/.zshrc"
 
 	$set_aliases 'tm="tmux"'
@@ -117,12 +132,10 @@ wallpaper() {
 
 	sudo pacman -S python-pywal --noconfirm
 	yay -S swww --noconfirm
-	echo -e "exec = swww init" >>~/.config/hypr/hyprland.conf
-	echo -e "exec = $CONFIG_DIR/scripts/wallpapers.sh" >>~/.config/hypr/hyprland.conf
-
-	echo -e "exec = wal -R" >>~/.config/hypr/hyprland.conf
-
-	echo -e "\n(cat ~/.cache/wal/sequences &)\nsource ~/.cache/wal/colors-tty.sh" >>~/.zshrc
+	printf "exec = swww init" >>~/.config/hypr/hyprland.conf
+	printf "exec = %s/scripts/wallpapers.sh" "$CONFIG_DIR" >>~/.config/hypr/hyprland.conf
+	printf "exec = wal -R" >>~/.config/hypr/hyprland.conf
+	printf "\n(cat ~/.cache/wal/sequences &)\nsource ~/.cache/wal/colors-tty.sh" >>~/.zshrc
 
 	end_task
 }
@@ -131,5 +144,6 @@ sudo pacman -Sy
 
 fonts
 zsh_installer
+urxvt
 nvm_installer
 tmux
