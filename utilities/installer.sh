@@ -15,7 +15,6 @@ generics() {
 		'ls="lsd"'
 		'la="lsd -a"'
 		'll="lsd -la"'
-		'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
 		'sf="source $HOME/.zshrc"'
 	)
 	set_aliases "${ALIASES[@]}"
