@@ -7,7 +7,7 @@ CONFIG_DIR="$HOME/.config"
 ranger () {
   start_task 'RANGER'
 
-  sudo pacman -S ranger ueberzug highlight --noconfirm
+  sudo pacman -S ranger atool highlight ffmpegthumbnailer libcaca mediainfo poppler sudo ueberzug --noconfirm
   yay -S bat poppler --noconfirm
   cp -rv "$BASE_DIR/ranger" "$CONFIG_DIR" 
 
@@ -22,5 +22,5 @@ ranger () {
 }
 
 
-pacman -S nautilus gvfs-smb --noconfirm
+sudo pacman -S nautilus gvfs-smb --noconfirm
 ranger 

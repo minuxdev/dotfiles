@@ -7,7 +7,7 @@ source "$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
 generics() {
 	start_task 'GENERICS'
 	GENERICS=(
-		bat lsd tldr grim unzip man rsync less
+		bat lsd man tldr grim unzip man rsync less
 	)
 	sudo pacman -Sy "${GENERICS[*]}" --noconfirm
 
@@ -16,7 +16,7 @@ generics() {
 		'la="lsd -a"'
 		'll="lsd -la"'
 		'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
-		'sf="source %s/.zshrc" "$HOME"'
+		'sf="source $HOME/.zshrc"'
 	)
 	set_aliases "${ALIASES[@]}"
 

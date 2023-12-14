@@ -16,7 +16,7 @@ firmwares() {
 
 audio() {
 	sudo pacman -Sy \
-		pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol playerctl --noconfirm
+		pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol playerctl cifs-utils --noconfirm
 
 	yay -S pulseaudio-ctl --noconfirm
 }
