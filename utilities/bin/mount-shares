@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SERVER="192.168.1.100"
 USER='stream'
@@ -6,33 +6,35 @@ PASSWD='luso'
 CREDENTIALS=~/.access
 DATABASE=~/shares
 
-while getopts "u:p:s:" options;
-do
-  case $options in 
-    u)
-      USER=$OPTARG;;
-    p)
-      PASSWD=$OPTARG;;
-    s)
-      SERVER=$OPTARG;;
-    *)
-      echo "Invalid arguments. Using default.";;
-  esac
-  [ -f $CREDENTIALS ] && rm $CREDENTIALS
+while getopts "u:p:s:" options; do
+	case $options in
+	u)
+		USER=$OPTARG
+		;;
+	p)
+		PASSWD=$OPTARG
+		;;
+	s)
+		SERVER=$OPTARG
+		;;
+	*)
+		echo "Invalid arguments. Using default."
+		;;
+	esac
+	[ -f $CREDENTIALS ] && rm $CREDENTIALS
 done
 
-[ ! -f $CREDENTIALS ] && 
-	echo -e "usernamae=$USER\npassword=$PASSWD\ndomain=DATACENTER" > $CREDENTIALS &&
+[ ! -f $CREDENTIALS ] &&
+	echo -e "username=$USER\npassword=$PASSWD\ndomain=DATACENTER" >$CREDENTIALS &&
 	chmod 0600 $CREDENTIALS
 
 # UMOUNT ALL CIFS DRIVERS
-sudo umount -f //$SERVER/d_rec $DATABASE/d_rec 2&>/dev/null
-sudo umount -f //$SERVER/stream $DATABASE/stream 2&>/dev/null
-sudo umount -f //$SERVER/private $DATABASE/private 2&>/dev/null
-
+sudo umount -f "//$SERVER/d_rec" "$DATABASE/d_rec" 2 &>/dev/null
+sudo umount -f "//$SERVER/stream" "$DATABASE/stream" 2 &>/dev/null
+sudo umount -f "//$SERVER/private" "$DATABASE/private" 2 &>/dev/null
 
 # MOUNT ALL CIFS DRIVERS
 mkdir -p $DATABASE/{d_rec,stream,private}
-sudo mount -t cifs -o credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino //$SERVER/stream $DATABASE/stream
-sudo mount -t cifs -o credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino //$SERVER/private $DATABASE/private 
-sudo mount -t cifs -o credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino //$SERVER/d_rec $DATABASE/d_rec 
+sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$SERVER/stream" "$DATABASE/stream"
+sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$SERVER/private $DATABASE/private"
+sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$SERVER/d_rec $DATABASE/d_rec"
