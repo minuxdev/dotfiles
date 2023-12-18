@@ -76,7 +76,6 @@ _postgresql () {
 
   sudo pacman -S postgresql --noconfirm 
   clear 
-  sleep 10
   printf "
   In order to start using postgres you need to initialize PostgreSQL data directory.
   Paste the following command in postgres shell and exit when the process gets done.
@@ -89,6 +88,14 @@ _postgresql () {
 
 	end_task
 }
+sqlite3() {
+  start_task "DB SQLITE"
+
+  sudo pacman -S sqlitebrowser --noconfirm
+  set_aliases 'sql="sqlitebrowser"'
+
+  end_task
+}
 
 sudo pacman -Sy python-pipenv
 npm_packages
@@ -97,6 +104,7 @@ nvim
 _docker
 _staruml
 _postgresql
+sqlite3
 
 ALIASES=(
   'da="python manage.py"'
