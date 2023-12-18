@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tmux has-session -t stack 2 >/dev/null
+tmux has-session -t stack
 
 if [ $? != 0 ]; then
 	if [ ! -d "$1" ]; then
