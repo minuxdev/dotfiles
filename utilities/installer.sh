@@ -75,6 +75,12 @@ players() {
 	end_task
 }
 
+notification() {
+	start_task 'NOTIFICATION'
+	sudo pacman -S dunst libnotify --noconfirm
+	end_task
+}
+
 generics
 bluetooth
 mtp

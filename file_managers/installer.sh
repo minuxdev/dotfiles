@@ -8,7 +8,7 @@ CONFIG_DIR="$HOME/.config"
 ranger () {
   start_task 'RANGER'
 
-  dependencies=(atool ffmpeg libcaca mediainfo poppler sudo ueberzug jq)
+  dependencies=(atool zip ffmpeg libcaca mediainfo poppler sudo ueberzug jq)
 
   sudo pacman -S ranger --noconfirm
   sudo pacman -S $dependencies[*] --noconfirm
