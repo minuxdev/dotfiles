@@ -2,9 +2,14 @@
 {
    "layer": "top",
     "height": "24",
-    "modules-left": ["custom/menu", "hyprland/workspaces"],
+    "modules-left": ["user", "hyprland/workspaces"],
     "modules-center": [ "hyprland/window"],
-    "modules-right": ["network", "bluetooth", "cpu", "memory", "pulseaudio", "keyboard-state", "clock", "custom/power"],
+    "modules-right": [
+      "custom/chatgpt", "custom/shares", 
+      "network", "bluetooth", 
+      "temperature", "cpu", "memory",
+      "keyboard-state", "pulseaudio", "clock", "custom/power"
+      ],
 
     "hyprland/workspaces": {
         "all-outputs": true,
@@ -18,10 +23,6 @@
         "sort-by-number": true,
    },
 
-   "tray": {
-      "icon-size": 16,
-      "spacing": 20,
-   },
 
    "keyboard-state": {
         "capslock": true,
@@ -38,25 +39,24 @@
         "format-alt": "{:%d-%m-%Y}"
     },
 
-//    "network" : {
-//      "interface": "wlp2s0",
-//      "format": "{ifname}",
-//      "format-wifi": "{essid} ({signalStrength}%) ",
-//      "format-ethernet": "{ifname} ",
-//      "format-disconnected": "", 
-//      "format-disconnected": "",
-//      "tooltip-format": "{ifname}",
-//      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-//      "tooltip-format-ethernet": "{ifname} ",
-//      "tooltip-format-disconnected": "Disconnected",
-//      "max-length": 50
-//    },
+    "network": {
+      "format": " ",
+      "format-ethernet": " ",
+      "format-disconnected": " ",
+      "tootip-format": "{ifname}",
+      "tootip-format-ethernet": "{ifname}  ",
+    },
 
     "bluetooth": {
-      "format": " {status}",
-      "format-disabled": " ",
+      "format": "",
+      "format-disconnected": "󰂲",
       "format-connected": "{num_connections} connected",
       "tooltip-format": "{controller_alias}\t{controller_address}",
+    },
+
+    "temperature": {
+      "format": "{}°C ",
+      "interval": 2,
     },
 
     "cpu": {
@@ -69,7 +69,6 @@
     },
 
     "pulseaudio": {
-        
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
@@ -86,38 +85,34 @@
     },
 
   "hyprland/window": {
-    "format" : " {} ",
-    "separate-outputs" : true,
-    "max-length": 30
+    "format" : "{title} {app_id}",
+    "separate-outputs": true,
+    "min-length": 80,
+    "max-length": 80,
+    "align": 0.5,
     },
 
-  "custom/menu" : {
-    "format": "  ",
-    "tooltip" : true,
-  },
-
-  "custom/power": {
-    "format": "  ",
-    "tooltip": false,
-    "on-click": "$HOME/.config/waybar/scripts/session_manager.sh",
-  },
-
   "user": {
-       "format": " {user} [up {work_H}:{work_M}:{work_S} ↑]",
+       "format": "  {user}",
         "interval": 1,
-        "height": 30,
-        "width": 30,
+        "height": 24,
+        "width": 24,
         "icon": true,
     },
 
-    "custom/menu": {
-         "format": "  ",
-         "tooltip": false,
-    },
-
     "custom/power": {
-         "format": " ",
+         "format": "",
          "tooltip": false,
          "on-click": "$HOME/.config/rofi/scripts/powermenu.sh",
     },
+
+    "custom/chatgpt": {
+      "format": "󰭻",
+      "on-click": "firefox --new-tab www.chatgpt.com",
+    },
+    "custom/shares": {
+      "format": "󰆼",
+      "on-click": "mount-shares -p root -u admin",
+    },
+
 }

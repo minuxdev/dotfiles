@@ -1,177 +1,91 @@
 @import "./themes/macchiato.css";
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: "SpaceMono Nerd Font", sans-serif;
+  font-family: "CaskadyaCove Nerd Font", sans-serif;
   font-size: 14px;
   letter-spacing: 0.1rem;
   min-height: 0;
 }
 
+/* LEFT MODULE */
+
+#user {
+  color: @maroon;
+  background: @base;
+  margin-left: 10px;
+  padding: 2px 16px;
+}
+
 window#waybar {
-  background-color: @base;
-  border-bottom: 0px solid rgba(100, 114, 125, 0.5);
+  background-color: @mantle;
   transition-property: background-color;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
-}
-
-/*
-window#waybar.empty {
-  background-color: transparent;
-}
-window#waybar.solo {
-  background-color: #ffffff;
-}
-*/
+/* Workspaces */
 button {
-  /* Use box-shadow instead of border so the text isn't offset */
-  box-shadow: inset 0 -3px transparent;
-  /* Avoid rounded borders under each button name */
   border: none;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-  background: inherit;
-  box-shadow: inset 0 -3px #ffffff;
+  margin: 0 4px;
+  background-color: transparent;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  background-color: transparent;
-  color: #ffffff;
+  color: @teal;
 }
-
 #workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  color: @sapphire;
 }
 
 #workspaces button.focused {
-  background-color: #64727d;
-  box-shadow: inset 0 -3px #ffffff;
+  background-color: @maroon;
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
-}
-
-#mode {
-  background-color: #64727d;
-  border-bottom: 3px solid #ffffff;
-}
-
-#clock,
-#battery,
-#cpu,
-#bluetooth,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#language,
-#keyboard-state,
-#user,
-#mpd {
-  padding: 0px 12px;
-}
-#network {
-  /*border-radius: 4px 0 0 4px;*/
-}
-
-#custom-power,
-#clock {
-  color: @sky;
-  padding: 0 10px;
-  background-color: @surface0;
-}
-#pulseaudio {
-  margin-right: 4px;
-  color: @flamingo;
-}
-#custom-power {
-  margin-right: 10px;
-}
-
-#pulseaudio,
-#memory,
-#cpu {
-  padding: 0 10px;
-  background-color: @surface0;
-}
-
-#network,
-#bluetooth {
-  padding: 0 10px;
-  background-color: @surface0;
-  color: @maroon;
-}
-
-#keyboard-state {
-  margin-left: 4px;
-  margin-right: 4px;
-  color: @peach;
-  background-color: @surface0;
-}
-
-#clock {
-  color: @sapphire;
-  margin-left: 4px;
-}
-#memory {
-  color: @peach;
-}
-#cpu {
-  color: @maroon;
-  margin-left: 4px;
-}
-#bluetooth {
-  margin-right: 4px;
-}
-#network {
-  margin-left: 4px;
-}
-
-#user,
-#custom-menu {
-  margin-left: 10px;
-  margin-right: 8px;
-  padding: 0 10px;
-  background-color: @surface0;
-  color: @maroon;
-}
-
-#user {
-  color: @sky;
-  margin: 0 8px;
+  background-color: @red;
 }
 #workspaces {
   background-color: @surface0;
-  padding: 0 10px;
-  /*color: @maroon;*/
-  color: #fff;
-}
-#window:nth-child(last) {
-  background-color: transparent;
-  padding: 0 10px;
-  color: @sky;
+  padding-left: 4px;
+  margin-left: 8px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
+/* MIDDLE MODULE */
+
+#window {
+  color: @blue;
+  padding: 0 8px;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-  margin-right: 0;
+/* RIGHT MODULE */
+#custom-chatgpt,
+#custom-shares,
+#network,
+#bluetooth {
+  color: @mantle;
+  background-color: @sky;
+  padding: 2px 8px;
+}
+
+#temperature,
+#cpu,
+#memory {
+  color: @mantle;
+  background-color: @maroon;
+  padding: 2px 8px;
+}
+
+#keyboard-state,
+#pulseaudio,
+#clock {
+  color: @mantle;
+  background-color: @mauve;
+  padding: 2px 8px;
+}
+
+#custom-power {
+  background-color: @base;
+  color: @red;
+  margin-right: 10px;
+  padding: 2px 16px;
 }
