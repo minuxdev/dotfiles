@@ -57,19 +57,26 @@ while getopts "u:p:s:d" options; do
 done
 
 # Check if $server_ip is reacheable, exit otherwise
-set -e # exits when $? != 0
 ping -c1 -W1 -q "$server_ip"
 
-[ ! -f $CREDENTIALS ] && echo -e "username=$user\npassword=$passwd\ndomain=DATACENTER" >$CREDENTIALS &&
-	chmod 0600 $CREDENTIALS
+if [ "$?" = 0 ]; then
 
-# UMOUNT ALL CIFS DRIVERS
-sudo umount -f "//$server_ip/d_rec" "$database/d_rec" 2 &>/dev/null
-sudo umount -f "//$server_ip/stream" "$database/stream" 2 &>/dev/null
-sudo umount -f "//$server_ip/private" "$database/private" 2 &>/dev/null
+	[ ! -f $CREDENTIALS ] && echo -e "username=$user\npassword=$passwd\ndomain=DATACENTER" >$CREDENTIALS &&
+		chmod 0600 $CREDENTIALS
 
-# MOUNT ALL CIFS DRIVERS
-mkdir -p $database/{d_rec,stream,private}
-sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/stream" "$database/stream"
-sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/private $database/private"
-sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/d_rec $database/d_rec"
+	# UMOUNT ALL CIFS DRIVERS
+	sudo umount -f "//$server_ip/d_rec" "$database/d_rec" 2 &>/dev/null
+	sudo umount -f "//$server_ip/stream" "$database/stream" 2 &>/dev/null
+	sudo umount -f "//$server_ip/private" "$database/private" 2 &>/dev/null
+
+	# MOUNT ALL CIFS DRIVERS
+	mkdir -p "$database"/{d_rec,stream,private}
+	sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/stream" "$database/stream"
+	sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/private $database/private"
+	sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/d_rec $database/d_rec"
+	notify-send -u low -t 3000 "You are connected to $server_ip."
+else
+	notify-send -u low -t 3000 "$server_ip is not reacheable."
+	#echo "󱙀"
+	exit
+fi

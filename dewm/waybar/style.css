@@ -46,8 +46,7 @@ button {
 }
 #workspaces {
   background-color: @surface0;
-  padding-left: 4px;
-  margin-left: 8px;
+  padding: 2px 4px;
 }
 
 /* MIDDLE MODULE */
