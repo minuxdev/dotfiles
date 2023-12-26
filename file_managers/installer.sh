@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 #
-source "$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
+source "$HOME/dotfiles/scripts/set_aliases.sh"
 source "$HOME/dotfiles/progress_notes.sh"
 BASE_DIR="$HOME/dotfiles/file_managers"
 CONFIG_DIR="$HOME/.config"

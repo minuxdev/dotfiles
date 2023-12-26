@@ -2,7 +2,7 @@
 
 BASE_DIR="$HOME/dotfiles/utilities"
 source "$HOME/dotfiles/progress_notes.sh"
-source "$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
+source "$HOME/dotfiles/scripts/set_aliases.sh"
 
 generics() {
 	start_task 'GENERICS'

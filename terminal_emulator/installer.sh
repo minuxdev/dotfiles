@@ -2,7 +2,7 @@
 
 CONFIG_DIR="$HOME/.config"
 BASE_DIR="$HOME/dotfiles/terminal_emulator"
-set_aliases="$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
+set_aliases="$HOME/dotfiles/scripts/set_aliases.sh"
 source "$HOME/dotfiles/progress_notes.sh"
 
 fonts() {
@@ -132,7 +132,10 @@ wallpaper() {
 
 	sudo pacman -S python-pywal --noconfirm
 	yay -S swww --noconfirm
-	printf "exec = swww init" >>~/.config/hypr/hyprland.conf
+
+	cp -rv "$BASE_DIR/wallpapers" "$CONFIG_DIR"
+
+	printf 'exec = swww init' >>~/.config/hypr/hyprland.conf
 	printf "exec = %s/scripts/wallpapers.sh" "$CONFIG_DIR" >>~/.config/hypr/hyprland.conf
 	printf "exec = wal -R" >>~/.config/hypr/hyprland.conf
 	printf "\n(cat ~/.cache/wal/sequences &)\nsource ~/.cache/wal/colors-tty.sh" >>~/.zshrc

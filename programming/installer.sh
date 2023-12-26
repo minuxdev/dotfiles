@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 BASE_DIR="$HOME/dotfiles/programming"
-set_aliases="$HOME/dotfiles/terminal_emulator/scripts/set_aliases.sh"
+set_aliases="$HOME/dotfiles/scripts/set_aliases.sh"
 source "$HOME/dotfiles/progress_notes.sh"
 
 npm_packages () 
