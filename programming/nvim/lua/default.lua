@@ -19,7 +19,7 @@ set.autowrite = true
 set.autoread = true
 set.list = true
 set.showbreak = "↪"
-set.fillchars = "vert:|"
+set.fillchars = "vert: "
 
 -- Commands
 -- CursorLine
