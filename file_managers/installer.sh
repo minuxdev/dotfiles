@@ -9,7 +9,7 @@ SCRIPTS="$HOME/.config/scripts"
 ranger () {
   start_task 'RANGER'
 
-  dependencies=(atool zip ffmpeg libcaca mediainfo poppler sudo ueberzug jq)
+  dependencies=(atool zip libcaca mediainfo poppler ueberzug jq)
 
   sudo pacman -S ranger --noconfirm
   sudo pacman -S $dependencies[*] --noconfirm
@@ -20,7 +20,7 @@ ranger () {
   do 
     sed -i " /EXPORTS/a\export $exported " ~/.zshrc
   done
-	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER, e, exec, ranger " "$CONFIG_DIR/hypr/hyprland.conf"
+	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER, e, exec, $TERM -e ranger " "$CONFIG_DIR/hypr/hyprland.conf"
   set_aliases 'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
 
   source ~/.zshrc
