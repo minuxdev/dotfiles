@@ -4,6 +4,7 @@ source "$HOME/dotfiles/scripts/set_aliases.sh"
 source "$HOME/dotfiles/progress_notes.sh"
 BASE_DIR="$HOME/dotfiles/file_managers"
 CONFIG_DIR="$HOME/.config"
+SCRIPTS="$HOME/.config/scripts"
 
 ranger () {
   start_task 'RANGER'
@@ -19,8 +20,8 @@ ranger () {
   do 
     sed -i " /EXPORTS/a\export $exported " ~/.zshrc
   done
-
-		set_aliases 'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
+	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER, e, exec, ranger " "$CONFIG_DIR/hypr/hyprland.conf"
+  set_aliases 'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
 
   source ~/.zshrc
 

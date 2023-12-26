@@ -1,0 +1,50 @@
+[global]
+  # display
+  monitor = 0
+  follow = mouse
+  width = 400
+  height = 300
+  origin = top-right
+  offset = 10x15
+  scale = 0
+  progress_bar = true
+  transparency = 90
+  padding = 10 
+  horizontal_padding = 10 
+
+
+  font = CaskydiaCove Nerd Font 12
+  line_height = 1 
+  format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+
+
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 32
+    icon_path = ~/.config/dunst/icons
+
+
+
+[urgency_low]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the "#" and following would be interpreted as a comment.
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 10
+    # Icon for notifications with low urgency, uncomment to enable
+    #default_icon = /path/to/icon
+
+[urgency_normal]
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 10
+    # Icon for notifications with normal urgency, uncomment to enable
+    #default_icon = /path/to/icon
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0

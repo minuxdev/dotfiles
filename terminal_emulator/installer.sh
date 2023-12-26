@@ -69,6 +69,9 @@ urxvt() {
 	yay -S rxvt-unicode-truecolor-wide-glyphs --noconfirm
 	sudo pacman -S urxvt-perls xorg-xrdb --noconfirm
 
+	sed -i ' /== EXPORTS/a\export TERMINAL=urxvt ' "$HOME/.zshrc"
+	sed -i ' /-- PROGRAMS EXECUTION --/a\ bind = SUPER, RETURN, exec, urxvt '"$CONFIG_DIR/hypr/hyprland.conf"
+
 	set_aliases 'xd="xrdb -merge ~/.Xdefaults"'
 
 	cp -rv "$BASE_DIR/.Xdefaults" ~/

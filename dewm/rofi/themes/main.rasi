@@ -24,7 +24,7 @@ mainbox {
 
 inputbar {
   padding: 20px;
-  children: ["prompt", "entry"];
+  children: ["entry"];
 }
 
 

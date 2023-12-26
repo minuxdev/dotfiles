@@ -20,6 +20,7 @@ waybar() {
 	sudo pacman -S waybar --noconfirm
 	cp -rv "$BASE_SRC_DIR/waybar" "$CONFIG_DIR/"
 
+	sed -i " / EXECUTION ON INIT --/a\ exec = waybar" "$CONFIG_DIR/hypr/hyprland.conf"
 	end_task
 }
 
@@ -27,6 +28,8 @@ _rofi() {
 	start_task 'ROFI'
 	sudo pacman -S rofi --noconfirm
 	cp -rv "$BASE_SRC_DIR/rofi" "$CONFIG_DIR/"
+
+	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER CONTROL, F, exec, firefox " "$CONFIG_DIR/hypr/hyprland.conf"
 
 	end_task
 }

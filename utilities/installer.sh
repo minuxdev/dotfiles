@@ -1,8 +1,9 @@
 #!/bin/bash
 
-BASE_DIR="$HOME/dotfiles/utilities"
 source "$HOME/dotfiles/progress_notes.sh"
 source "$HOME/dotfiles/scripts/set_aliases.sh"
+HYPR_FILE="$HOME/.config/hypr/hyprland.conf"
+SCRIPTS="$HOME/.config/scripts"
 
 generics() {
 	start_task 'GENERICS'
@@ -45,8 +46,8 @@ mtp() {
 
 monitoring() {
 	start_task 'MONITORING'
-	sudo pacman -S bpytop --noconfirm &&
-		sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.config/scripts/ ' ~/.zshrc
+	sudo pacman -S bpytop --noconfirm
+	sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.config/scripts/ ' ~/.zshrc
 	set_aliases 'top="bpytop"'
 	end_task
 }
@@ -56,13 +57,14 @@ screenshot() {
 	yay -S imlib2 --noconfirm
 
 	sudo pacman -S grim slurp --noconfirm
-	sed -i " /PROGRAMS CONTROL/a\ bind = , print, exec, $HOME/.config/scripts/print_screen.sh"
+	sed -i " /PROGRAMS EXECUTION/a\ bind = , print, exec, $SCRIPTS/screenshot" "$HYPR_FILE"
 	end_task
 }
 
 browsers() {
 	start_task 'BROWSERS'
 	sudo pacman -S firefox chromium --noconfirm
+	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER, M, exec, $SCRIPTS/drun.sh " "$HYPR_FILE"
 	end_task
 }
 
@@ -77,6 +79,7 @@ players() {
 notification() {
 	start_task 'NOTIFICATION'
 	sudo pacman -S dunst libnotify --noconfirm
+	cp -rv ~/dotfiles/utilities/dunst ~/.config/dunst/
 	end_task
 }
 
