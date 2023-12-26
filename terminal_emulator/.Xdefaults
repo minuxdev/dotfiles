@@ -1,0 +1,20 @@
+!! Appearence
+URxvt.background: [90]#f1fd19
+URxvt.foreground: #dedede
+
+
+!! Fonts
+URxvt.font: xft:CaskaydiaCove Nerd Font Mono,size:12, \
+xft:DejaVu Sans Mono:pixelsize=12,
+
+*antialias: true
+*dpi: 96
+
+
+URxvt.perl-ext-common: keyboard-select,url-select,clipboard
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped

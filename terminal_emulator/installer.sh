@@ -66,7 +66,7 @@ urxvt() {
 
 	start_task 'RXVT-UNICODE'
 
-	yay -S rxvt-unicode-truecolor-wide-glyphs --noconfirm
+	yay -S rxvt-unicode --noconfirm
 	sudo pacman -S urxvt-perls xorg-xrdb --noconfirm
 
 	sed -i ' /== EXPORTS/a\export TERMINAL=urxvt ' "$HOME/.zshrc"
@@ -138,9 +138,10 @@ wallpaper() {
 
 	cp -rv "$BASE_DIR/wallpapers" "$CONFIG_DIR"
 
+	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, w, exec, $CONFIG_DIR/scripts/wallpapers.sh" ~/.config/hypr/hyprland.conf
+
 	sed -i \
 		-e " / EXECUTION ON INIT --/a\exec = swww init" \
-		-e " / EXECUTION ON INIT --/a\exec = $CONFIG_DIR/scripts/wallpapers.sh" \
 		-e " / EXECUTION ON INIT --/a\exec = wal -R" ~/.config/hypr/hyprland.conf
 	printf "\n(cat ~/.cache/wal/sequences &)\nsource ~/.cache/wal/colors-tty.sh" >>~/.zshrc
 
