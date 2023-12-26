@@ -115,12 +115,12 @@ tmux() {
 
 	sudo pacman -S tmux --noconfirm
 
-	BINARIES="$HOME/.bin"
-	[ ! -d "$BINARIES" ] && mkdir "$BINARIES"
+	SCRIPTS="$HOME/.config/scripts"
+	[ ! -d "$SCRIPTS" ] && mkdir "$SCRIPTS"
 	cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
-	cp -rv "$BASE_DIR"/tmux/sessions/* "$BINARIES"
-	grep '.bin'$ "$HOME/.zshrc"
-	[ "$?" != 0 ] && sed -i " /== EXPORTS/a\export PATH=$BINARIES:$PATH " "$HOME/.zshrc"
+	cp -rv "$BASE_DIR"/tmux/sessions/* "$SCRIPTS"
+	grep 'scripts'$ "$HOME/.zshrc"
+	[ "$?" != 0 ] && sed -i " /== EXPORTS/a\export PATH=$SCRIPTS:$PATH " "$HOME/.zshrc"
 
 	$set_aliases 'tm="tmux"'
 
@@ -128,7 +128,7 @@ tmux() {
 }
 
 wallpaper() {
-	start_task 'WALPAPER'
+	start_task 'WALLPAPER'
 
 	sudo pacman -S python-pywal --noconfirm
 	yay -S swww --noconfirm

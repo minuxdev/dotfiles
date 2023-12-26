@@ -45,8 +45,8 @@ mtp() {
 
 monitoring() {
 	start_task 'MONITORING'
-	sudo pacman -S bpytop &&
-		sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.bin ' ~/.zshrc
+	sudo pacman -S bpytop --noconfirm &&
+		sed -i ' /EXPORTS/a\export PATH=$PATH:$HOME/.config/scripts/ ' ~/.zshrc
 	set_aliases 'top="bpytop"'
 	end_task
 }
@@ -56,8 +56,7 @@ screenshot() {
 	yay -S imlib2 --noconfirm
 
 	sudo pacman -S grim slurp --noconfirm
-	cp -rv "$BASE_DIR/print_screen.sh" "$HOME/.bin/"
-	sed -i " /PROGRAMS CONTROL/a\bind = , print, exec, $HOME/.bin/print_screen.sh"
+	sed -i " /PROGRAMS CONTROL/a\ bind = , print, exec, $HOME/.config/scripts/print_screen.sh"
 	end_task
 }
 
