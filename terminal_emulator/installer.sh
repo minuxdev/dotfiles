@@ -72,7 +72,7 @@ urxvt() {
 	sed -i ' /== EXPORTS/a\export TERMINAL=urxvt ' "$HOME/.zshrc"
 	sed -i ' /-- PROGRAMS EXECUTION --/a\ bind = SUPER, RETURN, exec, urxvt '"$CONFIG_DIR/hypr/hyprland.conf"
 
-	set_aliases 'xd="xrdb -merge ~/.Xdefaults"'
+	$set_aliases 'xd="xrdb -merge ~/.Xdefaults"'
 
 	cp -rv "$BASE_DIR/.Xdefaults" ~/
 	printf "\nclear" >>~/.zshrc
@@ -138,9 +138,10 @@ wallpaper() {
 
 	cp -rv "$BASE_DIR/wallpapers" "$CONFIG_DIR"
 
-	printf 'exec = swww init' >>~/.config/hypr/hyprland.conf
-	printf "exec = %s/scripts/wallpapers.sh" "$CONFIG_DIR" >>~/.config/hypr/hyprland.conf
-	printf "exec = wal -R" >>~/.config/hypr/hyprland.conf
+	sed -i \
+		-e " / EXECUTION ON INIT --/a\ exec = swww init" \
+		-e " / EXECUTION ON INIT --/a\ exec = $CONFIG_DIR/scripts/wallpapers.sh" \
+		-e " / EXECUTION ON INIT --/a\ exec = wal -R" ~/.config/hypr/hyprland.conf
 	printf "\n(cat ~/.cache/wal/sequences &)\nsource ~/.cache/wal/colors-tty.sh" >>~/.zshrc
 
 	end_task
