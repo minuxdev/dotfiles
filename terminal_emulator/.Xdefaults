@@ -39,7 +39,7 @@
 *.color15:            #fdf6e3
 
 URxvt.scrollBar:      false
-URxvt.internalBorder: 10 
+URxvt.internalBorder: 0 
 URxvt.depth:          24 
 Urxvt.cursorBlink:    true
 Urxvt.cursorUnderline:false
@@ -53,9 +53,9 @@ Urxvt.saveLines:      4096
 
 !! Fonts
 URxvt.font: \
-  xft:CaskaydiaCove Nerd Font Mono,size:12,\
+  xft:CaskaydiaCove Nerd Font Mono,size:12,pixelsize=16,\
   xft:DejaVu Sans Mono:pixelsize=12,\
-  xft:MesloLGS Nerd Font Mono:pixelsize=12,\
+  xft:MesloLGS Nerd Font Mono:pixelsize=16,\
   xft:Source Code Pro:pixelsize=12,\
 
 *antialias:           true
