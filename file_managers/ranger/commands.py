@@ -26,18 +26,3 @@ class pack(Command):
         command = f"atool -a {file} {selected_files} "
         self.fm.execute_console(command)
         self.fm.notify("%s were packed to %s" % selected_files % file)
-
-
-class wallpaper(Command):
-    def execute(self):
-        selected_image = self.fm.thistab.get_selection()[0]
-        if not selected_image:
-            self.fm.notify("No image selected.")
-            return
-
-        command = f""" shell
-        swww img {selected_image};
-        notify-send -u low -t 4000 \
-        '{selected_image} was set to background.';
-        wal -q -i {selected_image} """
-        self.fm.execute_console(command)

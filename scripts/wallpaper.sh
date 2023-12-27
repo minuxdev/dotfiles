@@ -2,9 +2,13 @@
 
 CONFIG_DIR=~/.config/wallpapers
 ROFI_THEME=~/.config/rofi/themes/
-
 source ~/.cache/wal/colors.sh
-selected=$(ls -1 "$CONFIG_DIR/" | rofi -dmenu -theme "$ROFI_THEME/wallpaper")
+
+if [ -z "$1" ]; then
+	selected=$(ls -1 "$CONFIG_DIR/" | rofi -dmenu -theme "$ROFI_THEME/wallpaper")
+else
+	selected="$1"
+fi
 
 if [ ! "$selected" ]; then
 	echo "No wallpaper selected!"
@@ -20,5 +24,5 @@ else
 		--transition-type=$transition_type \
 		--transition-duration=0.25 \
 		--transition-pos "$(hyprctl cursorpos)"
-
+	notify-send "Wallpaper" "$selected"
 fi
