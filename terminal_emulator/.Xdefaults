@@ -1,11 +1,14 @@
 !! Appearence
-URxvt.background: [90]#f1fd19
-URxvt.foreground: #dedede
+URxvt.background: [90]#333
+URxvt.foreground: #ddd
+URxvt.scrollBar: false
+Urxvt.saveLines: 4096
+
 
 
 !! Fonts
-URxvt.font: xft:CaskaydiaCove Nerd Font Mono,size:12, \
-xft:DejaVu Sans Mono:pixelsize=12,
+URxvt.font: xft:CaskaydiaCove Nerd Font Mono,size:11, \
+xft:DejaVu Sans Mono:pixelsize=11,
 
 *antialias: true
 *dpi: 96

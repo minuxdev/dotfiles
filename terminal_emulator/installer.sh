@@ -2,6 +2,7 @@
 
 CONFIG_DIR="$HOME/.config"
 BASE_DIR="$HOME/dotfiles/terminal_emulator"
+SCRIPTS="$HOME/.config/scripts"
 set_aliases="$HOME/dotfiles/scripts/set_aliases.sh"
 source "$HOME/dotfiles/progress_notes.sh"
 
@@ -102,7 +103,7 @@ nvm_installer() {
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 	grep 'NVM_DIR/nvm.sh' "$HOME/.zshrc"
 	[ ! "$?" = 0 ] && echo -e \
-		' export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || \
+		'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || \
   printf %s "${XDG_CONFIG_HOME}/nvm")" \n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >>"$HOME/.zshrc"
 	/usr/bin/zsh -i -c "\
   		source $HOME/.zshrc && \
@@ -118,7 +119,6 @@ tmux() {
 
 	sudo pacman -S tmux --noconfirm
 
-	SCRIPTS="$HOME/.config/scripts"
 	[ ! -d "$SCRIPTS" ] && mkdir "$SCRIPTS"
 	cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
 	cp -rv "$BASE_DIR"/tmux/sessions/* "$SCRIPTS"
@@ -143,15 +143,19 @@ wallpaper() {
 	sed -i \
 		-e " / EXECUTION ON INIT --/a\exec = swww init" \
 		-e " / EXECUTION ON INIT --/a\exec = wal -R" ~/.config/hypr/hyprland.conf
-	printf "\n(cat ~/.cache/wal/sequences &)\nsource ~/.cache/wal/colors-tty.sh" >>~/.zshrc
+	echo -e "(cat ~/.cache/wal/sequences)\nsource ~/.cache/wal/colors-tty.sh\nclear" >>~/.zshrc
 
 	end_task
 }
 
 sudo pacman -Sy
 
+[ ! -d "$SCRIPTS" ] && mkdir "$SCRIPTS"
+cp -rv "$HOME/dotfiles/scripts/" "$SCRIPTS"
+
 fonts
 zsh_installer
 urxvt
 nvm_installer
 tmux
+wallpaper
