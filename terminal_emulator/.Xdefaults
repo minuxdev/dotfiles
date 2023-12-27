@@ -1,23 +1,86 @@
 !! Appearence
-URxvt.background: [90]#333
-URxvt.foreground: #ddd
-URxvt.scrollBar: false
-Urxvt.saveLines: 4096
+! Colorscheme
+
+! special
+*.foreground:         #93a1a1
+*.background:         [90]#141c21
+*.cursorColor:        #afbfbf
+
+! black
+*.color0:             #263640
+*.color8:             #4a697d
+
+! red
+*.color1:             #d12f2c
+*.color9:             #fa3935
+
+! green
+*.color2:             #819400
+*.color10:            #a4bd00
+
+! yellow
+*.color3:             #b08500
+*.color11:            #d9a400
+
+! blue
+*.color4:             #2587cc
+*.color12:            #2ca2f5
+
+! magenta
+*.color5:             #696ebf
+*.color13:            #8086e8
+
+! cyan
+*.color6:             #289c93
+*.color14:            #33c5ba
+
+! white
+*.color7:             #bfbaac
+*.color15:            #fdf6e3
+
+URxvt.scrollBar:      false
+URxvt.internalBorder: 10 
+URxvt.depth:          24 
+Urxvt.cursorBlink:    true
+Urxvt.cursorUnderline:false
+
+
+
+!! Behabiour 
+Urxvt.saveLines:      4096
 
 
 
 !! Fonts
-URxvt.font: xft:CaskaydiaCove Nerd Font Mono,size:11, \
-xft:DejaVu Sans Mono:pixelsize=11,
+URxvt.font: \
+  xft:CaskaydiaCove Nerd Font Mono,size:12,\
+  xft:DejaVu Sans Mono:pixelsize=12,\
+  xft:MesloLGS Nerd Font Mono:pixelsize=12,\
+  xft:Source Code Pro:pixelsize=12,\
 
-*antialias: true
-*dpi: 96
+*antialias:           true
+*dpi:                 96
+
+URxvt.lineSpace:      0
+URxvt.letterSpace:    -1
 
 
-URxvt.perl-ext-common: keyboard-select,url-select,clipboard
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.perl-ext-common: defalt,keyboard-select,url-select,clipboard,selection-to-clipboard,-confirm-paste,
+
+!! Keybindings
+! Copy and Paste
+URxvt.iso14755:           false
+URxvt.keysym.M-Escape:    perl:keyboard-select:activate
+URxvt.keysym.M-s:         perl:keyboard-select:search
+URxvt.keysym.M-u:         perl:url-select:select_next
+URxvt.keysym.M-c:         perl:clipboard:copy
+URxvt.keysym.M-v:         perl:clipboard:paste
+URxvt.keysym.M-C-v:       perl:clipboard:paste_escaped
+
+! Navigations
+URxvt.keysym.S-Up:        command:\033]720;1\007
+URxvt.keysym.S-Down:      command:\033]721;1\007
+URxvt.keysym.C-Up:        \033[1;5A
+URxvt.keysym.C-Down:      \033[1;5B
+URxvt.keysym.C-Right:     \033[1;5C
+URxvt.keysym.C-Left:      \033[1;5D
