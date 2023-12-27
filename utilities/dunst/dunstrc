@@ -1,50 +1,46 @@
 [global]
-  # display
   monitor = 0
   follow = mouse
   width = 400
   height = 300
-  origin = top-right
-  offset = 10x15
-  scale = 0
-  progress_bar = true
-  transparency = 90
+  origin = top-right 
+  offset = 10x10
   padding = 10 
-  horizontal_padding = 10 
+  frame_width = 0
+  horizontal_padding = 10
+  gap_size = 8
+  notification_limit = 4
 
-
-  font = CaskydiaCove Nerd Font 12
+  font = CaskydiaCove Nerd Font Mono 11
   line_height = 1 
   format = "<b>%s</b>\n%b"
-    alignment = left
-    vertical_alignment = center
+  alignment = left
+  vertical_alignment = center
+  stack_duplicates = false
+  word_wrap = true
 
 
-    icon_position = left
-    min_icon_size = 32
-    max_icon_size = 32
-    icon_path = ~/.config/dunst/icons
+  icon_position = left
+  min_icon_size = 32
+  max_icon_size = 32
+  icon_path = ~/.config/dunst/icons
 
-
+  browser = firefox -new-tab
+  always_run_script = true
+  title = Dunst
+  class = Dunst
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
-    timeout = 10
-    # Icon for notifications with low urgency, uncomment to enable
-    #default_icon = /path/to/icon
+    background = "#89b4fa"
+    foreground = "#181825"
+    timeout = 4
 
 [urgency_normal]
-    background = "#285577"
-    foreground = "#ffffff"
-    timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
-    #default_icon = /path/to/icon
+    background = "#cba6f7"
+    foreground = "#181825"
+    timeout = 4
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#f38ba8"
+    foreground = "#181825"
     timeout = 0
