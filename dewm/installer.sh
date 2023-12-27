@@ -29,7 +29,7 @@ _rofi() {
 	sudo pacman -S rofi --noconfirm
 	cp -rv "$BASE_SRC_DIR/rofi" "$CONFIG_DIR/"
 
-	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER CONTROL, F, exec, firefox " "$CONFIG_DIR/hypr/hyprland.conf"
+	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, m, exec, rofi -show drun " "$CONFIG_DIR/hypr/hyprland.conf"
 
 	end_task
 }
