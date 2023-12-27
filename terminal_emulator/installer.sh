@@ -83,6 +83,16 @@ urxvt() {
 	end_task
 }
 
+ssh() {
+	start_task 'SSH'
+
+	cp -rv "$BASE_DIR/.ssh" ~/
+	sudo sed -i '/Port 22/ s/#//' /etc/ssh/ssh_config
+	sudo systemctl enable --now sshd
+
+	end_task
+}
+
 fuzzy_finder() {
 	start_task 'FUZZY_FINDER'
 
@@ -140,7 +150,7 @@ wallpaper() {
 
 	cp -rv "$BASE_DIR/wallpapers" "$CONFIG_DIR"
 
-	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, w, exec, $CONFIG_DIR/scripts/wallpapers.sh" ~/.config/hypr/hyprland.conf
+	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, w, exec, $CONFIG_DIR/scripts/wallpaper.sh" ~/.config/hypr/hyprland.conf
 
 	sed -i \
 		-e " / EXECUTION ON INIT --/a\exec = swww init" \
@@ -160,6 +170,7 @@ cp -rv "$HOME/dotfiles/scripts/" "$SCRIPTS"
 fonts
 zsh_installer
 urxvt
+ssh
 nvm_installer
 tmux
 wallpaper
