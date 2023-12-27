@@ -20,7 +20,7 @@ ranger () {
   do 
     sed -i " /EXPORTS/a\export $exported " ~/.zshrc
   done
-	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, e, exec, $TERM -e ranger " "$CONFIG_DIR/hypr/hyprland.conf"
+	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, e, exec, $TERMINAL -e ranger " "$CONFIG_DIR/hypr/hyprland.conf"
   set_aliases 'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
 
   source ~/.zshrc

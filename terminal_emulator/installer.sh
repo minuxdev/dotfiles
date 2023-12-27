@@ -70,13 +70,15 @@ urxvt() {
 	yay -S rxvt-unicode --noconfirm
 	sudo pacman -S urxvt-perls xorg-xrdb --noconfirm
 
-	sed -i ' /== EXPORTS/a\export TERMINAL=urxvt ' "$HOME/.zshrc"
-	sed -i ' /-- PROGRAMS EXECUTION --/a\bind = SUPER, RETURN, exec, urxvt '"$CONFIG_DIR/hypr/hyprland.conf"
+	sed -i ' /== EXPORTS ==/a\TERMINAL=urxvt ' ~/.zshrc
+
+	sed -i \
+		-e ' /-- PROGRAMS EXECUTION --/a\bind = SUPER, RETURN, exec, urxvt ' \
+		-e ' /EXECUTION ON INIT--/a\exec-once = urxvt ' "$CONFIG_DIR/hypr/hyprland.conf"
 
 	$set_aliases 'xd="xrdb -merge ~/.Xdefaults"'
 
 	cp -rv "$BASE_DIR/.Xdefaults" ~/
-	printf "\nclear" >>~/.zshrc
 
 	end_task
 }
@@ -143,14 +145,16 @@ wallpaper() {
 	sed -i \
 		-e " / EXECUTION ON INIT --/a\exec = swww init" \
 		-e " / EXECUTION ON INIT --/a\exec = wal -R" ~/.config/hypr/hyprland.conf
-	echo -e "(cat ~/.cache/wal/sequences)\nsource ~/.cache/wal/colors-tty.sh\nclear" >>~/.zshrc
+	echo -e "(cat ~/.cache/wal/sequences)\nsource ~/.cache/wal/colors-tty.sh\nclear\n" >>~/.zshrc
+
+	/usr/bin/zsh -i -c "source ~/.zshrc"
+	(wal -i "$CONFIG_DIR/wallpapers/" &)
 
 	end_task
 }
 
 sudo pacman -Sy
 
-[ ! -d "$SCRIPTS" ] && mkdir "$SCRIPTS"
 cp -rv "$HOME/dotfiles/scripts/" "$SCRIPTS"
 
 fonts
