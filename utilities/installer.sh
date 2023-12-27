@@ -7,10 +7,8 @@ SCRIPTS="$HOME/.config/scripts"
 
 generics() {
 	start_task 'GENERICS'
-	GENERICS=(
-		lsd gdu man tldr unzip rsync less
-	)
-	sudo pacman -Sy "${GENERICS[*]}" --noconfirm
+
+	sudo pacman -S lsd gdu man tldr unzip rsync less --noconfirm
 
 	ALIASES=(
 		'ls="lsd"'
@@ -30,7 +28,7 @@ bluetooth() {
   /PairableTimeout/ { print "PairableTimeout = 0" };
   /ControllerMode/ { print "ControllerMode = bredr" };
   /^(A|#A)utoEnable/ { print "AutoEnable = true" };
- a/DiscoverableTimeout/ {print "DiscoverableTimeout = 0" }; 1
+ /DiscoverableTimeout/ {print "DiscoverableTimeout = 0" }; 1
   ' /etc/bluetooth/main.conf
 
 	systemctl enable --now bluetooth.service
@@ -57,14 +55,17 @@ screenshot() {
 	yay -S imlib2 --noconfirm
 
 	sudo pacman -S grim slurp --noconfirm
-	sed -i " /PROGRAMS EXECUTION/a\ bind = , print, exec, $SCRIPTS/screenshot" "$HYPR_FILE"
+	sed -i " /PROGRAMS EXECUTION/a\bind = , print, exec, $SCRIPTS/screenshot" "$HYPR_FILE"
 	end_task
 }
 
 browsers() {
 	start_task 'BROWSERS'
 	sudo pacman -S firefox chromium --noconfirm
-	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER, M, exec, $SCRIPTS/drun.sh " "$HYPR_FILE"
+	sed -i \
+		-e " /-- PROGRAMS EXECUTION --/a\bind = SUPER SHIFT, F, exec, firefox -new-tab " \
+		-e " /-- PROGRAMS EXECUTION --/a\bind = SUPER SHIFT, C, exec, chromium -new-tab " \
+		"$HYPR_FILE"
 	end_task
 }
 
@@ -76,12 +77,20 @@ players() {
 	end_task
 }
 
-notification() {
+notifications() {
 	start_task 'NOTIFICATION'
 	sudo pacman -S dunst libnotify --noconfirm
 	cp -rv ~/dotfiles/utilities/dunst ~/.config/dunst/
+
+	sed -i \
+		-e " /-- PROGRAMS EXECUTION --/a\bind = CONTROL, SPACE, exec, dunstctl close " \
+		-e " /-- PROGRAMS EXECUTION --/a\bind = CONTROL SHIFT, SPACE, exec, dunstctl close_all " \
+		"$HYPR_FILE"
+
 	end_task
 }
+
+sudo pacman -Sy
 
 generics
 bluetooth
@@ -89,4 +98,5 @@ mtp
 monitoring
 screenshot
 browsers
-notificatioj
+players
+notifications
