@@ -102,7 +102,7 @@ fuzzy_finder() {
 nvm_installer() {
 	start_task 'NVM_INSTALLER'
 
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 	grep 'NVM_DIR/nvm.sh' "$HOME/.zshrc"
 	[ ! "$?" = 0 ] && echo -e \
 		'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || \
