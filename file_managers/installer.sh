@@ -12,7 +12,7 @@ ranger () {
   dependencies=(atool zip libcaca mediainfo poppler ueberzug jq)
 
   sudo pacman -S ranger --noconfirm
-  sudo pacman -S $dependencies[*] --noconfirm
+  sudo pacman -S "${dependencies[*]}" --noconfirm
   cp -rv "$BASE_DIR/ranger" "$CONFIG_DIR" 
 
   VALUES=('EDITOR=nvim' 'SHELL=/usr/bin/zsh')
@@ -20,7 +20,7 @@ ranger () {
   do 
     sed -i " /EXPORTS/a\export $exported " ~/.zshrc
   done
-	sed -i " /-- PROGRAMS EXECUTION --/a\ bind = SUPER, e, exec, $TERM -e ranger " "$CONFIG_DIR/hypr/hyprland.conf"
+	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, e, exec, $TERM -e ranger " "$CONFIG_DIR/hypr/hyprland.conf"
   set_aliases 'cat="bat --theme=\"TwoDark\" --style=\"numbers,changes,header\""'
 
   source ~/.zshrc

@@ -85,7 +85,7 @@
     },
 
   "hyprland/window": {
-    "format" : "{title} {app_id}",
+    "format" : "{}",
     "separate-outputs": true,
     "min-length": 80,
     "max-length": 80,
@@ -93,17 +93,15 @@
     },
 
   "user": {
-       "format": " | {user}",
+       "format": "  {user}",
         "interval": 1,
-        "height": 24,
-        "width": 24,
         "icon": true,
     },
 
     "custom/power": {
          "format": "",
          "tooltip": false,
-         "on-click": "$HOME/.config/rofi/scripts/powermenu.sh",
+         "on-click": "$HOME/.config/scripts/powermenu.sh",
     },
 
     "custom/chatgpt": {
@@ -112,7 +110,7 @@
     },
     "custom/shares": {
       "format": "󰆼",
-      "on-click": "$HOME/.bin/mount-shares -p root -u admin",
+      "on-click": "$HOME/.config/scripts/mount-shares -p root -u admin",
     },
 
 }

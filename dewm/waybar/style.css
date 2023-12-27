@@ -13,7 +13,7 @@
   color: @maroon;
   background: @base;
   margin-left: 10px;
-  padding: 2px 16px;
+  padding: 0px 16px;
 }
 
 window#waybar {
@@ -46,7 +46,7 @@ button {
 }
 #workspaces {
   background-color: @surface0;
-  padding: 2px 4px;
+  padding: 0px 4px;
 }
 
 /* MIDDLE MODULE */
@@ -63,7 +63,7 @@ button {
 #bluetooth {
   color: @mantle;
   background-color: @sky;
-  padding: 2px 8px;
+  padding: 0px 8px;
 }
 
 #temperature,
@@ -71,7 +71,7 @@ button {
 #memory {
   color: @mantle;
   background-color: @maroon;
-  padding: 2px 8px;
+  padding: 0px 8px;
 }
 
 #keyboard-state,
@@ -79,12 +79,12 @@ button {
 #clock {
   color: @mantle;
   background-color: @mauve;
-  padding: 2px 8px;
+  padding: 0px 8px;
 }
 
 #custom-power {
   background-color: @base;
   color: @red;
   margin-right: 10px;
-  padding: 2px 16px;
+  padding: 0px 16px;
 }
