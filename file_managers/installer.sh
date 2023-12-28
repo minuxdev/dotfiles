@@ -9,10 +9,10 @@ SCRIPTS="$HOME/.config/scripts"
 ranger () {
   start_task 'RANGER'
 
-  dependencies=(atool zip libcaca mediainfo poppler ueberzug jq)
+  dependencies=(trash-cli atool zip bat feh libcaca mediainfo poppler ueberzug jq)
 
   sudo pacman -S ranger --noconfirm
-  sudo pacman -S "${dependencies[*]}" --noconfirm
+  sudo pacman -S "${dependencies[@]}" --noconfirm
   cp -rv "$BASE_DIR/ranger" "$CONFIG_DIR" 
 
   VALUES=('EDITOR=nvim' 'SHELL=/usr/bin/zsh')

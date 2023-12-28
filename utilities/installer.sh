@@ -65,6 +65,7 @@ browsers() {
 	sed -i \
 		-e " /-- PROGRAMS EXECUTION --/a\bind = SUPER SHIFT, F, exec, firefox -new-tab " \
 		-e " /-- PROGRAMS EXECUTION --/a\bind = SUPER SHIFT, C, exec, chromium -new-tab " \
+		-e " /Window-Rules/a\windowrulev2 = float,class:(firefox),title:(Library) " \
 		"$HYPR_FILE"
 	end_task
 }
