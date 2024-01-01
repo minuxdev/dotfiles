@@ -10,13 +10,9 @@ _yay() {
 		makepkg -si
 }
 
-firmwares() {
-	yay -S mkinitcpio-firmware --noconfirm
-}
-
 audio() {
 	sudo pacman -Sy \
-		pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol playerctl cifs-utils --noconfirm
+		pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol playerctl --noconfirm
 
 	yay -S pulseaudio-ctl --noconfirm
 }
@@ -26,6 +22,5 @@ others() {
 }
 
 _yay
-firmwares
 audio
 others

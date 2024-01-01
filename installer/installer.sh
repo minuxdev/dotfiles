@@ -107,7 +107,7 @@ e.g. nvme0n1p1
 	# install system
 	printf "\n\nBeginning the system installation\n"
 	pacstrap /mnt base-devel linux linux-firmware systemd-sysvcompat iputils \
-		git grub efibootmgr ntfs-3g vim iproute2 iwd --noconfirm
+		libxcrypt-compat cifs-utils git grub efibootmgr ntfs-3g vim iproute2 iwd --noconfirm
 
 	[ $? = 0 ] || (
 		echo "SORRY! THE INSTALLATION FAILED!"
