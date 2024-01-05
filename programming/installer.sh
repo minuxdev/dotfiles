@@ -63,10 +63,10 @@ _docker () {
 	end_task
 }
 
-_staruml () {
-  start_task 'STARUML'
+dbeaber () {
+  start_task 'DBEAVER'
 
-  yay -S staruml --noconfirm
+  sudo pacman -S dbeaver --noconfirm
 
   end_task
 }
@@ -86,15 +86,10 @@ _postgresql () {
   sudo su - postgres
   systemctl enable --now postgres
 
+  ALIASES=('dcu="docker-compose up"' 'dcd="docker-compose down"')
+  $set_aliases "${ALIASES[@]}"
+
 	end_task
-}
-sqlite3() {
-  start_task "DB SQLITE"
-
-  sudo pacman -S sqlitebrowser --noconfirm
-  set_aliases 'sql="sqlitebrowser"'
-
-  end_task
 }
 
 sudo pacman -Sy python-pipenv
@@ -102,9 +97,8 @@ npm_packages
 text_editors
 nvim
 _docker
-_staruml
 _postgresql
-sqlite3
+dbeaber
 
 ALIASES=(
   'da="python manage.py"'
