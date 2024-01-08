@@ -1,10 +1,10 @@
 #!/bin/bash
 
-server_ip="192.168.1.100"
 user='stream'
 passwd='luso'
-database=~/shares
-CREDENTIALS=~/.access
+database="$HOME/shares"
+server_ip='192.168.1.100'
+CREDENTIALS="$HOME/.access"
 
 usage() {
 	printf "
@@ -56,7 +56,6 @@ while getopts "u:p:s:d" options; do
 	[ -f $CREDENTIALS ] && rm $CREDENTIALS
 done
 
-# Check if $server_ip is reacheable, exit otherwise
 ping -c1 -W1 -q "$server_ip"
 
 if [ "$?" = 0 ]; then
@@ -71,12 +70,10 @@ if [ "$?" = 0 ]; then
 
 	# MOUNT ALL CIFS DRIVERS
 	mkdir -p "$database"/{d_rec,stream,private}
-	sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/stream" "$database/stream"
-	sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/private $database/private"
-	sudo mount -t cifs -o "credentials=$HOME/.access,uid=$(id -u),gid=$(id -g),forceuid,forcegid,noserverino" "//$server_ip/d_rec $database/d_rec"
-	notify-send -u low -t 3000 "You are connected to $server_ip."
+
+	sudo mount -t cifs -o credentials="$CREDENTIALS,uid=$(id -u),gid=$(id -g),noserverino,forceuid,forcegid" "//$server_ip/private" "$HOME/shares/private"
+	sudo mount -t cifs -o credentials="$CREDENTIALS,uid=$(id -u),gid=$(id -g),noserverino,forceuid,forcegid" "//$server_ip/d_rec" "$HOME/shares/d_rec"
+	sudo mount -t cifs -o credentials="$CREDENTIALS,uid=$(id -u),gid=$(id -g),noserverino,forceuid,forcegid" "//$server_ip/stream" "$HOME/shares/stream"
 else
-	notify-send -u low -t 3000 "$server_ip is not reacheable."
-	#echo "󱙀"
 	exit
 fi
