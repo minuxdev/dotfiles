@@ -9,7 +9,8 @@ npm_packages ()
   start_task 'NPM PACKAGES'
 
   sudo npm install -g live-server 
-  sudo npm install -g sass
+  sudo npm install -g sass 
+  sudo npm install -g vercel@latest
 
   $set_aliases 'lvs="live-server" "$1"'
 
