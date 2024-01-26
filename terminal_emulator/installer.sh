@@ -45,10 +45,10 @@ zsh_installer() {
 
 	PLUGINS=(
 		'rupa/z'
-		'Aloxaf/fzf-tab'
 		'marlonrichert/zsh-autocomplete'
 		'marlonrichert/zsh-autosuggestions'
 		'zsh-users/zsh-syntax-highlighting'
+		'Aloxaf/fzf-tab'
 	)
 
 	for plugin in "${PLUGINS[@]}"; do
@@ -70,11 +70,11 @@ urxvt() {
 	yay -S rxvt-unicode --noconfirm
 	sudo pacman -S urxvt-perls xorg-xrdb --noconfirm
 
-	sed -i ' /== EXPORTS ==/a\TERMINAL=urxvt ' ~/.zshrc
+	sed -i ' /== EXPORTS ==/a\export TERMINAL=urxvt ' ~/.zshrc
 
 	sed -i \
 		-e ' /-- PROGRAMS EXECUTION --/a\bind = SUPER, RETURN, exec, urxvt ' \
-		-e ' /EXECUTION ON INIT--/a\exec-once = urxvt ' "$CONFIG_DIR/hypr/hyprland.conf"
+		-e ' /EXECUTION ON INIT --/a\exec-once = urxvt ' "$CONFIG_DIR/hypr/hyprland.conf"
 
 	$set_aliases 'xd="xrdb -merge ~/.Xdefaults"'
 

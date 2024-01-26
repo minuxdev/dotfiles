@@ -93,6 +93,17 @@ _postgresql () {
 	end_task
 }
 
+
+virtualenvs() {
+  start_task "VIRTUALENVS"
+  
+  sudo pacman -S python-virtualenv python-virtualenvwrapper --noconfirm
+  sed -i "/ EXPORTS /a\export WORKON_HOME=\"$HOME/.virtualenvs\"" ~/.zshrc
+  echo -e "\nsource /usr/bin/virtualenvwrapper_lazy.sh" >> ~/.zshrc
+
+	end_task
+}
+
 sudo pacman -Sy python-pipenv
 npm_packages
 text_editors
@@ -100,6 +111,7 @@ nvim
 _docker
 _postgresql
 dbeaber
+virtualenvs
 
 ALIASES=(
   'da="python manage.py"'
