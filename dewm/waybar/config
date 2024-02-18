@@ -57,6 +57,8 @@
     "temperature": {
       "format": "{}°C ",
       "interval": 2,
+      "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon/",
+      "input-filename": "temp2_input",
     },
 
     "cpu": {
