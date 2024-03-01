@@ -13,7 +13,7 @@ ranger () {
 
   sudo pacman -S ranger --noconfirm
   sudo pacman -S "${dependencies[@]}" --noconfirm
-  cp -rv "$BASE_DIR/ranger" "$CONFIG_DIR" 
+  sudo cp -rv "$BASE_DIR/ranger" /etc/ 
 
   VALUES=('EDITOR=nvim' 'SHELL=/usr/bin/zsh')
   for exported in "${VALUES[@]}"

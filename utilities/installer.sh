@@ -8,7 +8,7 @@ SCRIPTS="$HOME/.config/scripts"
 generics() {
 	start_task 'GENERICS'
 
-	sudo pacman -S lsd gdu man tldr unzip rsync less --noconfirm
+	sudo pacman -S lsd gdu man tldr unrar unzip rsync less --noconfirm
 
 	ALIASES=(
 		'ls="lsd"'
