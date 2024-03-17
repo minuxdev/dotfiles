@@ -5,7 +5,7 @@
     "modules-left": ["user", "hyprland/workspaces"],
     "modules-center": [ "hyprland/window"],
     "modules-right": [
-      "custom/chatgpt", "custom/shares",
+      "custom/ranger","custom/chatgpt", "custom/shares",
       "network", "bluetooth", 
       "temperature", "cpu", "memory",
       "keyboard-state", "pulseaudio", "clock", "custom/power"
@@ -40,11 +40,17 @@
     },
 
     "network": {
-      "format": "",
-      "format-ethernet": "",
-      "format-disconnected": "",
-      "tootip-format": "{ifname}",
-      "tootip-format-ethernet": "{ifname} ",
+      "interface": "wlan0",
+      "format": "{ifname}",
+      "format-wifi": "{essid}",
+      "format-ethernet": "{ifname} ",
+      "format-disconnected": "",
+      "tooltip-format": "{ifname}",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+      "tooltip-format-ethernet": "{ifname} ",
+      "tooltip-format-disconnected": "Disconnected",
+      "max-length": 30,
+      "on-click": "iwctl station wlan0 scan",
     },
 
     "bluetooth": {
@@ -113,6 +119,10 @@
     "custom/shares": {
       "format": "󰆼",
       "on-click": "$HOME/.config/scripts/mount-shares -p root -u admin",
+    },
+    "custom/ranger": {
+      "format": "",
+      "on-click": "$TERMINAL -e ranger",
     },
 
 }
