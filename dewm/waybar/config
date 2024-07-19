@@ -2,8 +2,8 @@
 {
    "layer": "top",
     "height": "24",
-    "modules-left": ["user", "hyprland/workspaces"],
-    "modules-center": [ "hyprland/window"],
+    "modules-left": [ "user", "hyprland/workspaces" ],
+    "modules-center": [ "hyprland/window" ],
     "modules-right": [
       "custom/ranger","custom/chatgpt", "custom/shares",
       "network", "bluetooth", 
@@ -101,7 +101,7 @@
     },
 
   "user": {
-       "format": "  {user}",
+       "format": "  ",
         "interval": 1,
         "icon": true,
     },

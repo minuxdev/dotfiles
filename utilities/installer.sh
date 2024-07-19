@@ -10,13 +10,8 @@ generics() {
 
 	sudo pacman -S lsd gdu man tldr unrar unzip rsync less --noconfirm
 
-	ALIASES=(
-		'ls="lsd"'
-		'la="lsd -a"'
-		'll="lsd -la"'
-		'sf="source $HOME/.zshrc"'
-	)
-	set_aliases "${ALIASES[@]}"
+	set_aliases 'sf="source $HOME/.zshrc"'
+  { echo -e  "\n\n"; echo 'ls="lsd"'; echo 'la="lsd -a"'; echo 'll="lsd -la"'; } >> "$HOME/.zshrc"
 
 	end_task
 }
@@ -83,10 +78,10 @@ notifications() {
 	sudo pacman -S dunst libnotify --noconfirm
 	cp -rv ~/dotfiles/utilities/dunst ~/.config/dunst/
 
-	sed -i \
-		-e " /-- PROGRAMS EXECUTION --/a\bind = CONTROL, SPACE, exec, dunstctl close " \
-		-e " /-- PROGRAMS EXECUTION --/a\bind = CONTROL SHIFT, SPACE, exec, dunstctl close_all " \
-		"$HYPR_FILE"
+#	sed -i \
+#		-e " /-- PROGRAMS EXECUTION --/a\bind = CONTROL, SPACE, exec, dunstctl close " \
+#		-e " /-- PROGRAMS EXECUTION --/a\bind = CONTROL SHIFT, SPACE, exec, dunstctl close_all " \
+#		"$HYPR_FILE"
 
 	end_task
 }

@@ -12,7 +12,7 @@ fonts() {
 	FONTS_DIR="$HOME/.fonts/"
 	[ ! -d "$FONTS_DIR" ] && mkdir "$FONTS_DIR"
 	cp -rv "$BASE_DIR/fonts/" "$FONTS_DIR"
-	fc-cache fc-list | awk ' /(Space|Roboto)/ '
+	fc-cache fc-list | awk ' /(Lilex|Space|Roboto)/ '
 
 	end_task
 }
@@ -63,22 +63,17 @@ zsh_installer() {
 	end_task
 }
 
-urxvt() {
+alacritty() {
 
-	start_task 'RXVT-UNICODE'
+	start_task 'ALACRITTY'
 
-	yay -S rxvt-unicode --noconfirm
-	sudo pacman -S urxvt-perls xorg-xrdb --noconfirm
+	sudo pacman -S alacritty --noconfirm
 
-	sed -i ' /== EXPORTS ==/a\export TERMINAL=urxvt ' ~/.zshrc
-
+	cp -rv "$BASE_DIR/alacritty" "$CONFIG_DIR"
+	sed -i ' /== EXPORTS ==/a\export TERMINAL=alacritty ' ~/.zshrc
 	sed -i \
-		-e ' /-- PROGRAMS EXECUTION --/a\bind = SUPER, RETURN, exec, urxvt ' \
-		-e ' /EXECUTION ON INIT --/a\exec-once = urxvt ' "$CONFIG_DIR/hypr/hyprland.conf"
-
-	$set_aliases 'xd="xrdb -merge ~/.Xdefaults"'
-
-	cp -rv "$BASE_DIR/.Xdefaults" ~/
+		-e ' /-- PROGRAMS EXECUTION --/a\bind = SUPER, RETURN, exec, alacritty ' \
+		-e ' /EXECUTION ON INIT --/a\exec-once = alacritty ' "$CONFIG_DIR/hypr/hyprland.conf"
 
 	end_task
 }
@@ -134,7 +129,7 @@ tmux() {
 	[ ! -d "$SCRIPTS" ] && mkdir "$SCRIPTS"
 	cp -rv "$BASE_DIR/tmux" "$CONFIG_DIR"
 	cp -rv "$BASE_DIR"/tmux/sessions/* "$SCRIPTS"
-	grep 'scripts'$ "$HOME/.zshrc"
+	grep 'scripts/'$ "$HOME/.zshrc"
 	[ "$?" != 0 ] && sed -i " /== EXPORTS/a\export PATH=$SCRIPTS:$PATH " "$HOME/.zshrc"
 
 	$set_aliases 'tm="tmux"'
@@ -145,21 +140,11 @@ tmux() {
 wallpaper() {
 	start_task 'WALLPAPER'
 
-	sudo pacman -S python-pywal --noconfirm
 	yay -S swww --noconfirm
-
 	cp -rv "$BASE_DIR/wallpapers" "$CONFIG_DIR"
-
 	sed -i " /-- PROGRAMS EXECUTION --/a\bind = SUPER, w, exec, $CONFIG_DIR/scripts/wallpaper.sh" ~/.config/hypr/hyprland.conf
-
-	sed -i \
-		-e " / EXECUTION ON INIT --/a\exec = swww init" \
-		-e " / EXECUTION ON INIT --/a\exec = wal -R" ~/.config/hypr/hyprland.conf
-	echo -e "(cat ~/.cache/wal/sequences)\nsource ~/.cache/wal/colors-tty.sh\nclear\n" >>~/.zshrc
-
+	sed -i " / EXECUTION ON INIT --/a\exec = swww init " >>~/.zshrc
 	/usr/bin/zsh -i -c "source ~/.zshrc"
-	(wal -i "$CONFIG_DIR/wallpapers/" &)
-
 	end_task
 }
 
@@ -169,7 +154,7 @@ cp -rv "$HOME/dotfiles/scripts/" "$SCRIPTS"
 
 fonts
 zsh_installer
-urxvt
+alacritty
 ssh
 nvm_installer
 tmux

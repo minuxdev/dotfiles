@@ -18,7 +18,7 @@ set.laststatus = 2
 set.autowrite = true
 set.autoread = true
 set.list = true
-set.showbreak = "↪"
+--set.showbreak = "↪"
 set.fillchars = "vert: "
 
 -- Commands
@@ -32,23 +32,6 @@ vim.cmd([[
 ]])
 
 -- Show characters
-vim.cmd([[
-  set listchars=eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,tab:•→
-]])
-
--- Python specific sets
-local filetype = vim.bo.filetype
-if filetype == "python" then
-	vim.cmd([[
-    let python_highlight_all = 1
-    au Filetype python
-    \ setlocal tabstop=4 |
-    \ setlocal softtabstop=4 |
-    \ setlocal shiftwidth=4 |
-    \ setlocal textwidth=79 |
-    \ setlocal expandtab |
-    \ setlocal autoindent |
-    \ setlocal fileformat=unix |
-    \ setlocal colorcolumn=80 |
-  ]])
-end
+--vim.cmd([[
+--set listchars=eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,tab:•→
+--]])

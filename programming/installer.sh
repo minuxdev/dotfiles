@@ -45,33 +45,6 @@ nvim ()
 	end_task
 }
 
-_docker () {
-  start_task 'DOCKER AND DOCKER DESKTOP'
-  
-  # Install docker 
-  sudo pacman -S docker --noconfirm && sudo usermod -aG docker $USER 
-
-  sudo curl -L \
-  "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" \
-  -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
-
-  ln -s /usr/lib/libcrypt.so /usr/lib/libcrypt.so.1
-
-  printf "Docker Version: `docker -v`\ndocker-compose version: `docker-compose --version`"
-  printf '%c' "Docker and docker-compose installed successfully. You need to reboot the system."
-  $set_aliases 'doc="docker-compose"'
-
-	end_task
-}
-
-dbeaber () {
-  start_task 'DBEAVER'
-
-  sudo pacman -S dbeaver --noconfirm
-
-  end_task
-}
-
 _postgresql () {
   start_task "POSTGRES"
 
@@ -86,9 +59,6 @@ _postgresql () {
   "
   sudo su - postgres
   systemctl enable --now postgres
-
-  ALIASES=('dcu="docker-compose up"' 'dcd="docker-compose down"')
-  $set_aliases "${ALIASES[@]}"
 
 	end_task
 }
@@ -108,9 +78,7 @@ sudo pacman -Sy python-pipenv
 npm_packages
 text_editors
 nvim
-_docker
 _postgresql
-dbeaber
 virtualenvs
 
 ALIASES=(
@@ -124,7 +92,6 @@ ALIASES=(
   'ga="git add"'
   'gc="git commit -m"'
   'gub="git checkout %s -- %s" "$1" "$2"'
-  'uml="staruml"'
 )
 
 $set_aliases "${ALIASES[@]}"

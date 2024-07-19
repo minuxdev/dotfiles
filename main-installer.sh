@@ -17,7 +17,7 @@ Q. EXIT
 ---------------------------------------
 Choice: 
 "
-	read CHOICE
+	read -r  CHOICE
 	case $CHOICE in
 	1)
 		~/dotfiles/networking/installer.sh
@@ -54,9 +54,9 @@ Choice:
 			~/dotfiles/programming/installer.sh
 		;;
 	q | Q)
-		printf "
-\nThank you for using this script. \n
-Feel free to make comments here: minux.midi@gmail.com\n"
+		printf """
+Thank you for using this script.
+Feel free to make comments here: minux.midi@gmail.com\n"""
 		exit
 		;;
 	*)

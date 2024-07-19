@@ -5,6 +5,7 @@ BASE_DIR="$HOME/dotfiles/networking"
 
 network() {
 	start_task 'NETWORK CONFIG'
+  sudo chmod 0644 -R "$BASE_DIR/configs/"
 	sudo cp -r "$BASE_DIR/configs/network" /etc/systemd/
 	sudo cp -r "$BASE_DIR/configs/resolv.conf" /etc/
 	sudo systemctl enable --now systemd-networkd
@@ -13,7 +14,7 @@ network() {
 	sudo systemctl status systemd-networkd
 	sleep 2
 	ping -c2 -W2 google.com
-	sudo pacman -S cifs-utils --noconfirm
+	sudo pacman -S cifs-utils ethtool --noconfirm
 
 	end_task
 }

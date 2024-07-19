@@ -14,20 +14,7 @@ local packer_bootstrap = ensure_packer()
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
-	use("nvim-tree/nvim-tree.lua") -- File browser
-	use("nvim-tree/nvim-web-devicons") -- Icons
-	use("nvim-lualine/lualine.nvim") -- Status and tabline
-
-	use("RRethy/nvim-base16") -- Colorschemes
-	use("norcalli/nvim-colorizer.lua") -- Shows the color of the color code
-	use({ "AlphaTechnolog/pywal.nvim", as = "pywal" })
-
-	use({
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.4",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	}) -- For searching
-
+	-- LSP support
 	use({
 		"williamboman/mason.nvim", -- Portable package manager for installing LSP, DAP, Linters and Formatters
 		"williamboman/mason-lspconfig.nvim", -- Connect mason.vim and lspconfig
@@ -35,37 +22,70 @@ return require("packer").startup(function(use)
 		"neovim/nvim-lspconfig", -- For LSP configurations
 	})
 
+	-- LSP UIs
+	use("glepnir/lspsaga.nvim")
+
+	-- fuzzy finder
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.4",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	}) -- For searching
+	use("nvim-telescope/telescope-file-browser.nvim") -- file browsing
+	use("nvim-tree/nvim-web-devicons") -- Icons
+
+	-- code formater
 	use({
 		"jose-elias-alvarez/null-ls.nvim", -- Adds extra tools that cannot act like LSP by themselves
 	})
+	use("MunifTanjim/prettier.nvim") -- for code formater
 
-	use("nvim-treesitter/nvim-treesitter") -- Code highlights
-	use("mg979/vim-visual-multi") -- Multi cursors like 'Alt-click' in 'vs-code'
-
-	-- Autocompletion
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
+	-- autocompletion
+	use("hrsh7th/nvim-cmp") -- completion engine
+	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovimss built-in LSP
+	use("hrsh7th/cmp-buffer") -- for buffer completions
+	use("hrsh7th/cmp-path") --  for path completions
 	use("L3MON4D3/LuaSnip") -- Snippets engine
-	use("saadparwaiz1/cmp_luasnip") -- LuaSnip completion
-	use("rafamadriz/friendly-snippets") -- Snippets collection
-	use("ray-x/lsp_signature.nvim") -- To show function signuture on type like
-	use("windwp/nvim-autopairs") -- For auto close pairs of (), [], {}, '', ""
+	use("onsails/lspkind-nvim") -- vscode-like pictograms
+	use("saadparwaiz1/cmp_luasnip") -- allows nvim-cmp to use snippets loaded by LuaSnip
 
-	use("pangloss/vim-javascript")
+	-- actual snippets
+	use("rafamadriz/friendly-snippets") -- collection of snippets
 
-	-- HTML support
-	use({
-		"othree/html5.vim",
-		run = " npm install -g vscode-langservers-extracted ",
-	})
-	use("AndrewRadev/tagalong.vim") -- Auto rename html tags
+	-- autotag and autopair
+	use("windwp/nvim-autopairs") -- For auto close pairs of (), [], {}, , ""
+	use("windwp/nvim-ts-autotag") --  for auto close, rename html like
+
+	-- code highlights
+	use("nvim-treesitter/nvim-treesitter") -- Code highlights
+
+	-- lualine
+	use("nvim-lualine/lualine.nvim") -- Status and tabline
+
+	-- colorscheme
+	use("RRethy/nvim-base16") -- Colorschemes
+	use("norcalli/nvim-colorizer.lua") -- Shows the color of the color code
+	--use({ "AlphaTechnolog/pywal.nvim", as = "pywal" })
 
 	-- Comment
-	use("scrooloose/nerdcommenter") -- Commenter
+	use("numToStr/Comment.nvim") -- Commenter
 
+	-- Surounding
+	use("tpope/vim-surround") -- surrounding words
+
+	-- RegExp
+	use("nvim-pack/nvim-spectre") -- enhance RegExp operations
+
+	use("mg979/vim-visual-multi") -- Multi cursors like Alt-click in vs-code
+
+	-- Zooming
 	use("markstory/vim-zoomwin") -- Pane zoom
+
+	-- which-key
+	use("folke/which-key.nvim") -- to show hot-keys
+
+	-- Command Mode
+	use("gelguy/wilder.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
