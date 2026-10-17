@@ -1,0 +1,37 @@
+#!/bin/bash
+
+WALLPAPERS=~/.config/hypr/wallpapers
+ROFI_THEME=~/.config/rofi
+
+if [ -z "$1" ]; then
+  selected=$(ls -1 "$WALLPAPERS/" | rofi -dmenu -theme "$ROFI_THEME/default.rasi")
+else
+  selected="$1"
+fi
+
+if [ ! "$selected" ]; then
+  echo "No wallpaper selected!"
+  exit
+else
+  transition_type="wipe"
+  # Check if swww is executable
+  if ! command -v awww &>/dev/null; then
+    sudo pacman -S awww --noconfirm
+    mkdir -p ~/.cache/awww
+    awww-daemon --namespace "$WAYLAND_DISPLAY" &
+    sleep 1
+  else
+    # Check if daemon is running, staring otherwise
+    pgrep -x awww-daemon >/dev/null || awww-daemon &
+
+    # Kill the script if it's running
+    pgrep -x dynamic-wall >/dev/null
+  fi
+
+  awww img "$WALLPAPERS/$selected" \
+    --transition-bezier .45,1.9,1,.4 \
+    --transition-fps=60 \
+    --transition-type=$transition_type \
+    --transition-duration=0.25
+  notify-send "Wallpaper" "$selected"
+fi

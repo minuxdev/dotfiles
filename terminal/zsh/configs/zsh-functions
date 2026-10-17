@@ -1,0 +1,24 @@
+# CUSTOM FUNCTIONS
+# Add zsh plugins
+zsh_install_plugin() {
+    local PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    local PLUGIN_DIR="$ZDOTDIR/plugins/$PLUGIN_NAME"
+    if [ ! -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]
+    then
+       git clone https://github.com/$1.git "$PLUGIN_DIR"
+    fi
+
+    [ -d "$PLUGIN_DIR/src" ] && fpath+=("$PLUGIN_DIR/src" fpath)
+    source "$PLUGIN_DIR/$PLUGIN_NAME.plugin.zsh"   
+}
+
+# Add zsh files
+zsh_add_file() {
+    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+# Set zsh theme
+zsh_add_theme() {
+    [ -f "$ZDOTDIR/themes/$1.zsh-theme" ] && source "$ZDOTDIR/themes/$1.zsh-theme"
+}
+

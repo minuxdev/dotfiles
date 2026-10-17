@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+
+set -e
+
+JOIN_DISPLAYS='JOIN DISPLAYS'
+OUTPUT="SPECIFICY DISPLAY"
+REGION='SELECT REGION'
+date=$(date "+%F_%H%M%S")
+ROFI_THEME=~/.config/rofi/default.rasi
+
+# Checking dependencies
+if ! type grim || slurp || xrandr &>/div/null; then
+  echo ":: Missing dependencies. Installing..."
+  sudo pacman -S grim slurp xrand --needed
+fi
+
+# Choose displayer
+if type rofi &>/dev/null; then
+  selected=$(
+    echo -e "$REGION\n$OUTPUT\n$JOIN_DISPLAYS" | rofi -dmenu -theme "$ROFI_THEME"
+  )
+else
+  selected=$(
+    echo -e "$REGION\n$OUTPUT\n$JOIN_DISPLAYS" | fzf --prompt="SELECT MODE"
+  )
+fi
+
+
+# Create direcotry to store screenshots
+mkdir -p ~/screenshots && directory=~/screenshots
+
+if [[ "$selected" = "$REGION" ]]; then
+  sleep 1
+  grim -g "$(slurp)" "$directory/region-$date.jpg"
+  notify-send -u low -t 2000 "Region was printed."
+elif [[ "$selected" = "$OUTPUT" ]]; then
+  outputs=$(xrandr | grep 'connected' | awk ' { print $1 }')
+
+  if type rofi &>/dev/null; then
+    output=$(echo "$outputs" | rofi -dmenu -theme $ROFI_THEME --prompt "Display: ")
+  else
+    output=$(echo "$outputs" | fzf --prompt="Display: ")
+  fi
+  sleep 1
+  grim -o "$output" "$directory/joined-displays-$date.jpg"
+  notify-send -u low -t 2000 "$output was printed."
+else
+  sleep 1
+  grim "$directory/region-$date.jpg"
+  notify-send -u low -t 2000 "All outputs were printed."
+fi
+

@@ -1,0 +1,77 @@
+#!/bin/bash
+
+VIDEOS=~/Videos/yt
+AUDIOS=~/Music/yt
+
+# Install yt-dlp and its dependencies
+if ! command -v yt-dlp &> /dev/null; then
+  sudo pacman -S yt-dlp --noconfirm --needed
+  mkdir -p ~/Videos/yt
+  mkdir -p ~/Music/yt
+fi
+
+# Install gum
+if ! command -v gum &> /dev/null; then
+  sudo pacman -S gum --noconfirm --needed
+fi
+
+download_video() {
+  LINK="$1"
+  if [ -n "$LINK" ]; then
+    quality=$(gum choose 'MP4 only' 'FHD only' 'ANY')
+    case "${quality[@]}" in
+      'MP4 only')
+        yt-dlp -f "bestvideo[ext=mp4]+ba" "$LINK" -o "$VIDEOS/%(title)s.%(ext)s" 
+        ;;
+      'FHD only')
+        yt-dlp -f "bv*[height>=1080]+ba" "$LINK" -o "$VIDEOS/%(title)s.%(ext)s" 
+        ;;
+      'ANY')
+        yt-dlp -f "bv*+ba" "$LINK" -o "$VIDEOS/%(title)s.%(ext)s" 
+        ;;
+      *)
+        gum confirm && printf 'Exiting...'; exit
+        ;;
+    esac
+  fi
+}
+
+download_audio() {
+  LINK="$1"
+  [ -n "$LINK" ] && yt-dlp -f "ba" -x --audio-format mp3 "$LINK" -o "$AUDIOS/%(title)s.mp3" 
+}
+
+
+gum_style() {
+  TEXT="$1"
+  gum style --foreground 212  --align center --padding "2 0" ":: $TEXT"
+}
+
+gum_header() {
+  gum style \
+    --foreground 212 --border-foreground 212 --border normal \
+    --align center --width 50 --margin "1 0" --padding "2 4" \
+    "YOUTUBE VIDEO DOWNLOADER"
+}
+
+gum_header
+
+
+options=('download_video' 'download_audio')
+choice=$(gum choose "${options[@]}")
+
+case "$choice" in
+  'download_video')
+    gum_style "DOWNLOADING VIDEO"
+    URL=$(gum input --placeholder 'Insert URL')
+    download_video "$URL"
+    ;;
+  'download_audio')
+    gum_style "DOWNLOADING AUDIO"
+    URL=$(gum input --placeholder 'Insert URL')
+    download_audio "$URL"
+    ;;
+  *)
+    gum confirm && exit 
+    ;;
+esac

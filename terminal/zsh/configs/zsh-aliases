@@ -1,0 +1,45 @@
+if command -v "zoxide" &>/dev/null; then
+  alias cd='z'
+  alias cd..='z ..'
+fi
+
+alias cp='cp -r'
+alias cls='clear'
+alias rm='rm -r'
+alias sf="source $ZDOTDIR/.zshrc"
+alias modz="$EDITOR $ZDOTDIR/.zshrc && source $ZDOTDIR/.zshrc"
+
+if command -v "lsd" &>/dev/null; then
+  alias ls='lsd  --group-directories-first'
+  alias ll='lsd -l --color=auto --group-directories-first'
+  alias la='lsd -a --color=auto --group-directories-first'
+  alias lla='lsd -la --color=auto --group-directories-first'
+  alias lt='lsd --tree --color=auto'
+else
+  alias l='ls --color=auto --group-directories-first'
+  alias ll='ls -l --color=auto --group-directories-first'
+  alias la='ls -a --color=auto --group-directories-first'
+  alias lla='ls -la --color=auto --group-directories-first'
+  alias lt='ls --tree --color=auto'
+fi
+
+if command -v "bat" &>/dev/null; then
+  alias cat="bat --theme='TwoDark' --style='numbers,changes,header'"
+fi
+
+if command -v "tmux" &>/dev/null; then
+  alias t="tmux"
+  alias tk="tmux kill-session"
+  alias tl="tmux list-sessions"
+  alias tf="sh ~/.config/tmux/scripts/fullstack.sh"
+fi
+
+if command -v "bpytop" &>/dev/null; then
+  alias top="bytop"
+else
+  alias top="htop"
+fi
+
+if command -v "nvim" &>/dev/null; then
+  alias nv="nvim"
+fi

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Interval in seconds
+INTERVAL=60 
+WALLPAPERS=~/.config/hypr/wallpapers
+
+# Check if swww is executable 
+if ! command -v awww &> /dev/null; then 
+	sudo pacman -S awww --noconfirm
+	mkdir -p ~/.cache/awww
+	awww-daemon --namespace "$WAYLAND_DISPLAY" &
+	sleep 1
+fi;
+# Check if daemon is running, staring otherwise
+pgrep -x awww-daemon > /dev/null || awww-daemon &
+
+# Rotate wallpaper
+while true; do
+  # Picking rondom image
+  IMG=$(find "$WALLPAPERS" -type f | shuf -n 1)
+
+  # Setting image as wallpaper
+	awww img "$IMG" \
+		--transition-bezier .45,1.9,1,.4 \
+		--transition-fps=60 \
+		--transition-type="wipe" \
+		--transition-duration=2 \
+		--transition-pos "$(hyprctl cursorpos)" 2>/dev/null
+
+  # Sleeping to the next rotation
+  sleep "$INTERVAL"
+done

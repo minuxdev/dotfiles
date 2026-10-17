@@ -1,0 +1,88 @@
+#!/bin/bash
+
+user='admin'
+passwd='root'
+database="$HOME/shares"
+server_ip='192.168.10.100'
+CREDENTIALS="$HOME/.access"
+
+usage() {
+  printf "
+===============================================
+          __  ____                 
+         /  |/  (_)___  __  ___  __
+        / /|_/ / / __ \/ / / / |/_/
+       / /  / / / / / / /_/ />  <  
+      /_/  /_/_/_/ /_/\__,_/_/|_|  
+                                   
+
+              SCRIPT USAGE
+ 
+===============================================
+This is how you can use this script to mount shares.
+
+Flags:
+  -u: user
+  -p: password
+  -s: server ip
+  -d: directory where you want to mount it
+
+Example:
+  sh mount-shares -u minux -p minuxdev -d ~/my/shares -s 192.168.10.100
+
+  "
+  exit
+
+}
+
+while getopts "u:p:s:d" options; do
+  case $options in
+  u)
+    user=$OPTARG
+    ;;
+  p)
+    passwd=$OPTARG
+    ;;
+  s)
+    server_ip=$OPTARG
+    ;;
+  d)
+    database=$OPTARG
+    ;;
+  *)
+    usage
+    ;;
+  esac
+  [ -f "$CREDENTIALS" ] && rm "$CREDENTIALS"
+done
+
+ping -c2 -W2 -q "$server_ip"
+
+if [ "$?" -eq 0 ]; then
+  [ ! -f "$CREDENTIALS" ] && printf "username=$user\npassword=$passwd\ndomain=DATACENTER" >"$CREDENTIALS" &&
+    chmod 0600 "$CREDENTIALS"
+
+  # UMOUNT ALL CIFS DRIVERS
+  printf "\n:: UNMOUNTING DRIVERS\n"
+  sudo umount -f "//$server_ip/studio" "$database/studio" 2 &>/dev/null
+  sudo umount -f "//$server_ip/media" "$database/media" 2 &>/dev/null
+  sudo umount -f "//$server_ip/tools" "$database/tools" 2 &>/dev/null
+  sudo umount -f "//$server_ip/office" "$database/office" 2 &>/dev/null
+
+  # MOUNT ALL CIFS DRIVERS
+  mkdir -p "$database/studio"
+  mkdir -p "$database/media"
+  mkdir -p "$database/tools"
+  mkdir -p "$database/office"
+
+  printf "\n:: MOUNTING DRIVERS\n"
+  sudo mount -t cifs -o credentials="$CREDENTIALS,uid=$(id -u),gid=$(id -g),noserverino,forceuid,forcegid,vers=2.0" "//$server_ip/studio" "$database/studio"
+  sudo mount -t cifs -o credentials="$CREDENTIALS,uid=$(id -u),gid=$(id -g),noserverino,forceuid,forcegid,vers=2.0" "//$server_ip/media" "$database/media"
+  sudo mount -t cifs -o credentials="$CREDENTIALS,uid=$(id -u),gid=$(id -g),noserverino,forceuid,forcegid,vers=2.0" "//$server_ip/tools" "$database/tools"
+  sudo mount -t cifs -o credentials="$CREDENTIALS,uid=$(id -u),gid=$(id -g),noserverino,forceuid,forcegid,vers=2.0" "//$server_ip/office" "$database/office"
+
+  notify-send "Server" "You're connected to $server_ip."
+else
+  notify-send "Server" "Couldn't connect to $server_ip."
+  read -p "Failed to mount. Press Enter to exit..."
+fi

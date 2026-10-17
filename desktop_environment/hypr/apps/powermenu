@@ -1,0 +1,26 @@
+#!/bin/bash
+
+shutdown=""
+reboot="󰜉"
+logout=""
+suspend=""
+ROFI_THEM="$HOME/.config/rofi/default.rasi"
+
+options="$shutdown\n$reboot\n$logout"
+
+chosen="$(echo -e "$options" | rofi -theme "$ROFI_THEME" -dmenu )"
+
+case $chosen in
+"$shutdown")
+	sudo shutdown now
+	;;
+
+"$reboot")
+	sudo reboot -i
+	;;
+
+"$logout")
+	hyprctl dispatch exit
+	;;
+
+esac

@@ -1,0 +1,48 @@
+# TERMINAL COLORS
+# -----------------------------------------------------------
+test -r ~/.dircolors && 
+	eval "$(dircolors -b ~/.dircolors)" || 
+	eval "$(dircolors -b)"
+
+
+# HISTORY
+# -----------------------------------------------------------
+HISTSIZE=1000			                                          # Maximum events for internal history 
+SAVEHIST=1000			                                          # Maximum events for history file
+HISTFILE=$ZDOTDIR/.zsh_history 	                            # History file path
+
+
+# SET OPTIONS
+# -----------------------------------------------------------
+setopt globdots                                             # Include dot files in search engine
+setopt correct				                                      # Auto correct mistakes
+setopt autocd				                                        # if only directory path is entered, cd there
+setopt histignorespace			                                # Don't save commands that start with space
+setopt histignorealldups		                                # If a new command is a duplicate, remove the older one
+setopt nocaseglob			                                      # Case insensitive globbing
+setopt sharehistory			                                    # Share history between multiple terminals
+
+
+# COMPLETION SYSTEM 
+# -----------------------------------------------------------
+autoload -Uz compinit; compinit -u		                          # Loads and initialize autocompletions
+
+# Completion system configuration
+zstyle ':completion::complete:*' gain-privileges true	      # enables autocompletion for privileged envs
+zstyle ':completion:*' matcher-list \
+'m:{a-zA-Z}={A-Za-z}' \
+'r:|[._-]=* r:|=*' \
+'l:|'                                                       # hightlight the current match
+zstyle ':completion:*' menu select 	                        # autocompletion with arrow-keys
+zstyle ':completion:*' \
+  list-colors "${(s.:.)LS_COLORS}"                          # completion menu follows the ls --color=auto style
+  # zstyle ':completion:*' special-dirs "*/.*"              # specify the files and directories to match (files and directories that contains . will be matched)
+
+# OTHER SETTINS
+# -----------------------------------------------------------
+if type 'zoxide' &> /dev/null; then
+  eval "$(zoxide init zsh)"
+else
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh &&
+  eval "$(zoxide init zsh)"
+fi
