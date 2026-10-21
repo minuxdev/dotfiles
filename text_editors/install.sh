@@ -20,6 +20,7 @@ sudo pacman -S taplo \
   eslint-language-server \
   typescript-language-server \
   shfmt \
+  prettier \
   lua-language-server --noconfirm --needed
 
 if command -v nvim &>/dev/null; then
