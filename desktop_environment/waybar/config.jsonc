@@ -5,7 +5,6 @@
     "spacing": 1,
     "margin": 0,
     "modules-left": [
-        "group/hardware",
         "hyprland/workspaces",
         "hyprland/window"
     ],
@@ -13,6 +12,7 @@
         "clock"
     ],
     "modules-right": [
+        "group/hardware",
         "wireplumber#sink",
         "backlight",
         "network",
@@ -21,6 +21,7 @@
         "tray",
     ],
     "hyprland/workspaces": {
+        "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
             "active": "",
@@ -28,7 +29,9 @@
         }
     },
     "hyprland/window": {
-    	"format": "<span color='#FFD700'>  {title}</span>",
+    	"format": "<span color='#FFD700'>   {title}</span>",
+      "ellipsis": true,
+      "max-length": 60,
     	"rewrite": {
     		"(.*) - Mozilla Firefox": "🌎 $1",
     		"(.*) - zsh": "> [$1]"
@@ -40,12 +43,12 @@
     },
     "group/hardware": {
         "orientation": "horizontal",
-        "drawer": {
-        	  "transition-duration": 200,
-        	  "transition-left-to-right": true
-        },
+        // "drawer": {
+        // 	  "transition-duration": 200,
+        // 	  "transition-left-to-right": true
+        // },
         "modules": [
-        	  "custom/hardware-wrap",
+        	  // "custom/hardware-wrap",
             "power-profiles-daemon",
         	  "cpu",
         	  "memory",
@@ -59,10 +62,10 @@
     },
     "group/session": {
         "orientation": "horizontal",
-        "drawer": {
-        	  "transition-duration": 500,
-        	  "transition-left-to-right": true
-        },
+        // "drawer": {
+        // 	  "transition-duration": 500,
+        // 	  "transition-left-to-right": true
+        // },
         "modules": [
         	  "custom/session-wrap",
             "custom/lock",
@@ -118,12 +121,12 @@
         "format": "󰘚 {usage}%",
         "tooltip": true,
         "interval": 1,
-        "on-click": "alacritty -e htop"
+        "on-click": "foot -e htop"
     },
     "memory": {
         "format": "󰍛 {}%",
         "interval": 1,
-        "on-click": "alacritty -e htop"
+        "on-click": "foot -e htop"
     },
     "temperature": {
         "critical-threshold": 80,
@@ -165,7 +168,7 @@
         "format-disconnected": "󰖪 Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format": "{ifname}: {ipaddr}",
-        "on-click-right": "alacritty -e nmtui"
+        "on-click-right": "foot -e nmtui"
     },
     "wireplumber#sink": {
         "format": "{icon} {volume}%",

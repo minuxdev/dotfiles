@@ -34,7 +34,7 @@ _hyprland() {
 }
 
 _waybar() {
-  sudo pacman -S waybar --noconfirm --needed
+  yay -S waybar-git --noconfirm --needed
 
   if command -v waybar &>/dev/null; then
     [ -d "$CONFIG_DIR/waybar" ] && mv "$CONFIG_DIR/waybar" "$CONFIG_DIR/waybar.$_date.bkp"

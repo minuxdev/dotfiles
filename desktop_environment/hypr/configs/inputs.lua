@@ -7,14 +7,14 @@ hl.monitor({
   output = "DP-1",
   position = "0x0",
   scale = 1,
-  disabled = false
+  disabled = true
 })
 
 hl.monitor({
   output = "HDMI-A-2",
   position = "0x0",
   scale = 1,
-  disabled = true
+  disabled = false
 })
 
 
