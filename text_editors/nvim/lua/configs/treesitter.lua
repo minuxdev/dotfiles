@@ -18,6 +18,7 @@ ts.setup({
     "css",
     "html",
     "json",
+    "jsonc",
     "lua",
   },
 })

@@ -75,7 +75,7 @@ return require("packer").startup(function(use)
   use { "JoosepAlviste/nvim-ts-context-commentstring", } -- Commentstring integration with treesitter
 
   -- Comment
-  use("numToStr/Comment.nvim") -- Commenter
+  use("numToStr/Comment.nvim")  -- Commenter
   use("nvim-mini/mini.comment") -- Commenter
 
   -- Surounding

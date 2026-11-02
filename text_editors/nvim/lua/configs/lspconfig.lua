@@ -61,5 +61,11 @@ vim.lsp.config("eslint", {
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   cmd = { "eslint-language-server", "--stdio" },
 })
+
+-- json and jsonc
+vim.lsp.config("json", {
+  filetypes = { "json", "jsonc" }
+})
+
 -- Enable
 vim.lsp.enable({ "lua_ls", "bashls", "yamlls", "taplo", "eslint", "ts_ls" })
