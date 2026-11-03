@@ -62,14 +62,14 @@ _notifications() {
 }
 
 _display_manager() {
-  sudo pacman -S greetd-tuigreet --needed --noconfirm
+  sudo pacman -S greetd greetd-tuigreet --needed --noconfirm
   if command -v tuigreet &>/dev/null; then
     [ -d "$CONFIG_DIR/tuigreet" ] && mv "$CONFIG_DIR/tuigreet" "$CONFIG_DIR/tuigreet.$_date.bkp"
     [ -d "$SCRIPT_DIR/tuigreet" ] && cp -rv "$SCRIPT_DIR/tuigreet" "$CONFIG_DIR/"
     printf "\n:: TUIGREET was installed successfully on your system.\n"
+    sudo systemctl enable --now greetd.service
   else
     printf "\n:: TUIGREET not installed on your system.\n"
-
   fi
 }
 
