@@ -59,6 +59,7 @@ return require("packer").startup(function(use)
   -- autotag and autopair
   use("windwp/nvim-autopairs")  -- For auto close pairs of (), [], {}, , ""
   use("windwp/nvim-ts-autotag") --  for auto close, rename html like
+  use("kylechui/nvim-surround") --
 
   -- code highlights
   use("nvim-treesitter/nvim-treesitter") -- Code highlights
