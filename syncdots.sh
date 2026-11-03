@@ -76,7 +76,6 @@ SERVER_DIR="$HOME/dotfiles"
 DESK_ENV="$DOTS_DIR/desktop_environment"
 TERMINAL="$DOTS_DIR/terminal"
 TEXT_EDITORS="$DOTS_DIR/text_editors"
-DISPLAY_MANAGER="$DOTS_DIR/tuigreet"
 
 # ==============================================================================
 # BACKUP PROCESS
@@ -86,7 +85,7 @@ echo -e "${YELLOW}:: Pre-checking backup directory structure...${NC}"
 mkdir -p "$DESK_ENV" "$TERMINAL" "$TEXT_EDITORS" "$DISPLAY_MANAGER"
 
 # 1. Desktop Environment
-echo -e "\n${BLUE}[1/5] Processing DESKTOP ENVIRONMENT...${NC}"
+echo -e "\n${BLUE}[1/4] Processing DESKTOP ENVIRONMENT...${NC}"
 for app in hypr rofi waybar; do
   if [ -d "$CONFIG_DIR/$app" ]; then
     # rsync -au copies only new or updated files, keeping existing folder content untouched
@@ -97,7 +96,7 @@ for app in hypr rofi waybar; do
 done
 
 # 2. Terminal
-echo -e "\n${BLUE}[2/5] Processing TERMINAL...${NC}"
+echo -e "\n${BLUE}[2/4] Processing TERMINAL...${NC}"
 for app in foot zsh tmux; do
   if [ -d "$CONFIG_DIR/$app" ]; then
     run_with_spinner "Updating $app" rsync -au "$CONFIG_DIR/$app/" "$TERMINAL/$app/"
@@ -107,7 +106,7 @@ for app in foot zsh tmux; do
 done
 
 # 3. Text Editors
-echo -e "\n${BLUE}[3/5] Processing TEXT EDITORS...${NC}"
+echo -e "\n${BLUE}[3/4] Processing TEXT EDITORS...${NC}"
 if [ -d "$CONFIG_DIR/nvim" ]; then
   run_with_spinner "Updating nvim" rsync -au "$CONFIG_DIR/nvim/" "$TEXT_EDITORS/nvim/"
 
@@ -119,16 +118,8 @@ else
   echo -e "${RED}  ! Configuration for 'nvim' not found.${NC}"
 fi
 
-# 5. Display Manager
-echo -e "\n${BLUE}[4/5] Processing DISPLAY_MANAGER...${NC}"
-if [ -d "$CONFIG_DIR/tuigreet" ]; then
-  run_with_spinner "Updating tuigreet" rsync -au "$CONFIG_DIR/tuigreet/" "$DESK_ENV/tuigreet/"
-else
-  echo -e "${RED}  ! Configuration for 'tuigreet' not found.${NC}"
-fi
-
 # 4. Updating the Server
-echo -e "\n${BLUE}[5/5] UPDATING THE SERVER...${NC}"
+echo -e "\n${BLUE}[4/4] UPDATING THE SERVER...${NC}"
 if [ -d "$SERVER_DIR" ]; then
   echo -e "${YELLOW}  -> Incrementally updating server folder (no files will be deleted)...${NC}"
 
