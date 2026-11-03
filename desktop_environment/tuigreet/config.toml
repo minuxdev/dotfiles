@@ -4,6 +4,13 @@ greeting = "Welcome to the system!"
 align_greeting = "center"
 issue = false
 
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --time --remember --cmd start-hyprland"
+user = "greeter"
+
 [layout]
 width = 60
 window_padding = 2

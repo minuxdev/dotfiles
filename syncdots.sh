@@ -122,7 +122,7 @@ fi
 # 5. Display Manager
 echo -e "\n${BLUE}[4/5] Processing DISPLAY_MANAGER...${NC}"
 if [ -d "$CONFIG_DIR/tuigreet" ]; then
-  run_with_spinner "Updating tuigreet" rsync -au "$CONFIG_DIR/tuigreet/" "$TERMINAL/tuigreet/"
+  run_with_spinner "Updating tuigreet" rsync -au "$CONFIG_DIR/tuigreet/" "$DESK_ENV/tuigreet/"
 else
   echo -e "${RED}  ! Configuration for 'tuigreet' not found.${NC}"
 fi
