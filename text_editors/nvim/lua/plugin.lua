@@ -1,105 +1,112 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd([[packadd packer.nvim]])
-    return true
-  end
-  return false
-end
-
-local packer_bootstrap = ensure_packer()
-
-return require("packer").startup(function(use)
-  use("wbthomason/packer.nvim")
-
-  -- LSP support
-  use({
-    "williamboman/mason.nvim",           -- Portable package manager for installing LSP, DAP, Linters and Formatters
-    "williamboman/mason-lspconfig.nvim", -- Connect mason.vim and lspconfig
-    "stevearc/conform.nvim",             -- Connect `null-ls` and `mason`
-    "neovim/nvim-lspconfig",             -- For LSP configurations
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
   })
+end
+vim.opt.rtp:prepend(lazypath)
+
+
+
+
+require("lazy").setup({
+  -- LSP support
+  "stevearc/conform.nvim",                                                                  -- Connect `null-ls` and `mason`
+  { "neovim/nvim-lspconfig",                      event = { "BufReadPre", "BufNewFile" } }, -- For LSP configurations
 
   -- LSP UIs
-  use("glepnir/lspsaga.nvim")
+  "glepnir/lspsaga.nvim",
 
   -- fuzzy finder
-  use({
+  {
     "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/plenary.nvim" } },
-  })                                                -- For searching
-  use("nvim-telescope/telescope-file-browser.nvim") -- file browsing
-  use("nvim-tree/nvim-web-devicons")                -- Icons
-  use("echasnovski/mini.icons")                     -- Icons
+    dependencies = { { "nvim-lua/plenary.nvim" } },                                 -- Changed 'requires' to 'dependencies' for lazy.nvim
+    cmd = "Telescope",
+  },                                                                                -- For searching
+  { "nvim-telescope/telescope-file-browser.nvim", cmd = "Telescope file_browser" }, -- file browsing
+  "nvim-tree/nvim-web-devicons",                                                    -- Icons
+  "echasnovski/mini.icons",                                                         -- Icons
 
   -- code formater
-  --  use({
+  --  {
   --    "jose-elias-alvarez/null-ls.nvim", -- Adds extra tools that cannot act like LSP by themselves
-  --  })
-  use("MunifTanjim/prettier.nvim") -- for code formater
+  --  },
+  "MunifTanjim/prettier.nvim", -- for code formater
 
   -- autocompletion
-  use("hrsh7th/nvim-cmp")     -- completion engine
-  use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovimss built-in LSP
-  use("hrsh7th/cmp-buffer")   -- for buffer completions
-  use("hrsh7th/cmp-path")     --  for path completions
-  use("L3MON4D3/LuaSnip", {
+  { "hrsh7th/nvim-cmp",                event = "InsertEnter" }, -- completion engine
+  "hrsh7th/cmp-nvim-lsp",                                       -- nvim-cmp source for neovimss built-in LSP
+  "hrsh7th/cmp-buffer",                                         -- for buffer completions
+  "hrsh7th/cmp-path",                                           --  for path completions
+  {
+    "L3MON4D3/LuaSnip",
     dependencies = {
       { "mlaursen/vim-react-snippets", opts = {} },
-    }
-  })                              -- Snippets engine
-  use("onsails/lspkind-nvim")     -- vscode-like pictograms
-  use("saadparwaiz1/cmp_luasnip") -- allows nvim-cmp to use snippets loaded by LuaSnip
+    }, -- Snippets engine
+    event = "InsertEnter",
+  },
+  "onsails/lspkind-nvim",     -- vscode-like pictograms
+  "saadparwaiz1/cmp_luasnip", -- allows nvim-cmp to use snippets loaded by LuaSnip
 
   -- actual snippets
-  use("rafamadriz/friendly-snippets") -- collection of snippets
+  "rafamadriz/friendly-snippets", -- collection of snippets
 
   -- autotag and autopair
-  use("windwp/nvim-autopairs")  -- For auto close pairs of (), [], {}, , ""
-  use("windwp/nvim-ts-autotag") --  for auto close, rename html like
-  use("kylechui/nvim-surround") --
+  { "windwp/nvim-autopairs",           event = "InsertEnter" },                  -- For auto close pairs of (), [], {}, , ""
+  { "windwp/nvim-ts-autotag",          event = "InsertEnter" },                  --  for auto close, rename html like
+  { "kylechui/nvim-surround",          event = { "BufReadPre", "BufNewFile" } }, --
 
   -- code highlights
-  use("nvim-treesitter/nvim-treesitter") -- Code highlights
+  { "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } }, -- Code highlights
 
   -- lualine
-  use("nvim-lualine/lualine.nvim") -- Status and tabline
+  "nvim-lualine/lualine.nvim", -- Status and tabline
 
   -- colorscheme
-  use("RRethy/nvim-base16")                              -- Colorschemes
-  use("norcalli/nvim-colorizer.lua")                     -- Shows the color of the color code
-  use { "catppuccin/nvim", as = "catppuccin" }           -- colorscheme catppuccin
-  use { "pangloss/vim-javascript" }                      -- Prettify .jsx files
-  use { "MaxMEllon/vim-jsx-pretty" }                     -- Prettify .jsx files
-  use { "JoosepAlviste/nvim-ts-context-commentstring", } -- Commentstring integration with treesitter
+  "RRethy/nvim-base16",                                                                             -- Colorschemes
+  { "norcalli/nvim-colorizer.lua", event = { "BufReadPre", "BufNewFile" } },                        -- Shows the color of the color code
+  { "catppuccin/nvim",             name = "catppuccin",                          priority = 1000 }, -- colorscheme catppuccin
+  { "pangloss/vim-javascript",     ft = { "javascript", "javascriptreact" } },                      -- Prettify .jsx files
+  { "MaxMEllon/vim-jsx-pretty",    ft = { "javascriptreact", "typescriptreact" } },                 -- Prettify .jsx files
+  "JoosepAlviste/nvim-ts-context-commentstring",                                                    -- Commentstring integration with treesitter
 
   -- Comment
-  use("numToStr/Comment.nvim")  -- Commenter
-  use("nvim-mini/mini.comment") -- Commenter
+  { "numToStr/Comment.nvim",    event = { "BufReadPre", "BufNewFile" } }, -- Commenter
+  { "echasnovski/mini.comment", event = { "BufReadPre", "BufNewFile" } }, -- Commenter (Fixed repository organization name)
 
   -- Surounding
-  use("tpope/vim-surround") -- surrounding words
+  { "tpope/vim-surround",       event = { "BufReadPre", "BufNewFile" } }, -- surrounding words
 
   -- RegExp
-  use("nvim-pack/nvim-spectre") -- enhance RegExp operations
+  { "nvim-pack/nvim-spectre",   cmd = "Spectre" }, -- enhance RegExp operations
 
-  use("mg979/vim-visual-multi") -- Multi cursors like Alt-click in vs-code
+  "mg979/vim-visual-multi",                        -- Multi cursors like Alt-click in vs-code
 
   -- Zooming
-  use("markstory/vim-zoomwin") -- Pane zoom
+  "markstory/vim-zoomwin", -- Pane zoom
 
   -- which-key
-  use("folke/which-key.nvim") -- to show hot-keys
+  { "folke/which-key.nvim", event = "VeryLazy" }, -- to show hot-keys
 
   -- Command Mode
-  use("gelguy/wilder.nvim")
+  {
+    "gelguy/wilder.nvim",
+    lazy = false,
+    priority = 100,
+    build = ":UpdateRemotePlugins",
+    config = function()
+      local wilder = require("wilder")
+      wilder.setup({
+        modes = { ":", "/", "?" },
+      })
+    end,
+  },
 
   -- Go language
-  use("ray-x/go.nvim") -- Add go support to neovim
-
-  if packer_bootstrap then
-    require("packer").sync()
-  end
-end)
+  { "ray-x/go.nvim",        ft = "go" }, -- Add go support to neovim
+})
