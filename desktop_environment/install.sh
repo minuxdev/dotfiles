@@ -62,19 +62,27 @@ _notifications() {
 }
 
 _display_manager() {
-  sudo pacman -S greetd greetd-tuigreet --needed --noconfirm
-  if command -v tuigreet &>/dev/null; then
-    [ -d "$SCRIPT_DIR/tuigreet/config.toml" ] && sudo cp -rv "$SCRIPT_DIR/tuigreet/config.toml" /etc/greetd/
+  tee -a ~/.bash_profile <<'EOF'
 
-    printf "\n:: TUIGREET was installed successfully on your system.\n"
-    sudo systemctl enable --now greetd.service
-  else
-    printf "\n:: TUIGREET not installed on your system.\n"
+if [[ -z "$DISPLAY" && -z "$WAYLAND_DISPLAY" && "$TTY" = "/dev/tty1" ]]; then
+  if command -v hyprctl &>/dev/null; then
+    exec start-hyprland
   fi
+fi
+
+EOF
+
+  sudo mkdir -p /etc/systemd/system/getty@tty1.service.d && sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf <<'EOF'
+
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty -o '-p -- \u' --noclear --autologin minux %I $TERM
+
+EOF
 }
 
-_hyprland
-_waybar
-_rofi
-_notifications
+# _hyprland
+# _waybar
+# _rofi
+# _notifications
 _display_manager

@@ -21,7 +21,7 @@ if command -v zsh &>/dev/null; then
   [ -d "$ZSH_DIR" ] && {
     cp "$ZSH_DIR/.zshenv" ~/.zshenv &&
       ln -sf -T "$ZSH_DIR/.zshrc" ~/.zshrc
-    ln -sf -T "$ZSH_DIR/.zlogin" ~/.zlogin
+    ln -sf -T "$ZSH_DIR/.zprofile" ~/.zprofile
   }
   [ -L ~/.zshrc ] && /usr/bin/zsh -i -c "source $HOME/.zshrc"
 

@@ -25,13 +25,13 @@ set.fillchars = "vert: "
 -- CursorLine
 set.cursorline = true
 
-vim.cmd([[
-  augroup highlight_yank
-    autocmd!
-  augroup END
-]])
-
 -- Show characters
---vim.cmd([[
---set listchars=eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,tab:•→
---]])
+vim.opt.list = true
+vim.opt.listchars = {
+  eol      = '↲',
+  nbsp     = '␣',
+  trail    = '•',
+  extends  = '⟩',
+  precedes = '⟨',
+  tab      = '•→',
+}

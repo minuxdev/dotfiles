@@ -12,7 +12,7 @@ general {
     resize_on_border = true
     extend_border_grab_area = 15
     col.active_border = rgba(3accffee)
-    col.inactive_border = rgba(595959aa)
+    -- col.inactive_border = rgba(595959aa)
 }
 
 decoration {

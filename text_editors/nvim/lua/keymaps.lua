@@ -27,6 +27,7 @@ wk.add({
   { "<leader>f",        group = "Telescope" },
   { "<leader>ff",       telescope.builtin().find_files,            desc = "Find files" },
   { "<leader>fl",       telescope.builtin().live_grep,             desc = "Open recent files" },
+  { "<leader>fw",       telescope.builtin().buffers,               desc = "Show opened buffers" },
   { "<leader>fo",       telescope.builtin().oldfiles,              desc = "Open old files" },
   { "<leader>fk",       telescope.builtin().keymaps,               desc = "Show keymaps" },
   { "<leader>fc",       telescope.builtin().colorscheme,           desc = "Set colorscheme" },
@@ -54,5 +55,9 @@ wk.add({
   { "<leader>ls",       ":Lspsaga show_buf_diagnostics<cr>",       desc = "Show buffer diagnostics" },
   { "<leader>lw",       ":Lspsaga show_workspace_diagnostics<cr>", desc = "Show workspace diagnostics" },
   { "<leader>lt",       ":Lspsaga term_toggle<cr>",                desc = "Term toggle" },
+
+  -- Quick list
+  { "<C-j>",            "<cmd>cnext<CR>",                          desc = "Go down" },
+  { "<C-k>",            "<cmd>cprev<CR>",                          desc = "Go up" },
   { prefix = "<leader>" },
 })

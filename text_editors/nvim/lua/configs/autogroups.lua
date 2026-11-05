@@ -1,17 +1,21 @@
 -- Highlight yanked
+local highlight_group = vim.api.nvim_create_augroup("HighlightYank", { clear = true })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	desc = "Hightlight selection on yank",
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 400 })
-	end,
+  group = highlight_group,
+  desc = "Hightlight selection on yank",
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+  end,
 })
+
+
 
 -- Python specific sets
 local filetype = vim.bo.filetype
 if filetype == "python" then
-	vim.cmd([[
+  vim.cmd([[
     let python_highlight_all = 1
     au Filetype python
     \ setlocal tabstop=4 |
