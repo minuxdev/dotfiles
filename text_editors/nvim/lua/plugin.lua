@@ -87,9 +87,6 @@ require("lazy").setup({
 
   "mg979/vim-visual-multi",                        -- Multi cursors like Alt-click in vs-code
 
-  -- Zooming
-  "markstory/vim-zoomwin", -- Pane zoom
-
   -- which-key
   { "folke/which-key.nvim", event = "VeryLazy" }, -- to show hot-keys
 
